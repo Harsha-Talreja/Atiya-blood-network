@@ -208,8 +208,8 @@ Please do not enter real patient data in a demo. This is coursework, not a medic
 You need **Python 3.12 or newer** (`python --version`, or `py --version` on Windows).
 
 ```bash
-git clone https://github.com/Harsha-Talreja/atiya-blood-network.git
-cd atiya-blood-network
+git clone https://github.com/Harsha-Talreja/Atiya-blood-network.git
+cd Atiya-blood-network
 
 python -m venv venv
 venv\Scripts\activate              # Windows
