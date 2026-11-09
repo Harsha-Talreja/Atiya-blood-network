@@ -45,13 +45,16 @@
 
 <p align="center"><img src="docs/images/divider.svg" alt="" width="100%" height="6"></p>
 
-## A night in Sukkur
+## Four people, one request
 
-It is 2 a.m. Rubina Shah is in Civil Hospital. Her doctor needs O+ blood before morning. Her family starts texting every group they know, and nobody can tell which messages are real, which donors are free, or who is already on the way.
-
-On ATIYA she posts one request. The hospital confirms it is genuine. Only O+ donors who are rested and nearby see it. One donor taps **I can help**, and Rubina watches the timeline move: offered, on the way, reached the hospital. If the hospital stays silent, an admin steps in, and the request says so honestly.
-
-That is the whole idea: fewer messages, fewer wrong guesses, and a request people can trust.
+<table>
+  <tr>
+    <td width="25%" valign="top"><b>Donor</b><br><sub>Sees only requests that match their blood type and city. Never asked while resting. Taps "I can help" and "I've reached the hospital".</sub></td>
+    <td width="25%" valign="top"><b>Requester</b><br><sub>Posts a request in one form, follows a live progress timeline, sees who offered, and marks it fulfilled.</sub></td>
+    <td width="25%" valign="top"><b>Hospital</b><br><sub>Has its own login. Confirms the request is genuine before any donor sees it, including extra units.</sub></td>
+    <td width="25%" valign="top"><b>Admin</b><br><sub>Decides when a hospital stays silent, manages users and reports, and every action is logged.</sub></td>
+  </tr>
+</table>
 
 <p align="center">
   <img src="docs/images/demo.gif" alt="The five steps of one request, shown on the real screens" width="860">
