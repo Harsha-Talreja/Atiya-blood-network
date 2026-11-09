@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load core_extras %}
+{% block title %}{% blocktrans trimmed with blood_type=req.blood_type name=req.hospital.name SITE_NAME=SITE_NAME %}{{ blood_type }} needed at {{ name }} | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block content %}
+<section class="page-section glass-page rq-page">
+  {% include "components/glass_orbs.html" %}
+  <div class="container">
+
+    <p class="crumb"><a href="{% url 'blood_requests:list' %}"><i class="bi bi-arrow-left" aria-hidden="true"></i> {% trans "All requests" %}</a></p>
+
+    {% if is_owner and req.is_visible_to_donors and matching_donors %}
+      <div class="match-banner" data-aos="fade-up">
+        <div class="match-banner-icon"><i class="bi bi-droplet-fill" aria-hidden="true"></i></div>
+        <div>
+          <h3>{% blocktrans trimmed count n=matching_donors|length %}Match found! {{ n }} compatible donor nearby{% plural %}Match found! {{ n }} compatible donors nearby{% endblocktrans %}</h3>
+          <p>{% blocktrans trimmed %}See who's ready under "Donors ready nearby", or wait for someone to tap "I can help."{% endblocktrans %}</p>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="dash-head">
+      {% include "components/blood_badge.html" with blood_type=req.blood_type size="lg" %}
+      <div>
+        <h1>{% blocktrans trimmed with blood_type=req.blood_type|pretty_blood patient_name=req.patient_name %}{{ blood_type }} needed for {{ patient_name }}{% endblocktrans %}</h1>
+        <p class="dash-sub"><i class="bi bi-hospital" aria-hidden="true"></i> {{ req.hospital }}, {{ req.location.area }}, {{ req.location.city }}</p>
+      </div>
+      {% if is_owner and req.is_open %}
+        {% if response_count %}
+        <form method="post" action="{% url 'blood_requests:fulfil' req.pk %}" class="ms-sm-auto" data-confirm="{% trans "Mark this request as fulfilled? It will no longer be shown as open." %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-brand"><i class="bi bi-check2-circle" aria-hidden="true"></i> {% trans "Mark fulfilled" %}</button>
+        </form>
+        {% else %}
+        <span class="wait-fulfil ms-sm-auto">
+          <button type="button" class="btn btn-brand" disabled aria-disabled="true" aria-describedby="wait-fulfil-note"><i class="bi bi-check2-circle" aria-hidden="true"></i> {% trans "Mark fulfilled" %}</button>
+          <small id="wait-fulfil-note">{% trans "Available once a donor offers to help" %}</small>
+        </span>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="row g-3 rq-cols">
+      <div class="col-lg-{% if is_owner or user.is_staff %}7{% else %}8{% endif %}">
+        <div class="glass-card rq-main no-lift" data-aos="fade-up" style="--fill: {{ track_fill }}">
+          <div class="rq-top">
+            <span class="track-ref">{% blocktrans trimmed with pk=req.pk %}Request #{{ pk }}{% endblocktrans %}</span>
+            {% include "components/urgency_pill.html" with urgency=req.urgency %}
+            {% include "components/status_pill.html" with status=req.display_status %}
+            {% if req.is_verified %}<span class="pill pill-verified"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> {{ req.verified_label }}</span>
+            {% elif req.release_label %}<span class="pill pill-auto"><i class="bi bi-shield-exclamation" aria-hidden="true"></i> {{ req.release_label }}</span>
+            {% elif req.needs_timeout_review and can_see_reason %}<span class="pill pill-review"><i class="bi bi-hourglass-split" aria-hidden="true"></i> {% trans "Waiting for an admin" %}</span>{% endif %}
+            {% if req.is_awaiting_extra_review and req.hospital_wait_over %}<span class="pill pill-review"><i class="bi bi-hourglass-split" aria-hidden="true"></i> {% trans "Extra units awaiting an admin" %}</span>{% endif %}
+          </div>
+          {% include "components/tracking_line.html" %}
+          <p class="rq-sub">{% blocktrans trimmed with created_at=req.created_at|date:"j M Y, g:i A" %}Requested {{ created_at }}{% endblocktrans %}{% if response_count %} &middot; {% blocktrans trimmed count n=response_count %}{{ n }} donor offered to help{% plural %}{{ n }} donors offered to help{% endblocktrans %}{% endif %}</p>
+          <dl class="facts">
+            <div class="fact"><dt>{% trans "Units needed" %}</dt><dd>{{ req.units_needed }}</dd></div>
+            <div class="fact"><dt>{% trans "Posted" %}</dt><dd>{{ req.created_at|time_ago }}</dd></div>
+            <div class="fact">
+              <dt>{% if req.status == "Fulfilled" %}{% trans "Fulfilled" %}{% elif req.is_open %}{% trans "Closes" %}{% else %}{% trans "Closed" %}{% endif %}</dt>
+              <dd>
+                {% if req.status == "Fulfilled" %}{{ req.fulfilled_at|time_ago }}
+                {% elif req.is_open %}<time class="countdown" data-countdown="{{ req.expires_at|date:'c' }}">{% blocktrans trimmed with expires_at=req.expires_at|time_left %}in {{ expires_at }}{% endblocktrans %}</time>
+                {% else %}{{ req.expires_at|time_ago }}{% endif %}
+              </dd>
+            </div>
+            {% if can_see_contact %}<div class="fact"><dt>{% trans "Contact number" %}</dt><dd>{{ req.contact_phone }}</dd></div>{% endif %}
+          </dl>
+          {% if not can_see_contact and user.is_authenticated %}
+            <p class="status-note"><i class="bi bi-lock" aria-hidden="true"></i> {% trans "The contact number is shown to the requester, the hospital and donors who offer to help." %}</p>
+          {% endif %}
+          {% if req.note %}<p class="text-soft mb-0 mt-2">{{ req.note }}</p>{% endif %}
+
+          {% if can_see_reason and req.extra_review != "none" or can_see_reason and req.extra_reason %}
+            <div class="glass-card review-box is-{{ req.extra_review }} mt-3" data-extra-review>
+              {% if req.extra_review == "pending" and not req.hospital_wait_over %}
+                <h3>{% trans "Waiting for the hospital to verify" %}</h3>
+                <p>{% blocktrans trimmed with units_needed=req.units_needed unit_limit=unit_limit %}This request asks for {{ units_needed }} units, which is more than the standard {{ unit_limit }}. It stays hidden from donors until the hospital verifies it. If the hospital does not verify it in time, an admin decides.{% endblocktrans %}</p>
+              {% elif req.extra_review == "pending" %}
+                <h3>{% trans "Waiting for an admin to approve the extra units" %}</h3>
+                <p>{% blocktrans trimmed with units_needed=req.units_needed unit_limit=unit_limit %}This request asks for {{ units_needed }} units, which is more than the standard {{ unit_limit }}. It stays hidden from donors until an admin decides.{% endblocktrans %}</p>
+              {% elif req.extra_accepted_by_hospital %}
+                <h3>{% trans "Extra units accepted" %}</h3>
+                <p>{% blocktrans trimmed with units_needed=req.units_needed %}The hospital verified this request, so the {{ units_needed }} units are accepted.{% endblocktrans %}</p>
+              {% elif req.extra_review == "approved" %}
+                <h3>{% trans "Extra units approved" %}</h3>
+                <p>{% blocktrans trimmed with units_needed=req.units_needed %}An admin approved {{ units_needed }} units{% endblocktrans %}{% if req.reviewed_at %} {{ req.reviewed_at|time_ago }}{% endif %}.</p>
+              {% elif req.extra_review == "rejected" %}
+                <h3>{% trans "Extra units not approved" %}</h3>
+                <p>{% blocktrans trimmed with units_needed=req.units_needed %}An admin did not approve {{ units_needed }} units, so this request was closed.{% endblocktrans %}{% if req.reviewed_at %} {% blocktrans trimmed with reviewed_at=req.reviewed_at|time_ago %}Decided {{ reviewed_at }}.{% endblocktrans %}{% endif %}</p>
+              {% endif %}
+              {% if req.extra_reason %}<p class="mb-0"><strong>{% trans "Reason given" %}</strong></p><blockquote>{{ req.extra_reason }}</blockquote>{% endif %}
+              {% if req.review_note %}<p class="mb-0 mt-2"><strong>{% trans "Admin's note" %}</strong></p><blockquote>{{ req.review_note }}</blockquote>{% endif %}
+            </div>
+          {% endif %}
+
+          {% if not user.is_authenticated %}
+            <p class="status-note mt-3"><i class="bi bi-lock" aria-hidden="true"></i> <span><a href="{% url 'accounts:login' %}?next={{ request.path }}">{% trans "Sign in" %}</a> {% trans "to offer to help." %}</span></p>
+          {% elif can_offer_help %}
+            <form method="post" action="{% url 'blood_requests:respond' req.pk %}" class="mt-3" data-confirm="{% trans "Let the requester know you're willing to donate?" %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-brand btn-lg"><i class="bi bi-droplet-fill" aria-hidden="true"></i> {% trans "I can help" %}</button>
+            </form>
+          {% elif has_responded %}
+            <p class="status-note mt-3"><i class="bi bi-check-circle" aria-hidden="true"></i> {% trans "You've offered to help with this request. The hospital will do the final medical screening." %}</p>
+            {% if req.is_open %}
+              {% if my_response.arrived_at %}
+                <p class="status-note arrived-note mt-3"><i class="bi bi-hospital-fill" aria-hidden="true"></i> <span>{% trans "You told the requester you are at the hospital. Show your name at the hospital desk." %}</span></p>
+              {% else %}
+                <form method="post" action="{% url 'blood_requests:arrived' req.pk %}" class="mt-3" data-confirm="{% trans "Tell the requester and the hospital that you have reached the hospital?" %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-brand btn-lg"><i class="bi bi-hospital-fill" aria-hidden="true"></i> {% trans "I've reached the hospital" %}</button>
+                </form>
+              {% endif %}
+              <form method="post" action="{% url 'blood_requests:withdraw' req.pk %}" class="mt-2" data-confirm="{% trans "Withdraw your offer? The requester will be told, and you can offer to help elsewhere." %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-ghost btn-sm"><i class="bi bi-x-circle" aria-hidden="true"></i> {% trans "Withdraw my offer" %}</button>
+              </form>
+            {% endif %}
+          {% elif offer_problem %}
+            <p class="status-note mt-3" data-offer-problem><i class="bi bi-info-circle" aria-hidden="true"></i> <span>{{ offer_problem }}{% if committed_to %} <a href="{% url 'blood_requests:detail' committed_to.pk %}">{% trans "Open that request" %}</a>.{% endif %}</span></p>
+          {% elif is_owner and not req.fulfilled_at %}
+            {% if req.is_awaiting_extra_review and not req.hospital_wait_over %}
+              <p class="status-note mt-3"><i class="bi bi-hourglass-split" aria-hidden="true"></i> {% trans "The hospital has to verify this request before donors can see it. If it does not in time, an admin decides. You will see the result here." %}</p>
+            {% elif req.is_awaiting_extra_review %}
+              <p class="status-note mt-3"><i class="bi bi-hourglass-split" aria-hidden="true"></i> {% trans "An admin has to approve the extra units before donors can see this request. You will see their decision here." %}</p>
+            {% elif req.extra_review == "rejected" %}
+              <p class="status-note mt-3"><i class="bi bi-slash-circle" aria-hidden="true"></i> {% trans "This request was not approved, so donors never saw it. You can post a new request that fits the limit." %}</p>
+            {% elif req.is_verified %}
+              <p class="status-note mt-3"><i class="bi bi-patch-check" aria-hidden="true"></i> {% blocktrans trimmed with name=req.hospital.name %}{{ name }} verified this. Donors can see it.{% endblocktrans %}</p>
+            {% elif req.timeout_review == "rejected" %}
+              <p class="status-note mt-3"><i class="bi bi-slash-circle" aria-hidden="true"></i> {% blocktrans trimmed with name=req.hospital.name %}{{ name }} did not verify this in time and an admin did not approve it, so donors never saw it.{% endblocktrans %}</p>
+            {% elif req.release_label %}
+              <p class="status-note mt-3"><i class="bi bi-shield-exclamation" aria-hidden="true"></i> {% blocktrans trimmed with release_label=req.release_label %}{{ release_label }} Donors can see it, marked as not verified by the hospital.{% endblocktrans %}</p>
+            {% elif req.needs_timeout_review %}
+              <p class="status-note mt-3"><i class="bi bi-hourglass-split" aria-hidden="true"></i> {% blocktrans trimmed with name=req.hospital.name %}{{ name }} did not verify this in time, so an admin will approve or reject it. Donors can't see it until then.{% endblocktrans %}</p>
+            {% else %}
+              <p class="status-note mt-3"><i class="bi bi-clock-history" aria-hidden="true"></i> <span>{% blocktrans trimmed with name=req.hospital.name %}Waiting for {{ name }} to verify this. If they don't verify it within{% endblocktrans %} <time data-countdown="{{ req.hospital_deadline|date:'c' }}" data-countdown-prefix="" data-countdown-done="{% trans "a moment" %}">{{ req.hospital_deadline|time_left }}</time>{% trans ", an admin decides whether donors see it." %}</span></p>
+            {% endif %}
+          {% elif viewer_donor is None and not user.is_staff and not user.hospital_account %}
+            <p class="status-note mt-3"><i class="bi bi-info-circle" aria-hidden="true"></i> <span><a href="{% url 'donors:edit' %}">{% trans "Register as a donor" %}</a> {% trans "to offer to help with requests like this." %}</span></p>
+          {% endif %}
+
+          {% if user.is_authenticated and not is_owner and not user.is_staff %}
+            <p class="mt-3 mb-0">
+              <button type="button" class="btn btn-link btn-sm text-soft p-0" data-bs-toggle="modal" data-bs-target="#reportModal">
+                <i class="bi bi-flag" aria-hidden="true"></i> {% trans "Report this request" %}
+              </button>
+            </p>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if is_owner or user.is_staff %}
+      <div class="col-lg-5">
+        <div class="rq-side">
+          <div class="glass-card rq-donors no-lift" data-aos="fade-up" data-aos-delay="80" data-live-key="offers">
+            <h2>{% if req.fulfilled_at %}{% trans "Donors who helped" %}{% else %}{% trans "Donors who offered" %}{% endif %} <i class="count-chip">{{ offers|length }}</i></h2>
+            {% if offers %}
+              <ul class="list-unstyled mb-0 d-flex flex-column gap-1">
+                {% for o in offers %}{% include "components/offer_row.html" with o=o closed=req.fulfilled_at %}{% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-soft mb-0">{% trans "No one has offered to help yet." %}</p>
+            {% endif %}
+          </div>
+
+          {% if req.is_open %}
+          <details class="glass-card rq-ready no-lift" data-aos="fade-up" data-aos-delay="120"{% if not offers %} open{% endif %}>
+            <summary><span>{% trans "Donors ready nearby" %} <i class="count-chip">{{ matching_donors|length }}</i></span><i class="bi bi-chevron-down rq-chev" aria-hidden="true"></i></summary>
+            {% if matching_donors %}
+              <ul class="list-unstyled mb-0 d-flex flex-column gap-1 mt-2">
+                {% for donor in matching_donors %}
+                  {% include "components/donor_row.html" with donor=donor meta=donor.location %}
+                {% endfor %}
+              </ul>
+              <p class="rq-fine">{% blocktrans trimmed %}Their numbers stay private until they tap "I can help".{% endblocktrans %}</p>
+            {% else %}
+              <p class="text-soft mb-0 mt-2">{% trans "No available, eligible donors match this request yet." %}</p>
+            {% endif %}
+          </details>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <p class="mt-4"><a href="{% url 'blood_requests:list' %}"><i class="bi bi-arrow-left" aria-hidden="true"></i> {% trans "Back to all requests" %}</a></p>
+  </div>
+</section>
+
+{% if report_form %}
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form method="post" action="{% url 'blood_requests:report' req.pk %}">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="reportModalTitle"><i class="bi bi-flag" aria-hidden="true"></i> {% trans "Report this request" %}</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans "Close" %}"></button>
+        </div>
+        <div class="modal-body">
+          {% include "components/form_errors.html" with form=report_form %}
+          {% include "components/form_field.html" with field=report_form.reason %}
+          {% include "components/form_field.html" with field=report_form.details %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+          <button type="submit" class="btn btn-brand"><i class="bi bi-flag" aria-hidden="true"></i> {% trans "Submit report" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

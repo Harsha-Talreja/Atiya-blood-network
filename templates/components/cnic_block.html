@@ -1,0 +1,14 @@
+{% load i18n %}{% comment %}
+  The CNIC, asked once. A person with none on file gets the field; a person who already gave it
+  sees the last four digits and nothing to type. Used by the donor form and the request form.
+{% endcomment %}
+{% if form.needs_cnic %}
+  <div class="cnic-block">
+    {% include "components/form_field.html" with field=form.cnic %}
+  </div>
+{% elif form.identity %}
+  <div class="cnic-on-file" role="status">
+    <i class="bi bi-person-vcard" aria-hidden="true"></i>
+    <div><b>{% blocktrans trimmed with masked=form.identity.masked %}CNIC on file: {{ masked }}{% endblocktrans %}</b><small>{% trans "Nothing more to enter." %}</small></div>
+  </div>
+{% endif %}

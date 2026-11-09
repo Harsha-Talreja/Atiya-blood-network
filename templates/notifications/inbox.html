@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load core_extras %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Notifications | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block content %}
+<section class="page-section glass-page">
+  {% include "components/glass_orbs.html" %}
+  <div class="container notif-page">
+    <div class="dash-head">
+      <div>
+        <h1>{% trans "Notifications" %}</h1>
+      </div>
+      {% if unread %}
+        <form method="post" action="{% url 'notifications:read_all' %}" class="ms-sm-auto">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-outline-brand"><i class="bi bi-check2-all" aria-hidden="true"></i> {% trans "Mark all as read" %}</button>
+        </form>
+      {% endif %}
+    </div>
+    <div class="glass-card notif-card no-lift">
+      <div id="notif-list">
+        {% include "notifications/_list.html" %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

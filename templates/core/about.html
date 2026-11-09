@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}About {{ SITE_NAME }}, privacy and safety | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block meta_description %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}How {{ SITE_NAME }} matches blood donors with families in Sukkur, what data it keeps, and how it protects people.{% endblocktrans %}{% endblock %}
+{% block content %}
+<section class="page-section glass-page">
+  {% include "components/glass_orbs.html" %}
+  <div class="container">
+    <article class="doc-page glass-card">
+      <h1>{% blocktrans trimmed with SITE_NAME=SITE_NAME %}About {{ SITE_NAME }}{% endblocktrans %}</h1>
+      <p class="lead">{% blocktrans trimmed with SITE_TAGLINE=SITE_TAGLINE SITE_NAME=SITE_NAME %}{{ SITE_TAGLINE }}. {{ SITE_NAME }} helps families who need blood and willing donors find each other faster than WhatsApp groups and phone calls.{% endblocktrans %}</p>
+      <ul class="doc-toc" aria-label="{% trans "On this page" %}">
+        <li><a href="#matching">{% trans "How matching works" %}</a></li>
+        <li><a href="#privacy">{% trans "Privacy notice" %}</a></li>
+        <li><a href="#safety">{% trans "Safety notice" %}</a></li>
+        <li><a href="#accessibility">{% trans "Accessibility" %}</a></li>
+      </ul>
+
+      <h2 id="what">{% trans "What this service is" %}</h2>
+      <p>{% blocktrans trimmed with SITE_NAME=SITE_NAME %}{{ SITE_NAME }} is a website where donors register their blood type and area, and where families can see how many compatible donors are ready in their city. It does not store or supply blood. Hospitals and blood banks always make the final decision about who may donate.{% endblocktrans %}</p>
+      <p>{% blocktrans trimmed with SITE_NAME=SITE_NAME %}{{ SITE_NAME }} is a student project, built for the course CSC-206 Software Engineering at Aror University of Art, Architecture, Design and Heritage, Sukkur.{% endblocktrans %}</p>
+
+      <h2 id="matching">{% trans "How matching works" %}</h2>
+      <p>{% trans "A donor is shown as ready, and matched to a request, only when all of these are true:" %}</p>
+      <table class="table">
+        <tbody>
+          <tr><th scope="row">{% trans "Compatible blood" %}</th><td>{% trans "The donor's blood group can safely give red blood cells to the patient's group, using the standard chart." %}</td></tr>
+          <tr><th scope="row">{% trans "Available" %}</th><td>{% trans "The donor has switched availability on." %}</td></tr>
+          <tr><th scope="row">{% trans "Rested" %}</th><td>{% blocktrans trimmed with cooldown=cooldown %}At least {{ cooldown }} days have passed since the donor's last donation.{% endblocktrans %}</td></tr>
+          <tr><th scope="row">{% trans "Nearby" %}</th><td>{% trans "The donor is in the same city as the request, and donors in the same area come first." %}</td></tr>
+          <tr><th scope="row">{% trans "Still open" %}</th><td>{% blocktrans trimmed with Critical=hours.Critical Urgent=hours.Urgent Normal=hours.Normal %}A request stays open for {{ Critical }} hours if Critical, {{ Urgent }} hours if Urgent, and {{ Normal }} hours if Normal, unless it is marked fulfilled sooner.{% endblocktrans %}</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="privacy">{% trans "Privacy notice" %}</h2>
+      <p><strong>{% trans "What we keep." %}</strong> {% trans "When you create an account we keep your username, your email address, and a scrambled (hashed and salted) version of your password. We never see or store your password as you typed it. If you register as a donor we also keep your name, mobile number, blood type, area, last donation date, whether you are available, and the two confirmations you gave. When you post a request we keep its details, such as the hospital, the blood type needed, and a contact number." %}</p>
+      <p><strong>{% trans "Who can see what." %}</strong></p>
+      <table class="table">
+        <tbody>
+          <tr><th scope="row">{% trans "Anyone" %}</th><td>{% trans "Only counts, such as how many donors are ready in an area, and open request cards showing the hospital, area, blood type and urgency. Never names, patient names or phone numbers." %}</td></tr>
+          <tr><th scope="row">{% trans "Signed-in people" %}</th><td>{% trans "Their own profile and requests. A donor's phone number is shared only with the person whose request that donor offered to help with, and only if the donor agreed when registering. A patient's contact number is shown only to the person who posted the request, the hospital it names, and donors who offered to help with it." %}</td></tr>
+          <tr><th scope="row">{% trans "Administrators" %}</th><td>{% trans "Can view records in the admin panel, for moderation and support." %}</td></tr>
+        </tbody>
+      </table>
+      <p><strong>{% trans "Cookies and browser storage." %}</strong> {% trans "We use one cookie to keep you signed in and to protect forms from forgery. Your light or dark choice is saved in your own browser. We do not use advertising or tracking cookies, and nothing on these pages is loaded from other websites." %}</p>
+
+      <h2 id="safety">{% trans "Safety notice" %}</h2>
+      <div class="doc-note" role="note">
+        <i class="bi bi-exclamation-triangle" aria-hidden="true"></i>
+        <div><strong>{% trans "In an emergency, contact the hospital's blood bank directly." %}</strong> {% blocktrans trimmed with SITE_NAME=SITE_NAME %}{{ SITE_NAME }} is a helper, not a medical service, and it cannot promise that a donor will respond.{% endblocktrans %}</div>
+      </div>
+      <ul class="mt-3">
+        <li>{% trans "Every donor is screened by a hospital or blood bank before donating. Being shown as ready here does not mean a person is medically fit to donate." %}</li>
+        <li>{% trans "The compatibility guide covers red blood cell donations only. Plasma and platelets follow different rules, so always confirm with the hospital." %}</li>
+        <li>{% trans "Donating blood should be voluntary. Be careful with anyone who asks for money, and confirm any request with the hospital before you travel." %}</li>
+      </ul>
+
+      <h2 id="accessibility">{% trans "Accessibility" %}</h2>
+      <p>{% trans "The site works with a keyboard, has text that meets recommended contrast levels in both light and dark modes, respects the device setting for reduced motion, and works on phones. If something is hard to use, please tell the project team so it can be fixed." %}</p>
+    </article>
+  </div>
+</section>
+{% endblock %}

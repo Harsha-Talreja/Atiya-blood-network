@@ -1,0 +1,215 @@
+{% extends "siteadmin/base.html" %}
+{% load admin_extras core_extras %}
+
+{% block title %}Overview{% endblock %}
+{% block heading %}Platform overview{% endblock %}
+{% block state %}
+  {% if numbers.awaiting_extra %}
+    {{ numbers.awaiting_extra }} request{{ numbers.awaiting_extra|pluralize }} asking for extra units, waiting for your decision
+  {% elif numbers.unchecked or numbers.open_reports %}
+    {{ numbers.unchecked }} request{{ numbers.unchecked|pluralize }} went out unchecked,
+    {{ numbers.open_reports }} report{{ numbers.open_reports|pluralize }} unread
+  {% else %}
+    Nothing is waiting on you
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{# The four numbers an admin looks at first, and the last seven days of requests. #}
+<div class="kpis">
+  <div class="kpi"><div class="l">Open requests</div><div class="v">{{ numbers.open_requests }}</div></div>
+  <div class="kpi{% if numbers.unchecked %} due{% endif %}"><div class="l">Unchecked</div><div class="v">{{ numbers.unchecked }}</div></div>
+  <div class="kpi"><div class="l">Donors ready</div><div class="v">{{ numbers.donors_ready }}</div></div>
+  <div class="kpi{% if numbers.open_reports %} due{% endif %}"><div class="l">Open reports</div><div class="v">{{ numbers.open_reports }}</div></div>
+</div>
+
+<section class="sec">
+  <div class="sh">
+    <h2>Requests per day</h2>
+    <span class="c">last 7 days, {{ trend.total }} in total</span>
+  </div>
+  <div class="chart">
+    <svg viewBox="0 0 {{ trend.width }} {{ trend.height }}" role="img" aria-label="Requests per day over the last 7 days">
+      <line class="g" x1="10" y1="{{ trend.baseline }}" x2="{{ trend.width|add:'-10' }}" y2="{{ trend.baseline }}"></line>
+      <path class="a" d="{{ trend.area }}"></path>
+      <path class="l" d="{{ trend.line }}"></path>
+      {% for day in trend.days %}
+        <circle class="d" cx="{{ day.x }}" cy="{{ day.y }}" r="3"></circle>
+        <text class="x" x="{{ day.x }}" y="88" text-anchor="middle">{{ day.label }}</text>
+      {% endfor %}
+    </svg>
+    <p class="visually">{% for day in trend.days %}{{ day.label }}: {{ day.count }}. {% endfor %}</p>
+  </div>
+</section>
+
+{% if timed_out %}
+<section class="sec">
+  <div class="sh">
+    <h2>Hospital missed its deadline</h2>
+    <span class="c">{{ numbers.awaiting_timeout }} waiting, hidden from donors until you decide</span>
+    <span class="end"><a class="btn bare" href="{% url 'siteadmin:requests' %}?state=timeout">See all</a></span>
+  </div>
+  <div class="rows">
+    <table>
+      <tbody>
+        {% for req in timed_out %}
+          <tr>
+            <td>
+              <div class="who">{{ req.patient_name }}</div>
+              <div class="qt">{{ req.urgency }}, {{ req.units_needed }} unit{{ req.units_needed|pluralize }}, posted {{ req.created_at|time_ago }} by {{ req.requester.username }}</div>
+            </td>
+            <td><span class="bt">{{ req.blood_type|blood_mark }}</span></td>
+            <td class="hide qt">{{ req.hospital.name }}, {{ req.hospital.location.city }}</td>
+            <td class="r">
+              <div class="acts">
+                <form method="post" action="{% url 'siteadmin:request_timeout' req.pk %}">
+                  {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}"><input type="hidden" name="decision" value="approve">
+                  <button class="btn go" type="submit">Approve</button>
+                </form>
+                <form method="post" action="{% url 'siteadmin:request_timeout' req.pk %}">
+                  {% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}"><input type="hidden" name="decision" value="reject">
+                  <button class="btn stop" type="submit">Reject</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endif %}
+
+{% if to_review %}
+<section class="sec">
+  <div class="sh">
+    <h2>Extra units to approve</h2>
+    <span class="c">{{ numbers.awaiting_extra }} waiting, hidden from donors until you decide</span>
+    <span class="end"><a class="btn bare" href="{% url 'siteadmin:requests' %}?state=review">See all</a></span>
+  </div>
+  <div class="rows">
+    <table>
+      <tbody>
+        {% for req in to_review %}
+          <tr>
+            <td>
+              <div class="who">{{ req.patient_name }}</div>
+              <div class="qt">{{ req.units_needed }} units, posted {{ req.created_at|time_ago }} by {{ req.requester.username }}</div>
+            </td>
+            <td><span class="bt">{{ req.blood_type|blood_mark }}</span></td>
+            <td class="hide qt">{{ req.hospital.name }}, {{ req.hospital.location.city }}</td>
+            <td class="r"><a class="btn go" href="{% url 'siteadmin:request_review' req.pk %}">Review</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endif %}
+
+{# First on the page, because it is the only part that needs a person. #}
+<section class="sec">
+  <div class="sh">
+    <h2>Needs a person</h2>
+    <span class="c">
+      {% if numbers.unchecked %}
+        {{ numbers.unchecked }} request{{ numbers.unchecked|pluralize }}, oldest {{ numbers.oldest_unchecked|duration }}
+      {% else %}
+        nothing unchecked
+      {% endif %}
+    </span>
+    <span class="end">
+      <a class="btn bare" href="{% url 'siteadmin:requests' %}?state=unchecked">See all requests</a>
+    </span>
+  </div>
+
+  <div class="rows">
+    <table>
+      <tbody>
+        {% for req in attention %}
+          <tr>
+            <td>
+              <div class="who">{{ req.patient_name }}</div>
+              <div class="qt">{{ req.units_needed }} unit{{ req.units_needed|pluralize }},
+                {{ req.release_label }}
+                Posted {{ req.created_at|time_ago }}</div>
+            </td>
+            <td><span class="bt">{{ req.blood_type|blood_mark }}</span></td>
+            <td class="hide qt">{{ req.hospital.name }}, {{ req.hospital.location.city }}</td>
+            <td>
+              {% if req.report_count %}
+                <span class="st urgent"><i aria-hidden="true"></i>Nobody checked it, and it has
+                  {{ req.report_count }} report{{ req.report_count|pluralize }}</span>
+              {% elif req.urgency == "Critical" %}
+                <span class="st urgent"><i aria-hidden="true"></i>Critical, nobody checked it</span>
+              {% else %}
+                <span class="st wait">Nobody checked it</span>
+              {% endif %}
+            </td>
+            <td class="r">
+              <div class="acts">
+                {% if req.report_count %}
+                  <a class="btn out" href="{% url 'siteadmin:reports' %}">Read report</a>
+                {% else %}
+                  <form method="post" action="{% url 'siteadmin:request_check' req.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <button class="btn go" type="submit">Mark checked</button>
+                  </form>
+                {% endif %}
+                <form method="post" action="{% url 'siteadmin:request_remove' req.pk %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                  <button class="btn stop" type="submit">Remove</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5" class="empty">Nothing to check.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<section class="sec">
+  <div class="sh">
+    <h2>Recent admin activity</h2>
+    <span class="c">what admins have done</span>
+    <span class="end"><a class="btn bare" href="{% url 'siteadmin:audit' %}">Audit log</a></span>
+  </div>
+  <div class="feed">
+    {% for entry in activity %}
+      <div class="ev">
+        <span class="when">{{ entry.created_at|time_ago }}</span>
+        <span{% if entry.actor_id == user.pk %} class="mine"{% endif %}>
+          <b>{{ entry.actor_name }}</b> &mdash; {{ entry.action|lower }}{% if entry.target %}: {{ entry.target }}{% endif %}{% if entry.note %}. {{ entry.note }}{% endif %}
+        </span>
+      </div>
+    {% empty %}
+      <p class="empty">Nothing yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sh">
+    <h2>Donors ready</h2>
+    <span class="c">{{ numbers.donors_ready }} of {{ numbers.donors_total }} can give today</span>
+    <span class="end"><a class="btn bare" href="{% url 'siteadmin:donors' %}">All donors</a></span>
+  </div>
+  {% include "siteadmin/_supply.html" %}
+</section>
+
+{# The four numbers that live nowhere else in the panel. #}
+<div class="figs">
+  <div><div class="v">{{ numbers.fulfilled_this_month }}</div><div class="l">Fulfilled this month</div></div>
+  <div><div class="v">{{ numbers.went_out_unchecked }}</div><div class="l">Went out unchecked this month</div></div>
+  <div><div class="v">{{ numbers.expired_unfilled }}</div><div class="l">Expired with no donor</div></div>
+  <div><div class="v">{{ numbers.blocked_total }}</div><div class="l">Blocked accounts</div></div>
+</div>
+
+{% endblock %}

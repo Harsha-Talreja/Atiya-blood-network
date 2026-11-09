@@ -1,0 +1,8 @@
+{% comment %}
+  The tabs at the top of a "Donate blood" or "Request blood" page. Real links, so each
+  tab is its own address; the open one is marked for screen readers and styled.
+  Built by the dash_tabs tag in core/templatetags/dash.py.
+{% endcomment %}
+<nav class="dtabs" aria-label="{{ label }}">
+  {% for tab in tabs %}<a href="{{ tab.url }}"{% if tab.key == current %} aria-current="page"{% endif %}>{{ tab.label }}{% if tab.count %}<em>{{ tab.count }}</em>{% endif %}</a>{% endfor %}
+</nav>

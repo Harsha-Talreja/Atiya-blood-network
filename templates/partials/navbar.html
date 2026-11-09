@@ -1,0 +1,87 @@
+{% load i18n %}{% load static core_extras %}
+<header class="site-header sticky-top">
+  <nav class="navbar navbar-expand-lg" aria-label="{% trans "Main navigation" %}">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 m-0" href="{% if desk_only %}{% if user.is_staff %}{% url 'siteadmin:overview' %}{% else %}{% url 'hospitals:dashboard' %}{% endif %}{% else %}{% url 'core:home' %}{% endif %}">
+        <img src="{% static 'img/logo-mark.svg' %}" width="34" height="34" alt="">
+        <span class="brand-name">{{ SITE_NAME }}</span>
+      </a>
+      {% if user.is_authenticated %}
+        {# On a phone the menu is folded away, so the bell sits next to the menu button where its number can be seen. #}
+        {% include "notifications/_bell.html" with extra_class="d-lg-none ms-auto me-2" %}
+      {% endif %}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="{% trans "Toggle navigation" %}">
+        <i class="bi bi-list" aria-hidden="true"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-lg-auto mb-3 mb-lg-0 gap-lg-1">
+{% if desk_only %}
+          {# An admin or a hospital login has one place to be: its own dashboard. No public-site links. #}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% if user.is_staff %}{% url 'siteadmin:overview' %}{% else %}{% url 'hospitals:dashboard' %}{% endif %}">{% trans "Dashboard" %}</a>
+          </li>
+{% else %}
+          <li class="nav-item">
+            <a class="nav-link{% if request.resolver_match.url_name == 'home' %} active{% endif %}"
+               href="{% url 'core:home' %}"{% if request.resolver_match.url_name == 'home' %} aria-current="page"{% endif %}>{% trans "Home" %}</a>
+          </li>
+          <li class="nav-item">
+            {% live_request_count as live_count %}
+            <a class="nav-link nav-live{% if request.resolver_match.app_name == 'blood_requests' %} active{% endif %}" href="{% url 'blood_requests:list' %}">
+              <span class="live-dot" aria-hidden="true"></span>{% trans "Live requests" %}
+              <span class="nav-count" aria-label="{% blocktrans trimmed with n=live_count %}{{ n }} open{% endblocktrans %}">{{ live_count }}</span>
+            </a>
+          </li>
+{% comment %}"Find donors" is deliberately NOT in the main nav. A patient who sees it
+          tends to browse donors instead of posting a request, which skips hospital verification
+          and leaves no record to track. The page still exists at donors:search and is linked from
+          the donor dashboard; the intended path for a patient is to post a request and be matched.{% endcomment %}
+          <li class="nav-item"><a class="nav-link" data-spy="compatibility" href="{% url 'core:home' %}#compatibility">{% trans "Compatibility" %}</a></li>
+          <li class="nav-item"><a class="nav-link" data-spy="how-it-works" href="{% url 'core:home' %}#how-it-works">{% trans "How it works" %}</a></li>
+          <li class="nav-item"><a class="nav-link" data-spy="faq" href="{% url 'core:home' %}#faq">{% trans "FAQ" %}</a></li>
+{% endif %}
+        </ul>
+        <div class="d-flex flex-column flex-lg-row gap-2 align-items-lg-center">
+          {% comment %}
+            Language: a real form that posts to Django's own switcher, so it works without
+            JavaScript too (the Go button shows only then). The choice is kept in a cookie.
+            Hidden on the error pages, which have no CSRF token to post with.
+          {% endcomment %}
+          {% if csrf_token %}
+          {% get_available_languages as site_languages %}
+          <form action="{% url 'set_language' %}" method="post" class="lang-switch align-self-start align-self-lg-auto" data-lang-form>
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <label class="visually-hidden" for="lang-select">{% trans "Language" %}</label>
+            <i class="bi bi-translate" aria-hidden="true"></i>
+            <select id="lang-select" name="language" class="lang-select" data-lang-select>
+              {% for code, name in site_languages %}<option value="{{ code }}" lang="{{ code }}"{% if code == LANGUAGE_CODE %} selected{% endif %}>{{ name }}</option>{% endfor %}
+            </select>
+            <noscript><button type="submit" class="btn btn-ghost btn-sm">{% trans "Go" %}</button></noscript>
+          </form>
+          {% endif %}
+          <button type="button" class="btn btn-ghost theme-toggle align-self-start align-self-lg-auto" data-theme-toggle aria-label="{% trans "Switch to dark mode" %}" title="{% trans "Switch theme" %}">
+            <i class="bi bi-moon-stars" aria-hidden="true"></i>
+          </button>
+          {% if user.is_authenticated %}
+            {% comment %}
+              Your name is one plain link to your dashboard: no menu. Everything else
+              (donor page, My requests, admin panel, log out) is in the dashboard's side panel.
+            {% endcomment %}
+            {% include "notifications/_bell.html" with extra_class="d-none d-lg-inline-flex" %}
+            <a class="btn btn-outline-brand user-link" href="{% if user.is_staff %}{% url 'siteadmin:overview' %}{% elif user.hospital_account %}{% url 'hospitals:dashboard' %}{% else %}{% url 'core:dashboard' %}{% endif %}">
+              <span class="um-avatar" aria-hidden="true">{{ user.get_username|slice:":2"|upper }}</span> {{ user.get_username }}
+            </a>
+          {% else %}
+            <a href="{% url 'accounts:login' %}" class="btn btn-ghost">{% trans "Log in" %}</a>
+            <a href="{% url 'accounts:signup' %}" class="btn btn-outline-brand">{% trans "Sign up" %}</a>
+          {% endif %}
+          {% if not desk_only %}
+            <a href="{% url 'blood_requests:new' %}" class="btn btn-emergency"><i class="bi bi-droplet-fill" aria-hidden="true"></i> {% trans "Request blood" %}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

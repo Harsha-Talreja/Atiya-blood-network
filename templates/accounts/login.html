@@ -1,0 +1,17 @@
+{% extends "accounts/auth_base.html" %}
+{% load i18n %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Log in | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block auth_form %}
+  <h1 class="auth-title">{% trans "Welcome back" %}</h1>
+  <p class="auth-sub">{% trans "Log in to your account" %}</p>
+  <form method="post" data-guard novalidate>
+    {% csrf_token %}
+    {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+    {% include "components/form_errors.html" with form=form %}
+    {% include "components/form_field.html" with field=form.username icon="person" %}
+    {% include "components/form_field.html" with field=form.password icon="lock" %}
+    {% include "components/form_check.html" with field=form.remember %}
+    {% include "components/submit_button.html" with label="Log in" loading="Logging in..." %}
+  </form>
+  <p class="auth-switch">{% trans "New here?" %} <a href="{% url 'accounts:signup' %}">{% trans "Create an account" %}</a></p>
+{% endblock %}

@@ -1,0 +1,404 @@
+/* ===========================================================================
+   Admin panel - LifeLink look.
+
+   Self-contained on purpose: the panel does not load Bootstrap. It has a wine
+   side panel next to one scrolling column of glass sections.
+
+   Red means a person could be harmed by the delay, and nothing else: the
+   blood-type marks stay plain, only a short supply or an unchecked Critical
+   request is allowed to turn red.
+
+   Fonts come from static/vendor, never from Google, so the panel works with
+   no internet - the same rule the rest of the project follows.
+   =========================================================================== */
+
+@font-face{font-family:Inter;src:url(../vendor/inter/inter-latin-400-normal.woff2) format("woff2");
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Inter;src:url(../vendor/inter/inter-latin-500-normal.woff2) format("woff2");
+  font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Inter;src:url(../vendor/inter/inter-latin-600-normal.woff2) format("woff2");
+  font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:Inter;src:url(../vendor/inter/inter-latin-700-normal.woff2) format("woff2");
+  font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:Inter;src:url(../vendor/inter/inter-latin-800-normal.woff2) format("woff2");
+  font-weight:800;font-style:normal;font-display:swap}
+
+/* --teal stays as an alias of --accent so no rule had to be renamed. */
+:root{
+  --base:#F7F3F4; --surface:rgba(255,255,255,.72); --solid:#FFFFFF;
+  --rule:rgba(23,35,46,.09); --rule2:rgba(23,35,46,.16);
+  --text:#17232E; --muted:#5D666F;
+  --blood:#B01426; --accent:#C7192D; --teal:var(--accent);
+  --brass:#8A5A0C; --sage:#0F6E4E; --sky:#2B5E9C;
+  --on-accent:#FFFFFF;
+  --glass-line:rgba(255,255,255,.8); --glass-shadow:0 10px 30px rgba(120,10,28,.10);
+  --wash:radial-gradient(520px 360px at 100% 0%,rgba(255,143,160,.28),transparent 70%),
+         radial-gradient(480px 340px at 0% 100%,rgba(185,203,255,.28),transparent 70%);
+  --head:rgba(255,255,255,.55);
+  --dur:.16s; --ease:cubic-bezier(.22,.61,.36,1);
+}
+[data-bs-theme="dark"]{
+  --base:#0E1217; --surface:rgba(255,255,255,.05); --solid:#171C23;
+  --rule:rgba(255,255,255,.08); --rule2:rgba(255,255,255,.16);
+  --text:#E8EEF2; --muted:#9AA7B2;
+  --blood:#FF6B80; --accent:#FF5470; --teal:var(--accent);
+  --brass:#E4A847; --sage:#49D69B; --sky:#7CB0F8;
+  --on-accent:#1A0509;
+  --glass-line:rgba(255,255,255,.09); --glass-shadow:0 10px 30px rgba(0,0,0,.35);
+  --wash:radial-gradient(520px 360px at 100% 0%,rgba(226,40,72,.16),transparent 70%),
+         radial-gradient(480px 340px at 0% 100%,rgba(70,90,200,.14),transparent 70%);
+  --head:rgba(255,255,255,.04);
+}
+
+*{box-sizing:border-box}
+body.adm{zoom:.85;margin:0;background:var(--wash),var(--base);background-attachment:fixed;color:var(--text);
+  display:flex;min-height:calc(100vh / .85);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:13px;
+  line-height:1.45;-webkit-font-smoothing:antialiased}
+.adm h1,.adm h2{font-weight:700;letter-spacing:-.02em;margin:0}
+.adm a{color:var(--teal)}
+svg.i{width:17px;height:17px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.adm :focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:.5rem;top:.5rem;z-index:50;background:var(--solid);color:var(--text);
+  padding:.5rem .8rem;border:1px solid var(--teal);border-radius:8px}
+
+/* ------------------------------ side panel ------------------------------- */
+/* Fixed colours, not theme tokens: the panel is wine in both themes, so
+   theme-coloured text would disappear on it in light mode. */
+.rail{width:226px;flex:none;display:flex;flex-direction:column;
+  padding:1.1rem .7rem;position:sticky;top:0;height:calc(100vh / .85);overflow-y:auto;scrollbar-width:none;z-index:20;
+  background:radial-gradient(260px 220px at 0% 0%,rgba(226,40,72,.28),transparent 70%),
+             linear-gradient(180deg,#3A0C18,#12171E)}
+.rail .brand{display:flex;align-items:center;gap:.55rem;padding:0 .5rem;margin-bottom:1.4rem;
+  text-decoration:none}
+.rail .brand .drop{width:26px;height:26px;flex:none}
+.rail .brand .drop path{fill:#FF6B80}
+.rail .brand>span:last-child{text-align:left}
+.rail .brand .t,.rail .brand .r,.rail .me .who,.rail .me .rl{display:block}
+.rail .brand .t{font-size:.95rem;font-weight:700;color:#fff;line-height:1.1}
+.rail .brand .r{font-size:.72rem;color:#C9A3AB}
+.rail nav{display:flex;flex-direction:column;gap:2px}
+.rail nav+nav{margin-top:.55rem;padding-top:.55rem;border-top:1px solid rgba(255,255,255,.09)}
+.rail nav a{display:flex;align-items:center;gap:.6rem;padding:.5rem .6rem;border-radius:10px;
+  color:#E6D3D7;text-decoration:none;font-size:.86rem;font-weight:500;position:relative;
+  transition:color var(--dur) var(--ease),background var(--dur) var(--ease)}
+.rail nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.rail nav a[aria-current]{color:#fff;background:rgba(255,255,255,.14);font-weight:600;
+  box-shadow:inset 3px 0 0 #FF6B80}
+.rail nav a .n{margin-left:auto;font-size:.76rem;color:#C9A3AB;font-variant-numeric:tabular-nums;
+  min-width:1.4rem;text-align:center}
+.rail nav a[aria-current] .n{color:#fff}
+.rail nav a .n.due{background:#E22848;color:#fff;font-weight:700;border-radius:999px;padding:0 .45rem}
+.rail .sp{flex:1}
+.rail .me{display:flex;align-items:center;gap:.55rem;padding:.6rem .5rem 0;font-size:.82rem;
+  border-top:1px solid rgba(255,255,255,.09)}
+.rail .me .av{width:30px;height:30px;border-radius:50%;flex:none;background:rgba(255,255,255,.14);
+  color:#FFD3D9;display:grid;place-items:center;font-size:.72rem;font-weight:700}
+.rail .me .who{color:#fff;font-weight:600;line-height:1.15}
+.rail .me .rl{color:#C9A3AB;font-size:.72rem}
+.rail .me form{margin-left:auto}
+.rail .me button{color:#C9A3AB;background:none;border:none;cursor:pointer;padding:.3rem;
+  display:grid;place-items:center;border-radius:8px}
+.rail .me button:hover{color:#fff;background:rgba(255,255,255,.1)}
+
+/* -------------------------------- shell ---------------------------------- */
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;
+  padding:.9rem 1.4rem .7rem;width:100%;max-width:1320px;margin-inline:auto}
+.top h1{font-size:1.2rem}
+.top .state{font-size:.8rem;color:var(--muted)}
+.top .end{margin-left:auto;display:flex;align-items:center;gap:.8rem}
+.now{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums;
+  display:flex;align-items:center;gap:.45rem;padding:.25rem .65rem;border-radius:999px;
+  background:var(--surface);border:1px solid var(--glass-line)}
+.now i{width:6px;height:6px;border-radius:50%;background:var(--sage);flex:none}
+.ghost{background:var(--surface);border:1px solid var(--glass-line);color:var(--muted);cursor:pointer;
+  padding:.4rem;display:grid;place-items:center;border-radius:10px;
+  transition:color var(--dur) var(--ease)}
+.ghost:hover{color:var(--text)}
+.wrap{padding:.2rem 1.4rem 1.5rem;max-width:1320px;width:100%;margin-inline:auto}
+
+/* ------------------------------- messages -------------------------------- */
+/* A notice floats at the top right, slides in, and goes by itself. */
+.toasts{position:fixed;top:.9rem;right:1rem;z-index:60;display:flex;flex-direction:column;gap:.5rem;
+  max-width:min(340px,calc(100vw - 2rem))}
+.toast{display:flex;align-items:center;gap:.6rem;padding:.5rem .6rem .5rem .8rem;border-radius:999px;
+  background:var(--solid);color:var(--text);font-size:.82rem;font-weight:500;
+  border:1px solid var(--rule2);box-shadow:0 10px 30px rgba(0,0,0,.18);
+  animation:slidein .3s var(--ease);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.toast i{width:8px;height:8px;border-radius:50%;background:var(--sage);flex:none}
+.toast.error i{background:var(--blood)} .toast.warning i{background:var(--brass)}
+.toast button{margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;
+  font-size:1.1rem;line-height:1;padding:0 .3rem;border-radius:50%}
+.toast button:hover{color:var(--text)}
+.toast.gone{opacity:0;transform:translateX(16px)}
+@keyframes slidein{from{opacity:0;transform:translateX(16px)}}
+
+/* ------------------------------- sections -------------------------------- */
+/* Each section is one glass card. */
+.sec{margin-top:.8rem;background:var(--surface);border:1px solid var(--glass-line);
+  border-radius:14px;box-shadow:var(--glass-shadow);padding:.1rem .9rem .6rem;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.sec:first-child{margin-top:0}
+.sh{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;
+  padding:.55rem 0 .5rem;border-bottom:1px solid var(--rule)}
+.sh h2{font-size:.92rem}
+.sh .c{font-size:.78rem;color:var(--muted)}
+.sh .end{margin-left:auto;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.pageof{font-size:.82rem;color:var(--muted);padding:.7rem 0 0;margin:0}
+
+/* filters: one pill group */
+.adm .filt{background:none;border:none;color:var(--muted);font:inherit;font-size:.8rem;font-weight:500;
+  padding:.2rem .6rem;border-radius:999px;cursor:pointer;text-decoration:none;
+  transition:all var(--dur) var(--ease);display:inline-block}
+.adm .filt:hover{color:var(--text)}
+.adm .filt[aria-current]{color:#fff;font-weight:600;background:var(--accent)}
+[data-bs-theme="dark"] .adm .filt[aria-current]{color:var(--on-accent)}
+.find{position:relative;display:inline-flex;align-items:center}
+.find input{border:1px solid var(--rule2);background:var(--solid);color:var(--text);
+  font:inherit;font-size:.84rem;padding:.25rem .8rem .25rem 2rem;width:240px;border-radius:999px;
+  transition:border-color var(--dur) var(--ease)}
+.find input:focus{outline:none;border-color:var(--teal)}
+.find input::placeholder{color:var(--muted)}
+.find svg{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);width:14px;height:14px;
+  stroke:var(--muted);fill:none;stroke-width:1.9}
+
+/* --------------------------------- rows ---------------------------------- */
+.rows{overflow-x:auto}
+.adm table{width:100%;border-collapse:collapse}
+.adm th{text-align:left;font-size:.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.06em;padding:.5rem .8rem .4rem;border-bottom:1px solid var(--rule);white-space:nowrap}
+.adm th:first-child,.adm td:first-child{padding-left:.2rem}
+.adm th:last-child,.adm td:last-child{padding-right:.2rem}
+.adm td{padding:.32rem .8rem;border-bottom:1px solid var(--rule);vertical-align:middle;
+  font-size:.84rem}
+.adm tbody tr:last-child td{border-bottom:none}
+.adm tbody tr{transition:background var(--dur) var(--ease)}
+.adm tbody tr:hover{background:var(--head)}
+.who{font-weight:600}
+.qt{color:var(--muted);font-size:.8rem}
+.nums{font-variant-numeric:tabular-nums;white-space:nowrap}
+.r{text-align:right}
+.empty{padding:.9rem 0;color:var(--muted);font-size:.84rem}
+
+/* the blood-type mark */
+.bt{font-weight:800;font-size:.9rem;letter-spacing:-.01em;white-space:nowrap}
+.bt i{font-style:normal;font-size:.74em;vertical-align:.2em}
+.bt.short{color:var(--blood)}
+
+/* state: a dot and a word, so "Live, nobody checked it" still fits */
+.st{font-size:.82rem;font-weight:600;white-space:nowrap;display:inline-flex;
+  align-items:center;gap:.45rem}
+.st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.st.urgent i{display:none}
+.st.wait{color:var(--brass)} .st.ok{color:var(--sky)} .st.done{color:var(--sage)}
+.st.gone{color:var(--muted);font-weight:500} .st.urgent{color:var(--blood)}
+.st.urgent::before{animation:beat 1.6s var(--ease) infinite}
+@keyframes beat{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* Buttons stay on one line and the table scrolls sideways if it must. */
+.acts{display:flex;gap:.4rem;justify-content:flex-end;flex-wrap:nowrap}
+.adm td:last-child{white-space:nowrap}
+.acts form{display:inline}
+.btn{font:inherit;font-size:.76rem;font-weight:600;padding:.25rem .65rem;border-radius:999px;
+  cursor:pointer;white-space:nowrap;border:1px solid transparent;text-decoration:none;
+  display:inline-block;transition:all var(--dur) var(--ease)}
+.btn.go{background:var(--accent);color:#fff;border-color:var(--accent)}
+[data-bs-theme="dark"] .btn.go{color:var(--on-accent)}
+.btn.go:hover{filter:brightness(1.1)}
+.btn.out{background:var(--solid);color:var(--text);border-color:var(--rule2)}
+.btn.out:hover{border-color:var(--teal);color:var(--teal)}
+.btn.stop{background:none;color:var(--blood);border-color:var(--rule2)}
+.btn.stop:hover{border-color:var(--blood);background:rgba(199,25,45,.08)}
+.btn.bare{background:none;color:var(--muted);border-color:transparent;padding:.34rem .5rem}
+.btn.bare:hover{color:var(--text)}
+
+/* ------------------------------- activity -------------------------------- */
+.feed{display:flex;flex-direction:column}
+.ev{display:grid;grid-template-columns:7rem 1fr;gap:.8rem;padding:.4rem 0;
+  border-bottom:1px solid var(--rule);font-size:.84rem;align-items:baseline}
+.ev:last-child{border-bottom:none}
+.ev .when{color:var(--muted);font-size:.8rem;font-variant-numeric:tabular-nums}
+.ev b{font-weight:600}
+.ev .mine{color:var(--brass);font-weight:600}
+
+/* ---------------------------- donor supply ------------------------------- */
+/* The bar under each mark is how much of that type is on hand, relative to the
+   largest. Clicking a mark opens that type on the Donors page. */
+.types{display:grid;grid-template-columns:repeat(8,1fr);gap:.4rem;margin-top:.5rem}
+.sec .types{margin-top:.6rem}
+.ty{position:relative;border:1px solid var(--glass-line);border-radius:12px;background:var(--surface);
+  padding:.4rem .3rem .55rem;cursor:pointer;color:inherit;font-family:inherit;overflow:hidden;
+  text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:.1rem;
+  box-shadow:var(--glass-shadow);transition:transform var(--dur) var(--ease)}
+.adm .ty{color:var(--text)}
+.ty:hover{transform:translateY(-2px)}
+.ty .mk{font-weight:800;font-size:.92rem;line-height:1.1;letter-spacing:-.01em}
+.ty .mk i{font-style:normal;font-size:.74em;vertical-align:.2em}
+.ty .ct{font-size:.82rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--muted)}
+.ty .fill{position:absolute;left:0;bottom:0;height:4px;background:var(--sage);
+  transform:scaleX(0);transform-origin:left;animation:rise .45s var(--ease) forwards}
+@keyframes rise{to{transform:scaleX(1)}}
+.ty:nth-of-type(1) .fill{animation-delay:.04s} .ty:nth-of-type(2) .fill{animation-delay:.08s}
+.ty:nth-of-type(3) .fill{animation-delay:.12s} .ty:nth-of-type(4) .fill{animation-delay:.16s}
+.ty:nth-of-type(5) .fill{animation-delay:.20s} .ty:nth-of-type(6) .fill{animation-delay:.24s}
+.ty:nth-of-type(7) .fill{animation-delay:.28s} .ty:nth-of-type(8) .fill{animation-delay:.32s}
+.ty.short .mk,.ty.short .ct{color:var(--blood)}
+.ty.short .ct{font-weight:700}
+.ty.short .fill{background:var(--blood)}
+
+/* ------------------------------- KPI row --------------------------------- */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:.8rem}
+.kpi{background:var(--surface);border:1px solid var(--glass-line);border-radius:14px;
+  box-shadow:var(--glass-shadow);padding:.55rem .9rem;backdrop-filter:blur(14px)}
+.kpi .l{font-size:.74rem;color:var(--muted);font-weight:500}
+.kpi .v{font-size:1.45rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.03em;
+  line-height:1.15;margin-top:0}
+.kpi.due .v{color:var(--blood)}
+.chart{padding-top:.4rem;max-width:20rem}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.chart .g{stroke:var(--rule2);stroke-width:1}
+.chart .a{fill:var(--accent);opacity:.14}
+.chart .l{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.chart .d{fill:var(--solid);stroke:var(--accent);stroke-width:2}
+.chart .x{fill:var(--muted);font-size:9px}
+.visually{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* -------------------------------- figures -------------------------------- */
+.figs{display:grid;grid-template-columns:repeat(4,1fr);margin-top:.8rem;
+  background:var(--surface);border:1px solid var(--glass-line);border-radius:14px;
+  box-shadow:var(--glass-shadow);padding:.55rem 0;backdrop-filter:blur(14px)}
+.figs div{padding:.1rem 1.2rem;border-right:1px solid var(--rule)}
+.figs div:last-child{border-right:none}
+.figs .v{font-size:1.2rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.figs .l{font-size:.74rem;color:var(--muted);margin-top:.05rem}
+
+/* --------------------------------- notes --------------------------------- */
+.aside{font-size:.84rem;color:var(--muted);line-height:1.6;max-width:72ch;margin-top:1rem;
+  padding-left:.9rem;border-left:2px solid var(--rule2)}
+.aside b{color:var(--text);font-weight:600}
+
+/* -------------------------------- forms ---------------------------------- */
+.fields{display:flex;flex-wrap:wrap;align-items:flex-end;gap:.7rem 1.2rem;margin-top:.7rem;padding-bottom:.2rem}
+.fields .field:has(#note){flex:1 1 16rem}
+.fields .field label{margin-bottom:.15rem}
+.field label{display:block;font-weight:600;font-size:.88rem;margin-bottom:.3rem}
+.form-control{font:inherit;font-size:.9rem;padding:.25rem .6rem;width:5.5rem;color:var(--text);
+  background:var(--solid);border:1px solid var(--rule2);border-radius:12px}
+.form-control:focus{outline:none;border-color:var(--teal)}
+.field .errors{color:var(--blood);font-size:.82rem;margin:.3rem 0 0;padding-left:1rem}
+.nonfield{color:var(--blood);font-size:.86rem;margin:1rem 0 0;padding-left:.9rem;
+  border-left:2px solid var(--blood)}
+.note-row{display:flex;gap:.5rem;align-items:center;margin-top:.4rem}
+.note-row input{flex:1;max-width:22rem;width:auto}
+
+/* -------------------------------- mobile --------------------------------- */
+@media(max-width:900px){
+  body.adm{flex-direction:column;zoom:1;min-height:100vh}
+  /* the side panel becomes one row of links that scrolls sideways */
+  .rail{position:static;width:auto;height:auto;flex-direction:row;align-items:center;gap:.3rem;
+    overflow-x:auto;padding:.6rem .7rem;scrollbar-width:none}
+  .rail::-webkit-scrollbar{display:none}
+  .rail .brand{margin:0 .4rem 0 0;padding:0}
+  .rail .brand .r{display:none}
+  .rail .brand .t{white-space:nowrap}
+  .rail nav,.rail nav+nav{flex-direction:row;margin:0;padding:0;border:none;gap:.2rem}
+  .rail nav a{white-space:nowrap;padding:.42rem .7rem}
+  .rail nav a[aria-current]{box-shadow:inset 0 -3px 0 #FF6B80}
+  .rail .sp{display:none}
+  .rail .me{border:none;padding:0 0 0 .4rem}
+  .rail .me .who,.rail .me .rl{display:none}
+  .kpis{grid-template-columns:1fr 1fr}
+  .figs{grid-template-columns:1fr 1fr;row-gap:.8rem}
+  .figs div:nth-child(2){border-right:none}
+  .types{grid-template-columns:repeat(4,1fr)}
+  .hide.now{display:none}
+  .top,.wrap{padding-left:1rem;padding-right:1rem}
+  .sec{padding:.3rem .9rem .9rem}
+  .find input{width:100%}
+  .find{flex:1 1 100%}
+  .sh .end{margin-left:0;width:100%}
+  .ev{grid-template-columns:1fr;gap:.1rem}
+
+  /* Tables turn into cards: one per row, the buttons along the bottom. */
+  .adm table,.adm tbody,.adm tr,.adm td{display:block;width:100%}
+  .adm thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .adm tbody tr{padding:.8rem 0;border-bottom:1px solid var(--rule)}
+  .adm tbody tr:last-child{border-bottom:none}
+  .adm td,.adm th:first-child,.adm td:first-child{padding:.12rem 0;border:none}
+  .adm td.r,.adm td.nums.r{text-align:left}
+  .adm td:last-child{white-space:normal;padding-top:.5rem}
+  .acts{justify-content:flex-start;flex-wrap:wrap}
+}
+@media(max-width:520px){
+  .types{grid-template-columns:repeat(4,1fr);gap:.35rem}
+  .kpi .v{font-size:1.6rem}
+}
+/* ------------------------------- motion ---------------------------------- */
+/* A page arrives with its heading first, then each block a beat after the
+   last. Leaving is a short fade, driven by the script in base.html. */
+@keyframes pagein{from{opacity:0;transform:translateY(10px)}}
+.top h1,.top .state{animation:pagein .35s var(--ease) backwards}
+.top .state{animation-delay:.04s}
+.wrap>*{animation:pagein .45s var(--ease) backwards}
+.wrap>*:nth-child(1){animation-delay:.05s} .wrap>*:nth-child(2){animation-delay:.11s}
+.wrap>*:nth-child(3){animation-delay:.17s} .wrap>*:nth-child(4){animation-delay:.23s}
+.wrap>*:nth-child(n+5){animation-delay:.29s}
+.kpis .kpi{animation:pagein .45s var(--ease) backwards}
+.kpis .kpi:nth-child(1){animation-delay:.05s} .kpis .kpi:nth-child(2){animation-delay:.1s}
+.kpis .kpi:nth-child(3){animation-delay:.15s} .kpis .kpi:nth-child(4){animation-delay:.2s}
+.kpis{animation:none!important}
+.wrap,.top{transition:opacity .16s var(--ease),transform .16s var(--ease)}
+body.leaving .wrap,body.leaving .top{opacity:0;transform:translateY(-6px)}
+.kpi,.sec,.figs{transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.kpi:hover{transform:translateY(-2px)}
+.chart .l{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1s .3s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.chart .d{opacity:0;animation:pagein .4s .9s var(--ease) forwards}
+/* Dark / light: where View Transitions are missing, colours ease instead. */
+html.theming *,html.theming *::before,html.theming *::after{
+  transition:background-color .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease),
+    box-shadow .4s var(--ease),fill .4s var(--ease),stroke .4s var(--ease)!important}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.45s;
+  animation-timing-function:var(--ease)}
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+  .top h1,.top .state,.wrap>*,.kpis .kpi,.chart .l,.chart .d{animation:none!important;opacity:1}
+  .chart .l{stroke-dashoffset:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .adm *{animation:none!important;transition:none!important}
+  .ty .fill{transform:scaleX(1)}
+}
+.adm p.empty{margin:0}
+.adm [hidden]{display:none!important}
+
+/* ---- notifications bell ---- */
+.notif-bell{position:relative;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+  border-radius:10px;color:var(--muted);background:var(--surface);border:1px solid var(--glass-line)}
+.notif-bell:hover{color:var(--text)}
+.notif-count{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;
+  background:var(--blood);color:#fff;font-size:.65rem;font-weight:700;line-height:17px;text-align:center}
+.notif-count[hidden]{display:none}
+.notif-bell.is-new svg{animation:bell-ring .7s ease-in-out}
+@keyframes bell-ring{0%,100%{transform:rotate(0)}20%{transform:rotate(14deg)}40%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}80%{transform:rotate(-4deg)}}
+
+/* Delete account: the confirmation box */
+.deldlg{width:min(520px,92vw);border:1px solid var(--rule2);border-radius:18px;padding:22px 24px;background:var(--solid);color:var(--text);
+  box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.deldlg::backdrop{background:rgba(10,16,22,.55);backdrop-filter:blur(3px)}
+.deldlg[open]{animation:deldlg-in .22s var(--ease) both}
+@keyframes deldlg-in{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.deldlg[open]{animation:none}}
+.deldlg h2{font-size:1.1rem;margin:0 0 .5rem}
+.deldlg p{margin:.3rem 0}
+.deldlg ul{margin:.4rem 0 .6rem;padding-left:1.2rem;line-height:1.6}
+.deldlg .warn{padding:.55rem .8rem;border-radius:10px;background:rgba(199,25,45,.1);color:var(--blood);font-weight:600}
+.deldlg label{display:block;margin:.8rem 0 .25rem;font-weight:700}
+.deldlg input[type=text]{width:100%;height:40px;padding:0 .8rem;border-radius:10px;border:1px solid var(--rule2);background:var(--base);color:var(--text);font:inherit}
+.deldlg .foot{display:flex;justify-content:flex-end;gap:.6rem;margin-top:1rem}
+.deldlg .btn{padding:.5rem 1.1rem;font-size:.85rem}
+.btn.go.dangerous{background:var(--blood);border-color:var(--blood)}
+.btn.go:disabled{opacity:.45;cursor:not-allowed;filter:none}

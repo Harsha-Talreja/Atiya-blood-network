@@ -1,0 +1,28 @@
+{% load i18n %}{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% trans "Something went wrong" %}</title>
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+  <link rel="icon" type="image/png" sizes="64x64" href="{% static 'img/favicon.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 2rem;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: #F5FAFB; color: #0B2545; }
+    h1 { font-size: 1.8rem; margin: 1rem 0 .5rem; }
+    p { color: #526379; max-width: 30rem; margin: 0 auto 1.5rem; line-height: 1.6; }
+    a { display: inline-block; background: #0E7C86; color: #fff; text-decoration: none; font-weight: 600;
+      padding: .8rem 1.4rem; border-radius: 12px; }
+    a:hover { background: #0B6169; }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="{% static 'img/logo-mark.svg' %}" width="64" height="64" alt="">
+    <h1>{% trans "Something went wrong on our side" %}</h1>
+    <p>{% trans "We hit an unexpected problem and it has been noted. Please try again in a moment. If someone needs blood urgently, contact the hospital's blood bank directly." %}</p>
+    <a href="/">{% trans "Back to home" %}</a>
+  </main>
+</body>
+</html>

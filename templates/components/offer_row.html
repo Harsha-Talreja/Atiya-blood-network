@@ -1,0 +1,21 @@
+{% load i18n %}{% load core_extras %}
+{% comment %}
+  One donor who offered to help (or helped), with small Call and WhatsApp
+  buttons. The buttons exist only when the donor agreed to share their number
+  (contact.py leaves the links empty otherwise), so a hidden number stays hidden.
+{% endcomment %}
+<li class="orow">
+  <span class="avatar {{ o.donor.pk|avatar_tint }}" aria-hidden="true">{{ o.donor.full_name|initials }}</span>
+  <div class="min-w-0 orow-text">
+    <p class="donor-name">{{ o.donor.full_name }}{% if o.arrived_at %} <span class="arr-chip"><i class="bi bi-hospital-fill" aria-hidden="true"></i> {% trans "At the hospital" %}</span>{% endif %}</p>
+    <p class="donor-meta">{{ o.donor.blood_type|pretty_blood }} &middot; {% if o.donor.phone_consent %}{{ o.donor.phone }}{% else %}{% trans "Number not shared" %}{% endif %}{% if o.arrived_at %} &middot; {% blocktrans trimmed with ago=o.arrived_at|time_ago %}arrived {{ ago }}{% endblocktrans %}{% endif %}</p>
+  </div>
+  {% if o.tel %}
+    <a class="ico-btn" href="{{ o.tel }}" aria-label="{% blocktrans trimmed with name=o.donor.full_name %}Call {{ name }}{% endblocktrans %}" title="{% trans "Call" %}"><i class="bi bi-telephone-fill" aria-hidden="true"></i></a>
+  {% endif %}
+  {% if o.wa %}
+    <a class="ico-btn is-wa" href="{{ o.wa }}" target="_blank" rel="noopener noreferrer"
+       aria-label="{% if closed %}{% blocktrans trimmed with name=o.donor.full_name %}Thank {{ name }} on WhatsApp{% endblocktrans %}{% else %}{% blocktrans trimmed with name=o.donor.full_name %}Message {{ name }} on WhatsApp{% endblocktrans %}{% endif %}"
+       title="{% if closed %}{% trans "Say thanks on WhatsApp" %}{% else %}{% trans "Message on WhatsApp" %}{% endif %}"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+  {% endif %}
+</li>

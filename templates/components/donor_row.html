@@ -1,0 +1,21 @@
+{% load i18n %}{% load core_extras %}
+{% comment %}
+  One donor in a list. The badge says "Ready to donate" only when the donor is
+  marked available AND is past the rest period after their last donation, both
+  of which are real fields. It is not a verification badge: the CNIC is only length-checked,
+  never checked with NADRA, and a tick that implied otherwise would mislead people.
+{% endcomment %}
+<li class="donor-card">
+  <span class="avatar {{ donor.pk|avatar_tint }}" aria-hidden="true">{{ donor.full_name|initials }}</span>
+  <div class="min-w-0">
+    <p class="donor-name">{{ donor.full_name }}</p>
+    <p class="donor-meta">{{ meta|default:"" }}</p>
+    {% if donor.is_available and donor.is_eligible %}
+      <span class="verified-badge"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> {% trans "Ready to donate" %}</span>
+    {% elif not donor.is_eligible %}
+      <span class="pill pill-expired">{% blocktrans trimmed with next_eligible_date=donor.next_eligible_date|date:"j M" %}Resting until {{ next_eligible_date }}{% endblocktrans %}</span>
+    {% endif %}
+    {% if donor.has_health_details %}<span class="health-tick"><i class="bi bi-clipboard2-check" aria-hidden="true"></i> {% trans "Health details added" %}</span>{% endif %}
+  </div>
+  {% include "components/blood_badge.html" with blood_type=donor.blood_type size="sm" %}
+</li>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<section class="auth-wrap glass-page">
+  {% include "components/glass_orbs.html" %}
+  <div class="container">
+    <div class="auth-split">
+      <aside class="auth-side">
+        <div class="auth-side-brand">
+          <span class="auth-logo"><img src="{% static 'img/logo-mark.svg' %}" width="64" height="64" alt=""></span>
+          <span class="auth-side-name">{{ SITE_NAME }}</span>
+        </div>
+        <div class="auth-side-text">
+          <p class="auth-side-hl">{% trans "Post. Match." %} <span>{% trans "Donate." %}</span></p>
+          <p class="auth-side-ds">{% trans "Helping people who need blood find willing, compatible donors nearby, faster than word of mouth." %}</p>
+        </div>
+      </aside>
+      <div class="auth-main">
+        {% block auth_form %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

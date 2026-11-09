@@ -1,0 +1,89 @@
+{% extends "dashboard/shell.html" %}
+{% load i18n %}
+{% load core_extras dash %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}My donor dashboard | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block dash_main %}
+  <h1 class="dpage-title">{% trans "Donate blood" %}</h1>
+  {% dash_tabs "donate" tab %}
+  <div class="glass-card availc {% if not donor.is_available %}is-paused{% elif not donor.is_eligible %}is-rest{% else %}is-ready{% endif %}" id="availability" data-aos="fade-up">
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 120 120" role="img" aria-label="{% if donor.is_eligible %}{% trans "Ready to donate" %}{% else %}{% blocktrans trimmed with n=donor.days_until_eligible %}{{ n }} days until you can donate again{% endblocktrans %}{% endif %}">
+        <circle class="ring-track" cx="60" cy="60" r="52"/>
+        <circle class="ring-value" cx="60" cy="60" r="52" style="--ring-offset: {{ ring_offset }}"/>
+      </svg>
+      <div class="ring-center">
+        {% if donor.is_eligible %}<strong>{% trans "Ready" %}</strong>
+        {% else %}<strong>{{ donor.days_until_eligible }}</strong><span>{% blocktrans trimmed count n=donor.days_until_eligible %}day left{% plural %}days left{% endblocktrans %}</span>{% endif %}
+      </div>
+    </div>
+    <div class="min-w-0">
+      <span class="rolek">{{ greeting }}, {{ first_name }}</span>
+      <h2>{% if not donor.is_available %}{% trans "Not available" %}{% elif not donor.is_eligible %}{% blocktrans trimmed count n=donor.days_until_eligible %}Resting for {{ n }} more day{% plural %}Resting for {{ n }} more days{% endblocktrans %}{% else %}{% trans "Ready to donate" %}{% endif %}</h2>
+      <p class="av-line">
+        {% if donor.is_eligible %}{% trans "You can donate now." %}{% else %}{% trans "You can donate again on" %} <strong>{{ donor.next_eligible_date|date:"j F Y" }}</strong>.{% endif %}
+        <span data-availability-note>
+          {% if not donor.is_available %}{% trans "You are hidden from matching until you switch this on." %}
+          {% elif not donor.is_eligible %}{% blocktrans trimmed with next_eligible_date=donor.next_eligible_date|date:"j F Y" %}You are resting until {{ next_eligible_date }}.{% endblocktrans %}
+          {% else %}{% trans "You are visible to matching requests." %}{% endif %}
+        </span>
+      </p>
+
+    </div>
+    <div class="av-acts">
+      <form method="post" action="{% url 'donors:toggle' %}" class="bn-switch" data-availability-form>
+        {% csrf_token %}
+        <button type="submit" class="switch" role="switch" aria-checked="{{ donor.is_available|yesno:'true,false' }}" aria-labelledby="availability-label" data-availability-toggle></button>
+        <span id="availability-label" class="switch-label" data-availability-label>{% if donor.is_available %}{% trans "Available to donate" %}{% else %}{% trans "Not available right now" %}{% endif %}</span>
+      </form>
+      {% if donor.last_donation_date == today %}
+        <span class="av-done"><i class="bi bi-check-circle" aria-hidden="true"></i> {% trans "Donation recorded for today" %}</span>
+      {% elif can_record_donation %}
+        <form method="post" action="{% url 'donors:donated' %}" data-confirm="{% trans "Record today as your last donation date? You will not be matched for the next 90 days." %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-brand btn-sm"><i class="bi bi-droplet-fill" aria-hidden="true"></i> {% trans "I donated today" %}</button>
+        </form>
+      {% elif donor.is_eligible %}
+        <span class="av-done text-soft">{% trans "After you offer to help a request, you can record your donation here." %}</span>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if tab == "requests" %}
+    <div class="panel" id="requests" data-aos="fade-up">
+      <div class="panel-head">
+        <h2>{% trans "Requests you can help with" %}</h2>
+        {% if not sidelined %}<a href="{% url 'blood_requests:list' %}">{% trans "View all" %} <i class="bi bi-arrow-right" aria-hidden="true"></i></a>{% endif %}
+      </div>
+      {% if sidelined %}
+        <div class="mine-empty"><i class="bi bi-hourglass-split" aria-hidden="true"></i><b>{{ sidelined }}</b></div>
+      {% elif matching_requests %}
+        <div class="activity-list">
+          {% for req in matching_requests %}{% include "components/request_row.html" with req=req %}{% endfor %}
+        </div>
+      {% else %}
+        <div class="mine-empty"><i class="bi bi-heart-pulse" aria-hidden="true"></i><b>{% trans "No matching requests right now" %}</b></div>
+      {% endif %}
+    </div>
+  {% else %}
+    <div class="panel" id="details" data-aos="fade-up">
+      <div class="panel-head">
+        <h2>{% trans "Your details" %}</h2>
+        <a href="{% url 'donors:edit' %}">{% trans "Edit" %}</a>
+      </div>
+      <dl class="detail-list dd-details">
+        <div class="detail-row"><dt>{% trans "Name" %}</dt><dd>{{ donor.full_name }}</dd></div>
+        <div class="detail-row"><dt>{% trans "Username" %}</dt><dd>{{ request.user.get_username }}</dd></div>
+        {% if request.user.email %}<div class="detail-row"><dt>{% trans "Email" %}</dt><dd>{{ request.user.email }}</dd></div>{% endif %}
+        <div class="detail-row"><dt>{% trans "Blood type" %}</dt><dd>{{ donor.blood_type|pretty_blood }} <span class="text-soft">{% blocktrans trimmed count n=can_give_to %}can give to {{ n }} type{% plural %}can give to {{ n }} types{% endblocktrans %}</span></dd></div>
+        <div class="detail-row"><dt>{% trans "Mobile number" %}</dt><dd>{{ donor.phone }}</dd></div>
+        <div class="detail-row"><dt>{% trans "Area" %}</dt><dd>{{ donor.location.area }}, {{ donor.location.city }}</dd></div>
+        <div class="detail-row"><dt>{% trans "CNIC" %}</dt><dd>{% if request.user.identity %}{{ request.user.identity.masked }}{% else %}<a href="{% url 'donors:edit' %}">{% trans "Add it" %}</a>{% endif %}</dd></div>
+        <div class="detail-row"><dt>{% trans "Weight" %}</dt><dd>{% if donor.weight_kg %}{% blocktrans trimmed with weight_kg=donor.weight_kg %}{{ weight_kg }} kg{% endblocktrans %}{% else %}<a href="{% url 'donors:edit' %}">{% trans "Add it" %}</a>{% endif %}</dd></div>
+        <div class="detail-row"><dt>{% trans "Height" %}</dt><dd>{% if donor.height_cm %}{% blocktrans trimmed with height_cm=donor.height_cm %}{{ height_cm }} cm{% endblocktrans %}{% else %}<a href="{% url 'donors:edit' %}">{% trans "Add it" %}</a>{% endif %}</dd></div>
+        <div class="detail-row"><dt>{% trans "Conditions" %}</dt><dd>{% if donor.conditions %}{{ donor.condition_labels|join:", " }}{% else %}<a href="{% url 'donors:edit' %}">{% trans "Add them" %}</a>{% endif %}</dd></div>
+        <div class="detail-row"><dt>{% trans "Last donation" %}</dt><dd>{% if donor.last_donation_date %}{{ donor.last_donation_date|date:"j F Y" }}{% else %}{% trans "Never donated" %}{% endif %}</dd></div>
+        <div class="detail-row"><dt>{% trans "Phone sharing" %}</dt><dd>{% if donor.phone_consent %}{% trans "Allowed for matching requests" %}{% else %}{% trans "Not allowed" %}{% endif %}</dd></div>
+      </dl>
+    </div>
+  {% endif %}
+{% endblock %}

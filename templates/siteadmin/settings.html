@@ -1,0 +1,47 @@
+{% extends "siteadmin/base.html" %}
+{% load admin_extras core_extras %}
+
+{% block title %}Settings{% endblock %}
+{% block heading %}Settings{% endblock %}
+{% block state %}Waiting times and the unit limit{% endblock %}
+
+{% block content %}
+<section class="sec">
+  <div class="sh">
+    <h2>Request rules</h2>
+    <span class="c">last changed {{ row.updated_at|time_ago }}{% if row.updated_by %} by {{ row.updated_by.username }}{% endif %}</span>
+  </div>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}<p class="nonfield">{{ error }}</p>{% endfor %}
+    {% endif %}
+
+    <div class="fields">
+      {% for field in form %}
+        <div class="field">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {% if field.help_text %}<p class="help">{{ field.help_text }}</p>{% endif %}
+          {{ field }}
+          <span class="qt">{% if field.name == "max_units_per_request" %}units{% else %}minutes{% endif %}</span>
+          {% if field.errors %}
+            <ul class="errors">{% for error in field.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <div class="field">
+        <label for="note">Note for the audit log</label>
+        <input class="form-control note" type="text" name="note" id="note" maxlength="500"
+               style="width:100%" placeholder="Optional">
+      </div>
+
+      <div>
+        <button class="btn go" type="submit">Save settings</button>
+      </div>
+    </div>
+  </form>
+
+</section>
+{% endblock %}

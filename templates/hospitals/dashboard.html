@@ -1,0 +1,91 @@
+{% extends "dashboard/shell.html" %}
+{% load i18n %}
+{% load core_extras %}
+{% block title %}{% blocktrans trimmed with name=account.hospital.name SITE_NAME=SITE_NAME %}{{ name }} dashboard | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block dash_main %}
+  <div class="glass-card dd-strip is-four" data-aos="fade-up">
+    <div>
+      <small>{% trans "Waiting on you" %}</small><strong>{{ kpi_waiting }}</strong>
+    </div>
+    <div>
+      <small>{% trans "Verified this week" %}</small><strong>{{ kpi_verified_week }}</strong>
+      <em>{% blocktrans trimmed with kpi_week=kpi_week %}of {{ kpi_week }}{% endblocktrans %}</em>
+    </div>
+    <div>
+      <small>{% trans "Missed deadline" %}</small><strong>{{ kpi_missed }}</strong>
+      <em>{% trans "this week" %}</em>
+    </div>
+    <div>
+      <small>{% trans "Last 7 days" %}</small>
+      {% include "components/trend_chart.html" with trend=trend %}
+    </div>
+  </div>
+
+  <div class="section-head text-start mb-3 rq-head" data-aos="fade-up">
+    <h2>{% trans "Waiting on your verification" %}</h2>
+    <p>{% trans "Confirm each request is genuine before you verify it. If you miss the deadline, an admin decides." %}</p>
+  </div>
+
+  {% if pending %}
+    <div class="row g-3 mb-3">
+      {% for req in pending %}
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="{% widthratio forloop.counter0 1 60 %}">
+          <div class="glass-card hcard is-{{ req.urgency|lower }} h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                {% include "components/urgency_pill.html" with urgency=req.urgency %}
+                {% if req.is_awaiting_extra_review and req.hospital_wait_over %}
+                  <span class="pill pill-review"><i class="bi bi-hourglass-split" aria-hidden="true"></i> {% trans "Extra units: awaiting an admin" %}</span>
+                {% elif req.release_label %}
+                  <span class="pill pill-auto"><i class="bi bi-shield-exclamation" aria-hidden="true"></i> {{ req.release_label }}</span>
+                {% elif req.needs_timeout_review %}
+                  <span class="pill pill-review"><i class="bi bi-hourglass-split" aria-hidden="true"></i> {% trans "Deadline missed, with an admin" %}</span>
+                {% else %}
+                  <span class="pill pill-pending"><i class="bi bi-clock-history" aria-hidden="true"></i> <time data-countdown="{{ req.hospital_deadline|date:'c' }}" data-countdown-prefix="{% trans "Deadline in" %}" data-countdown-done="{% trans "Deadline passed" %}">{{ req.hospital_deadline|time_left }}</time></span>
+                {% endif %}
+              </div>
+              <h3 class="request-title">{{ req.patient_name }}</h3>
+              <p class="request-meta"><i class="bi bi-droplet" aria-hidden="true"></i>{{ req.blood_type|pretty_blood }} &middot; {% blocktrans trimmed count n=req.units_needed with phone=req.contact_phone %}{{ n }} unit &middot; {{ phone }}{% plural %}{{ n }} units &middot; {{ phone }}{% endblocktrans %}</p>
+              <p class="request-meta"><i class="bi bi-person" aria-hidden="true"></i>{{ req.requester.get_username }} &middot; {{ req.created_at|time_ago }}</p>
+              {% if req.extra_reason %}
+                <div class="review-box is-{{ req.extra_review }} glass-card mt-2">
+                  <h3>{% blocktrans trimmed with units_needed=req.units_needed %}Reason for {{ units_needed }} units{% endblocktrans %}</h3>
+                  <blockquote>{{ req.extra_reason }}</blockquote>
+                  {% if req.is_awaiting_extra_review and not req.hospital_wait_over %}<p class="mt-2 mb-0">{% trans "Verifying this request also accepts the extra units. If it is not verified in time, an admin decides." %}</p>{% elif req.is_awaiting_extra_review %}<p class="mt-2 mb-0">{% trans "An admin must also approve the extra units." %}</p>{% endif %}
+                </div>
+              {% endif %}
+            </div>
+            <form method="post" action="{% url 'hospitals:verify' req.pk %}" class="mt-3" data-confirm="{% trans "Verify this request as genuine? It will become visible to donors immediately." %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-brand w-100"><i class="bi bi-patch-check" aria-hidden="true"></i> {% trans "Verify" %}</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    {% include "components/empty_state.html" with icon="bi-patch-check" title="Nothing waiting" %}
+  {% endif %}
+
+  {% if own_pending %}
+    <div class="glass-card status-note" data-aos="fade-up">
+      <i class="bi bi-info-circle" aria-hidden="true"></i>
+      <span>
+        {% blocktrans trimmed count n=own_pending|length %}You posted {{ n }} request naming this hospital. Another staff member has to verify it.{% plural %}You posted {{ n }} requests naming this hospital. Another staff member has to verify them.{% endblocktrans %}
+      </span>
+    </div>
+  {% endif %}
+
+  {% if recently_verified %}
+    <div id="verified" class="section-head text-start mb-3 rq-head" data-aos="fade-up">
+      <h2>{% trans "Recently verified" %}</h2>
+    </div>
+    <div class="row g-3">
+      {% for req in recently_verified %}
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="{% widthratio forloop.counter0 1 60 %}">
+          {% include "components/request_card.html" with req=req %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}

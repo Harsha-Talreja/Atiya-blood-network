@@ -1,0 +1,146 @@
+{% extends "siteadmin/base.html" %}
+{% load admin_extras core_extras %}
+
+{% block title %}Users{% endblock %}
+{% block heading %}Users{% endblock %}
+{% block state %}Every account, and who to stop{% endblock %}
+
+{% block content %}
+<section class="sec">
+  <div class="sh">
+    <h2>Users</h2>
+    <span class="c">{{ total }} shown</span>
+    <span class="end">
+      <form class="find" method="get">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" name="q" value="{{ query }}" placeholder="Name or username"
+               aria-label="Search users">
+        <input type="hidden" name="state" value="{{ state }}">
+      </form>
+      {% include "siteadmin/_tabs.html" %}
+    </span>
+  </div>
+
+  <div class="rows">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">User</th>
+          <th scope="col" class="hide">Account</th>
+          <th scope="col" class="r">Posted</th>
+          <th scope="col" class="r">Reports</th>
+          <th scope="col" class="hide">Last posted</th>
+          <th scope="col">State</th>
+          <th scope="col" class="r">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+          <tr>
+            <td>
+              <div class="who">{% if row.donor_profile %}{{ row.donor_profile.full_name }}{% else %}{{ row.get_full_name|default:row.username }}{% endif %}</div>
+              <div class="qt">{{ row.username }}</div>
+            </td>
+            <td class="hide qt">
+              {% if row.donor_profile and row.posted %}Donor and patient
+              {% elif row.donor_profile %}Donor
+              {% else %}Patient only{% endif %}
+            </td>
+            <td class="r nums">{{ row.posted }}</td>
+            <td class="r nums">
+              {% if row.reports_against %}
+                <span style="color:var(--blood);font-weight:700">{{ row.reports_against }}</span>
+              {% else %}
+                <span class="qt">&mdash;</span>
+              {% endif %}
+            </td>
+            <td class="hide qt nums">{% if row.last_posted %}{{ row.last_posted|time_ago }}{% else %}&mdash;{% endif %}</td>
+            <td>
+              {% if row.block %}
+                <span class="st urgent">Blocked</span>
+              {% else %}
+                <span class="st done">Active</span>
+              {% endif %}
+            </td>
+            <td class="r">
+              <div class="acts">
+                {% if row.block %}
+                  <form method="post" action="{% url 'siteadmin:user_unblock' row.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <button class="btn out" type="submit">Unblock</button>
+                  </form>
+                {% else %}
+                  <form method="post" action="{% url 'siteadmin:user_block' row.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <input type="hidden" name="note" value="">
+                    <button class="btn stop" type="submit">Block</button>
+                  </form>
+                {% endif %}
+                <a class="btn bare" href="{% url 'siteadmin:requests' %}?q={{ row.username|urlencode }}">Their requests</a>
+                <button class="btn stop" type="button" data-delete-user data-name="{{ row.username }}"
+                        data-role="{% if row.donor_profile %}donor{% else %}patient{% endif %}"
+                        data-url="{% url 'siteadmin:user_delete' row.pk %}">Delete</button>
+              </div>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="7" class="empty">
+            {% if query %}No account matches &ldquo;{{ query }}&rdquo;.{% else %}No accounts here.{% endif %}
+          </td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if total > rows|length %}
+    <p class="pageof">Showing the first {{ rows|length }} of {{ total }}.</p>
+  {% endif %}
+
+</section>
+
+<dialog class="deldlg" id="delete-dialog" aria-labelledby="delete-title">
+  <form method="post" id="delete-form">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <h2 id="delete-title">Are you sure you want to permanently delete this account?</h2>
+    <p>Account: <b id="delete-name"></b> (<span id="delete-role"></span>)</p>
+    <ul>
+      <li>The profile, phone number, CNIC and health details</li>
+      <li>Requests they posted, and the offers on them</li>
+      <li>Offers they made, their notifications and the sign-in itself</li>
+    </ul>
+    <p class="warn">This cannot be undone. The audit log keeps only the username and the date.</p>
+    <label for="delete-confirm">Type the username to confirm</label>
+    <input type="text" id="delete-confirm" name="confirm_username" autocomplete="off" autocapitalize="none" spellcheck="false">
+    <div class="foot">
+      <button type="button" class="btn out" id="delete-cancel">Cancel</button>
+      <button type="submit" class="btn go dangerous" id="delete-go" disabled>Delete account</button>
+    </div>
+  </form>
+</dialog>
+<script>
+(function () {
+  var dialog = document.getElementById("delete-dialog");
+  if (!dialog || typeof dialog.showModal !== "function") return;
+  var form = document.getElementById("delete-form");
+  var typed = document.getElementById("delete-confirm");
+  var go = document.getElementById("delete-go");
+  var wanted = "";
+  // The list is swapped in place while searching, so listen on the page, not on each button.
+  document.addEventListener("click", function (event) {
+    var button = event.target.closest("[data-delete-user]");
+    if (!button) return;
+    wanted = button.getAttribute("data-name");
+    form.setAttribute("action", button.getAttribute("data-url"));
+    document.getElementById("delete-name").textContent = wanted;
+    document.getElementById("delete-role").textContent = button.getAttribute("data-role");
+    typed.value = ""; go.disabled = true;
+    dialog.showModal();
+    typed.focus();
+  });
+  typed.addEventListener("input", function () { go.disabled = typed.value.trim() !== wanted; });
+  document.getElementById("delete-cancel").addEventListener("click", function () { dialog.close(); });
+})();
+</script>
+{% endblock %}

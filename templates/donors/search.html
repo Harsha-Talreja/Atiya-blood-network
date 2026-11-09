@@ -1,0 +1,82 @@
+{% extends "dashboard/shell.html" %}
+{% load i18n %}
+{% load core_extras dash %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Find donors | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block dash_main %}
+  <h1 class="dpage-title">{% trans "Request blood" %}</h1>
+  {% dash_tabs "request" "find" %}
+  <div class="rq-page rq-list">
+    <div class="row g-3">
+      <div class="col-12 col-xl-4">
+        <form method="get" class="filter-rail board-rail" data-aos="fade-up">
+          <h2>{% trans "Search" %}</h2>
+          <fieldset class="filter-group chip-group">
+            <legend class="form-label">{% trans "Patient's blood type" %}</legend>
+            <div class="chips8">
+              {% for bt in blood_types %}
+                <span class="chip8">
+                  <input type="radio" name="blood_type" id="bt-{{ forloop.counter }}" value="{{ bt }}"{% if bt == selected_blood_type %} checked{% endif %}>
+                  <label for="bt-{{ forloop.counter }}">{{ bt|pretty_blood }}</label>
+                </span>
+              {% endfor %}
+            </div>
+            <span class="chip8 chip8-any">
+              <input type="radio" name="blood_type" id="bt-any" value=""{% if not selected_blood_type %} checked{% endif %}>
+              <label for="bt-any">{% trans "Any type" %}</label>
+            </span>
+            <p class="form-hint">{% if selected_blood_type %}{% blocktrans trimmed with selected_blood_type=selected_blood_type|pretty_blood %}Showing donors who can give to {{ selected_blood_type }}.{% endblocktrans %}{% else %}{% trans "Choose a type to see who can give to that patient." %}{% endif %}</p>
+          </fieldset>
+          <div class="filter-group">
+            <label class="form-label" for="search-city">{% trans "City" %}</label>
+            <select class="form-select" id="search-city" name="city">
+              <option value="">{% trans "Any city" %}</option>
+              {% for city in cities %}
+                <option value="{{ city }}"{% if city == selected_city %} selected{% endif %}>{{ city }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="filter-group d-grid gap-2">
+            <button type="submit" class="btn btn-brand"><i class="bi bi-search-heart" aria-hidden="true"></i> {% trans "Search" %}</button>
+            {% if selected_blood_type or selected_city %}
+              <a href="{% url 'donors:search' %}" class="btn btn-ghost">{% trans "Clear" %}</a>
+            {% endif %}
+          </div>
+        </form>
+      </div>
+
+      <div class="col-12 col-xl-8">
+        {% if has_searched %}
+          {% if donors %}
+            <p class="board-count text-soft">{% blocktrans trimmed count n=donors|length %}{{ n }} donor can donate to this patient.{% plural %}{{ n }} donors can donate to this patient.{% endblocktrans %}</p>
+            <div class="row g-3">
+              {% for donor in donors %}
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="{% widthratio forloop.counter0 1 50 %}">
+                  <div class="glass-card h-100">
+                    <div class="d-flex gap-3 align-items-center">
+                      <span class="avatar avatar-lg {{ donor.pk|avatar_tint }}" aria-hidden="true">{{ donor.full_name|initials }}</span>
+                      <div class="min-w-0 flex-grow-1">
+                        <h3 class="request-title mb-0">{{ donor.full_name }}</h3>
+                        <p class="request-meta mb-1"><i class="bi bi-geo-alt" aria-hidden="true"></i>{{ donor.location.area }}, {{ donor.location.city }}</p>
+                        <span class="verified-badge"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> {% trans "Ready to donate" %}</span>
+                        {% if donor.has_health_details %}<span class="health-tick"><i class="bi bi-clipboard2-check" aria-hidden="true"></i> {% trans "Health details added" %}</span>{% endif %}
+                      </div>
+                      {% include "components/blood_badge.html" with blood_type=donor.blood_type size="md" %}
+                    </div>
+                    <p class="status-note mb-0">
+                      <i class="bi bi-info-circle" aria-hidden="true"></i>
+                      {% trans "Post a request to be matched with this donor and, if they've allowed it, see their number." %}
+                    </p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            {% include "components/empty_state.html" with icon="bi-search-heart" title="No donors found" text="Try a different blood type or city." %}
+          {% endif %}
+        {% else %}
+          {% include "components/empty_state.html" with icon="bi-search-heart" title="Search to see donors" text="Choose a blood type, a city, or both, to see available donors." %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

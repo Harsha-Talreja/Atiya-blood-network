@@ -1,0 +1,29 @@
+{% load i18n %}{% load core_extras %}
+{% comment %}
+  The glass box in the hero. Everything in it is counted from the database:
+  donors who are available and rested, requests donors can see, and the newest
+  few events as blood type + city + time. Nothing here names a person.
+{% endcomment %}
+<div class="live-box fade-up" style="--d:420ms" data-live-box>
+  <div class="live-box-head">
+    <span class="live-tag"><span class="live-dot" aria-hidden="true"></span>{% trans "LIVE NETWORK" %}</span>
+    <small>{% trans "Right now" %}</small>
+  </div>
+  <div class="live-box-stats">
+    <div class="live-stat is-ready"><small>{% trans "Donors ready now" %}</small><b>{{ ready_total }}</b></div>
+    <div class="live-stat is-need"><small>{% trans "Patients waiting" %}</small><b>{{ open_count }}</b></div>
+  </div>
+  {% if live_feed %}
+    <ul class="live-feed">
+      {% for item in live_feed %}
+        <li class="is-{{ item.kind }}">
+          <i aria-hidden="true"></i>
+          <span><b>{{ item.blood_type }}</b> {% if item.kind == "need" %}{% trans "needed" %}{% else %}{% trans "donor ready" %}{% endif %} <em>{{ item.city }}</em></span>
+          <small>{{ item.when|time_ago }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="live-feed-empty">{% trans "Nothing yet. New requests and donors show up here." %}</p>
+  {% endif %}
+</div>

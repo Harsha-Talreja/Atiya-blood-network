@@ -1,0 +1,81 @@
+{% extends "siteadmin/base.html" %}
+{% load admin_extras core_extras %}
+
+{% block title %}Donors{% endblock %}
+{% block heading %}Donors{% endblock %}
+{% block state %}Who can give, and who is still resting{% endblock %}
+
+{% block content %}
+
+{% include "siteadmin/_supply.html" %}
+
+<section class="sec">
+  <div class="sh">
+    <h2>
+      {% if blood_type %}{{ blood_type|blood_mark }} donors{% else %}Donors{% endif %}
+    </h2>
+    <span class="c">{{ total }} shown</span>
+    <span class="end">
+      {% if blood_type %}
+        <a class="btn bare" href="{% url 'siteadmin:donors' %}">Clear {{ blood_type|blood_mark }}</a>
+      {% endif %}
+      <form class="find" method="get">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" name="q" value="{{ query }}" placeholder="Name, username or city"
+               aria-label="Search donors">
+        <input type="hidden" name="state" value="{{ state }}">
+        {% if blood_type %}<input type="hidden" name="bt" value="{{ blood_type }}">{% endif %}
+      </form>
+      {% include "siteadmin/_tabs.html" %}
+    </span>
+  </div>
+
+  <div class="rows">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Donor</th>
+          <th scope="col">Type</th>
+          <th scope="col" class="hide">Lives in</th>
+          <th scope="col">Can give</th>
+          <th scope="col" class="hide">Last gave</th>
+          <th scope="col" class="hide r">Joined</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for donor in rows %}
+          <tr>
+            <td>
+              <div class="who">{{ donor.full_name }}</div>
+              <div class="qt">{{ donor.user.username }}</div>
+            </td>
+            <td><span class="bt">{{ donor.blood_type|blood_mark }}</span></td>
+            <td class="hide qt">{{ donor.location.area }}, {{ donor.location.city }}</td>
+            <td>
+              {% if not donor.is_available %}
+                <span class="st gone">Marked unavailable</span>
+              {% elif donor.is_eligible %}
+                <span class="st done">Yes</span>
+              {% else %}
+                <span class="st wait">In {{ donor.days_until_eligible }} day{{ donor.days_until_eligible|pluralize }}</span>
+              {% endif %}
+            </td>
+            <td class="hide qt nums">
+              {% if donor.last_donation_date %}{{ donor.last_donation_date }}{% else %}Never{% endif %}
+            </td>
+            <td class="hide qt nums r">{{ donor.created_at|date:"j M Y" }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="6" class="empty">
+            {% if query or blood_type %}No donor matches that.{% else %}No donors yet.{% endif %}
+          </td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if total > rows|length %}
+    <p class="pageof">Showing the first {{ rows|length }} of {{ total }}.</p>
+  {% endif %}
+
+</section>
+{% endblock %}

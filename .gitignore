@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# The local database holds real test accounts. Never upload it.
+db.sqlite3
+*.sqlite3
+
+# Collected static files, uploads, secrets, editor files
+staticfiles/
+media/
+.env
+.vscode/
+.idea/
+.DS_Store

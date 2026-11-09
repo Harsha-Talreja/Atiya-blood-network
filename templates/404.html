@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Page not found | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block content %}
+<section class="error-page glass-page">
+  {% include "components/glass_orbs.html" %}
+  <div class="container">
+   <div class="glass-card error-card">
+    <svg class="error-art" viewBox="0 0 340 120" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path class="beat" d="M0 70 H70 L86 70 L98 44 L114 96 L130 24 L146 70 H180"/>
+      <path class="flat" d="M180 70 H340"/>
+    </svg>
+    <div class="error-code" aria-hidden="true">404</div>
+    <h1 class="h2 fw-bold mt-2">{% trans "We can't find that page" %}</h1>
+    <p>{% trans "The link may be old, or the page may have moved. Let's get you back to something useful." %}</p>
+    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+      <a href="{% url 'core:home' %}" class="btn btn-brand btn-lg"><i class="bi bi-house" aria-hidden="true"></i> {% trans "Back to home" %}</a>
+      <a href="{% url 'core:home' %}#requests" class="btn btn-outline-brand btn-lg">{% trans "See open requests" %}</a>
+    </div>
+   </div>
+  </div>
+</section>
+{% endblock %}

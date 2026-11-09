@@ -1,0 +1,88 @@
+{% extends "siteadmin/base.html" %}
+{% load admin_extras core_extras %}
+
+{% block title %}Reports{% endblock %}
+{% block heading %}Reports{% endblock %}
+{% block state %}What donors have flagged for you{% endblock %}
+
+{% block content %}
+<section class="sec">
+  <div class="sh">
+    <h2>Reports</h2>
+    <span class="c">{{ total }} shown</span>
+    <span class="end">{% include "siteadmin/_tabs.html" %}</span>
+  </div>
+
+  <div class="rows">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Request</th>
+          <th scope="col">Reason given</th>
+          <th scope="col" class="hide">Reported by</th>
+          <th scope="col" class="hide">When</th>
+          <th scope="col" class="r">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for report in rows %}
+          <tr>
+            <td>
+              <div class="who">{{ report.request.patient_name }}</div>
+              <div class="qt">{{ report.request.hospital.name }}, {{ report.request.hospital.location.city }}</div>
+              <div class="qt">posted by <b>{{ report.request.requester.username }}</b>, who has
+                {% if report.poster_report_count > 1 %}
+                  <span style="color:var(--blood);font-weight:600">{{ report.poster_report_count }} reports</span>
+                {% else %}
+                  {{ report.poster_report_count }} report
+                {% endif %}
+              </div>
+            </td>
+            <td>
+              {{ report.reason }}
+              {% if report.details %}<div class="qt hide">&ldquo;{{ report.details }}&rdquo;</div>{% endif %}
+            </td>
+            <td class="hide qt">{{ report.reporter.username }}</td>
+            <td class="hide qt nums">{{ report.created_at|time_ago }}</td>
+            <td class="r">
+              <div class="acts">
+                {% if not report.resolved %}
+                  <form method="post" action="{% url 'siteadmin:report_resolve' report.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <button class="btn go" type="submit">Resolve</button>
+                  </form>
+                  <form method="post" action="{% url 'siteadmin:request_remove' report.request.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <button class="btn stop" type="submit">Remove request</button>
+                  </form>
+                  {% if not report.request.requester.is_staff and report.request.requester_id != user.pk %}
+                    {% if not report.request.requester.block %}
+                      <form method="post" action="{% url 'siteadmin:user_block' report.request.requester_id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        <input type="hidden" name="note" value="Reported: {{ report.reason }}">
+                        <button class="btn stop" type="submit">Block {{ report.request.requester.username }}</button>
+                      </form>
+                    {% endif %}
+                  {% endif %}
+                {% else %}
+                  <span class="st done">Resolved</span>
+                {% endif %}
+                <a class="btn bare" href="{% url 'blood_requests:detail' report.request.pk %}">Open</a>
+              </div>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5" class="empty">
+            {% if state == "unresolved" %}No unread reports.
+            {% else %}No reports to show.{% endif %}
+          </td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</section>
+{% endblock %}

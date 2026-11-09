@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load dash %}
+{% comment %}
+  The frame every signed-in dashboard page sits in: the side panel on the left,
+  the page's own content on the right. A page extends this, sets `dash_active`
+  in its view context (so the panel can mark where you are) and fills dash_main.
+{% endcomment %}
+{% block content %}
+<section class="page-section glass-page dd-page">
+  {% include "components/glass_orbs.html" %}
+  <div class="container">
+    <div class="vshell dshell">
+      <script>try { if (localStorage.getItem("bn-dash-folded") === "1") { document.currentScript.parentNode.classList.add("is-collapsed"); } } catch (e) {}</script>
+      <div class="vrail">{% dash_panel active=dash_active %}</div>
+      <div class="vmain">{% block dash_main %}{% endblock %}</div>
+    </div>
+  </div>
+</section>
+{% endblock %}

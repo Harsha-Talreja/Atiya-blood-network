@@ -1,0 +1,31 @@
+{% load i18n %}{% load static %}
+<footer class="site-footer">
+  <div class="container">
+    <div class="sf-top">
+      <div class="sf-brandline">
+        <div class="footer-brand">
+          <img src="{% static 'img/logo-mark.svg' %}" width="26" height="26" alt="">
+          <span>{{ SITE_NAME }}</span>
+        </div>
+        <p class="mb-0">{% trans "Helping people who need blood find willing, compatible donors nearby, faster than word of mouth." %}</p>
+      </div>
+      {% if not desk_only %}
+        <div class="sf-cta">
+          <a href="{% url 'blood_requests:new' %}" class="btn btn-brand btn-sm">{% trans "Request blood" %}</a>
+          {% if user.is_authenticated %}<a href="{% url 'donors:profile' %}" class="btn btn-outline-brand btn-sm">{% trans "Become a donor" %}</a>{% else %}<a href="{% url 'accounts:signup' %}?next={% url 'donors:edit' %}" class="btn btn-outline-brand btn-sm">{% trans "Become a donor" %}</a>{% endif %}
+        </div>
+      {% endif %}
+    </div>
+    <nav class="sf-links" aria-label="{% trans "Footer" %}">
+      <a href="{% url 'core:home' %}#how-it-works">{% trans "How it works" %}</a>
+      <a href="{% url 'core:home' %}#compatibility">{% trans "Blood compatibility" %}</a>
+      <a href="{% url 'core:home' %}#faq">{% trans "FAQ" %}</a>
+      <a href="{% url 'core:about' %}">{% trans "About, privacy &amp; safety" %}</a>
+      {% if not user.is_authenticated %}<a href="{% url 'accounts:login' %}">{% trans "Log in" %}</a>{% endif %}
+    </nav>
+    <p class="sf-note mb-0">
+      <i class="bi bi-info-circle" aria-hidden="true"></i>
+      <span>{% blocktrans trimmed with SITE_NAME=SITE_NAME %}{{ SITE_NAME }} connects people. It does not store or supply blood and is not a medical service. Every donation is screened by a hospital or blood bank. In an emergency, also contact the hospital's blood bank directly. &copy;{% endblocktrans %} {% now "Y" %} {{ SITE_NAME }}.</span>
+    </p>
+  </div>
+</footer>

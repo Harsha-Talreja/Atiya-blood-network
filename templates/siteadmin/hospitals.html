@@ -1,0 +1,58 @@
+{% extends "siteadmin/base.html" %}
+{% load admin_extras %}
+
+{% block title %}Hospitals{% endblock %}
+{% block heading %}Hospitals{% endblock %}
+{% block state %}The desks that verify requests{% endblock %}
+
+{% block content %}
+<section class="sec">
+  <div class="sh">
+    <h2>Hospitals</h2>
+    <span class="c">{{ total }} registered</span>
+  </div>
+
+  <div class="rows">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Hospital</th>
+          <th scope="col" class="hide">Where</th>
+          <th scope="col">Signs in as</th>
+          <th scope="col">Waiting on them</th>
+          <th scope="col" class="hide r">Verified so far</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for hospital in rows %}
+          <tr>
+            <td><div class="who">{{ hospital.name }}</div></td>
+            <td class="hide qt">{{ hospital.location.area }}, {{ hospital.location.city }}</td>
+            <td class="qt nums">
+              {% for account in hospital.staff_accounts.all %}
+                {{ account.user.username }}{% if not forloop.last %}, {% endif %}
+              {% empty %}
+                <span class="st gone">No login yet</span>
+              {% endfor %}
+            </td>
+            <td>
+              {% if hospital.waiting %}
+                <span class="st wait">{{ hospital.waiting }} request{{ hospital.waiting|pluralize }}</span>
+              {% else %}
+                <span class="st done">Nothing</span>
+              {% endif %}
+            </td>
+            <td class="hide nums r">{{ hospital.verified_total }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5" class="empty">No hospitals yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if total > rows|length %}
+    <p class="pageof">Showing the first {{ rows|length }} of {{ total }}.</p>
+  {% endif %}
+
+</section>
+{% endblock %}

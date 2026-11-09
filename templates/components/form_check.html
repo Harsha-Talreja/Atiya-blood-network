@@ -1,0 +1,13 @@
+{% load core_extras %}
+<div class="mb-3">
+  <div class="form-check{% if switch %} form-switch{% endif %}">
+    {{ field|as_input }}
+    <label class="form-check-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+  </div>
+  {% if field.help_text %}<div class="form-hint check-hint" id="{{ field.id_for_label }}-hint">{{ field.help_text }}</div>{% endif %}
+  {% if field.errors %}
+    <div id="{{ field.id_for_label }}-error">
+      {% for error in field.errors %}<div class="field-error"><i class="bi bi-exclamation-circle-fill" aria-hidden="true"></i><span>{{ error }}</span></div>{% endfor %}
+    </div>
+  {% endif %}
+</div>

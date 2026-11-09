@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Style guide | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-2">
+    <div>
+      <h1 class="fw-bold mb-1">{% trans "Style guide" %}</h1>
+      <p class="text-soft mb-0">{% trans "Every reusable piece of the design in one place. Try the moon button to see dark mode." %}</p>
+    </div>
+    <span class="pill pill-normal"><i class="bi bi-tools" aria-hidden="true"></i> {% trans "Developer page (DEBUG only)" %}</span>
+  </div>
+
+  <section class="sg-section">
+    <h2>{% trans "Colours" %}</h2>
+    <div class="row g-3">
+      {% for name, value in swatches %}
+        <div class="col-6 col-md-3"><div class="sg-swatch" style="background: {{ value }}"></div>
+          <div class="mt-2 fw-semibold">{{ name }}</div><div class="sg-token">{{ value }}</div></div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>{% trans "Buttons" %}</h2>
+    <div class="d-flex flex-wrap gap-3 align-items-center">
+      <button class="btn btn-brand">{% trans "Primary" %}</button>
+      <button class="btn btn-outline-brand">{% trans "Outline" %}</button>
+      <button class="btn btn-ghost">{% trans "Ghost" %}</button>
+      <button class="btn btn-emergency"><i class="bi bi-droplet-fill" aria-hidden="true"></i> {% trans "Request blood" %}</button>
+      <button class="btn btn-brand btn-lg">{% trans "Large" %}</button>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>{% trans "Blood badges and status pills" %}</h2>
+    <div class="d-flex flex-wrap gap-3 align-items-center mb-3">
+      {% include "components/blood_badge.html" with blood_type="O-" size="lg" %}
+      {% include "components/blood_badge.html" with blood_type="AB+" size="md" %}
+      {% include "components/blood_badge.html" with blood_type="A+" size="sm" %}
+    </div>
+    <div class="d-flex flex-wrap gap-2">
+      {% include "components/urgency_pill.html" with urgency="Critical" %}
+      {% include "components/urgency_pill.html" with urgency="Urgent" %}
+      {% include "components/urgency_pill.html" with urgency="Normal" %}
+      {% include "components/status_pill.html" with status="Pending" %}
+      {% include "components/status_pill.html" with status="Fulfilled" %}
+      {% include "components/status_pill.html" with status="Expired" %}
+      <span class="pill pill-verified"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> {% trans "Verified" %}</span>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>{% trans "Request cards: urgency edge and live countdown" %}</h2>
+    <div class="row g-4">
+      {% for req in samples %}<div class="col-md-6">{% include "components/request_card.html" with req=req %}</div>{% endfor %}
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>{% trans "Forms" %}</h2>
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="card-soft no-lift">
+          <h3 class="h5 fw-bold mb-3">{% trans "Ready to fill in" %}</h3>
+          <form method="post" action="#" data-guard data-demo novalidate>
+            {% csrf_token %}
+            {% include "components/form_errors.html" with form=clean_form %}
+            {% for field in clean_form %}{% include "components/form_field.html" with field=field %}{% endfor %}
+            {% include "components/submit_button.html" with label="Create account" %}
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card-soft no-lift">
+          <h3 class="h5 fw-bold mb-3">{% trans "How errors look" %}</h3>
+          <form method="post" action="#" novalidate>
+            {% for field in error_form %}{% include "components/form_field.html" with field=field %}{% endfor %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>{% trans "Feedback" %}</h2>
+    <div class="d-flex flex-wrap gap-3">
+      <button class="btn btn-brand" onclick="showSuccess({title: 'Request posted', text: 'Matching donors in your city can now see it.'})">{% trans "Show success dialog" %}</button>
+      <button class="btn btn-outline-brand" onclick="showToast('Availability updated', 'success')">{% trans "Show toast" %}</button>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>{% trans "Empty state and loading placeholders" %}</h2>
+    <div class="row g-4">
+      <div class="col-lg-6">{% include "components/empty_state.html" with icon="bi-droplet" title="No open requests right now" text="When someone posts a request it appears here first." %}</div>
+      <div class="col-lg-6">
+        <div class="mb-3">{% include "components/skeleton_card.html" %}</div>
+        {% include "components/skeleton_card.html" %}
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

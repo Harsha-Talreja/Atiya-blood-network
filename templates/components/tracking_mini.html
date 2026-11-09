@@ -1,0 +1,15 @@
+{% load i18n %}{% comment %}
+  The same four stages as tracking.html, squeezed to a title under each dot so
+  it fits inside a card on the My requests page. The line fills up to the stage
+  the request has reached, through the --fill value set on the card.
+{% endcomment %}
+<ol class="tl tl-mini" aria-label="{% trans "Request progress" %}">
+  {% for step in tracking %}
+    <li class="tl-step is-{{ step.state }}">
+      <span class="tl-dot" aria-hidden="true">
+        {% if step.state == "done" %}<i class="bi bi-check-lg"></i>{% else %}{{ forloop.counter }}{% endif %}
+      </span>
+      <p class="tl-title">{{ step.title }}<span class="visually-hidden"> {% if step.state == "done" %}{% trans "(done)" %}{% elif step.state == "active" %}{% trans "(happening now)" %}{% else %}{% trans "(not yet)" %}{% endif %}</span></p>
+    </li>
+  {% endfor %}
+</ol>

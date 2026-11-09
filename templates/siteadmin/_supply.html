@@ -1,0 +1,14 @@
+{% load admin_extras %}
+{% comment %} The donor supply strip: eight fixed codes, the bar showing how much of that
+   type is on hand relative to the largest. Shared by Overview and Donors. {% endcomment %}
+<div class="types">
+  {% for row in supply %}
+    <a class="ty{% if row.is_short %} short{% endif %}"
+       href="{% url 'siteadmin:donors' %}?state=ready&amp;bt={{ row.blood_type|urlencode }}"
+       title="{{ row.count }} {{ row.blood_type }} donor{{ row.count|pluralize }} ready">
+      <span class="mk">{{ row.blood_type|blood_mark }}</span>
+      <span class="ct">{{ row.count }}</span>
+      <span class="fill" style="width: {{ row.percent }}%"></span>
+    </a>
+  {% endfor %}
+</div>

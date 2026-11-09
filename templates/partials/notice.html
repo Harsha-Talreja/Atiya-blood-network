@@ -1,0 +1,6 @@
+{% load i18n %}<div class="notice-bar" role="note">
+  <div class="container">
+    <i class="bi bi-info-circle-fill" aria-hidden="true"></i>
+    <span><strong>{% trans "Emergency?" %}</strong> {% blocktrans trimmed with SITE_NAME=SITE_NAME %}Contact the hospital's blood bank directly. {{ SITE_NAME }} helps families and donors find each other and is not a medical service.{% endblocktrans %} <a href="{% url 'core:about' %}#safety">{% trans "Read the safety notice" %}</a></span>
+  </div>
+</div>

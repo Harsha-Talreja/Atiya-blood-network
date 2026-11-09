@@ -1,0 +1,20 @@
+{% load i18n %}{% load core_extras %}<article class="request-card card-soft h-100 is-{{ req.urgency|lower }}">
+  <div class="d-flex gap-3">
+    {% include "components/blood_badge.html" with blood_type=req.blood_type size="lg" %}
+    <div class="flex-grow-1 min-w-0">
+      <div class="d-flex flex-wrap gap-2 mb-2">
+        {% include "components/urgency_pill.html" with urgency=req.urgency %}
+        {% include "components/status_pill.html" with status=req.display_status %}
+        {% if req.is_verified %}<span class="pill pill-verified"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> {{ req.verified_label }}</span>
+        {% elif req.release_label %}<span class="pill pill-auto"><i class="bi bi-shield-exclamation" aria-hidden="true"></i> {{ req.release_label }}</span>{% endif %}
+      </div>
+      <h3 class="request-title">{{ req.hospital.name }}</h3>
+      <p class="request-meta"><i class="bi bi-geo-alt" aria-hidden="true"></i>{{ req.location.area }}, {{ req.location.city }}</p>
+      <p class="request-meta"><i class="bi bi-droplet" aria-hidden="true"></i>{% blocktrans trimmed count n=req.units_needed with ago=req.created_at|time_ago %}{{ n }} unit needed &middot; {{ ago }}{% plural %}{{ n }} units needed &middot; {{ ago }}{% endblocktrans %}</p>
+    </div>
+  </div>
+  <div class="request-footer d-flex justify-content-between align-items-center gap-2">
+    <span class="request-expiry"><i class="bi bi-clock" aria-hidden="true"></i> <time class="countdown" datetime="{{ req.expires_at|date:'c' }}" data-countdown="{{ req.expires_at|date:'c' }}">{% blocktrans trimmed with expires_at=req.expires_at|time_left %}Closes in {{ expires_at }}{% endblocktrans %}</time></span>
+    <a href="{% url 'blood_requests:detail' pk=req.pk %}" class="btn btn-sm btn-outline-brand">{% trans "View details" %}</a>
+  </div>
+</article>

@@ -1,0 +1,214 @@
+{% load static admin_extras %}<!doctype html>
+{% comment %} The panel does not extend the public base: it has its own side-panel layout
+   and almost none of the site chrome applies. It does share the site's theme
+   switch (data-bs-theme + localStorage) so dark/light carries over both ways. {% endcomment %}
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Admin{% endblock %} &middot; {{ SITE_NAME }}</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+  <link rel="icon" type="image/png" sizes="64x64" href="{% static 'img/favicon.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}?v=20261031c">
+  <script>(function(){var r=document.documentElement;try{var s=localStorage.getItem("theme");
+    if(s==="dark"||s==="light"){r.setAttribute("data-bs-theme",s);}}catch(e){}})();</script>
+</head>
+<body class="adm">
+<a class="skip" href="#main">Skip to the page content</a>
+
+<aside class="rail" id="rail">
+  <a class="brand" href="{% url 'core:home' %}" title="Back to the public site">
+    <svg class="drop" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c3.6 4.3 6.5 8 6.5 11.4A6.5 6.5 0 0 1 5.5 13.9C5.5 10.5 8.4 6.8 12 2.5z"/></svg>
+    <span><span class="t">{{ SITE_NAME }}</span><span class="r">Admin</span></span>
+  </a>
+
+  <nav aria-label="Overview">
+    <a href="{% url 'siteadmin:overview' %}" {% if page_key == "overview" %}aria-current="page"{% endif %}>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2.5 6 5-13L17.5 12H21"/></svg>
+      Overview</a>
+  </nav>
+
+  <nav aria-label="Manage">
+    <a href="{% url 'siteadmin:requests' %}" {% if page_key == "requests" and state != "review" and state != "timeout" %}aria-current="page"{% endif %}>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.2 3.9 5.8 7.2 5.8 10.2A5.8 5.8 0 0 1 6.2 13.2C6.2 10.2 8.8 6.9 12 3z"/></svg>
+      Requests <span class="n">{{ nav_counts.requests }}</span></a>
+    <a href="{% url 'siteadmin:requests' %}?state=timeout" {% if page_key == "requests" and state == "timeout" %}aria-current="page"{% endif %}>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      Timed out <span class="n{% if nav_counts.timeout %} due{% endif %}">{{ nav_counts.timeout }}</span></a>
+    <a href="{% url 'siteadmin:requests' %}?state=review" {% if page_key == "requests" and state == "review" %}aria-current="page"{% endif %}>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
+      Extra units <span class="n{% if nav_counts.review %} due{% endif %}">{{ nav_counts.review }}</span></a>
+    <a href="{% url 'siteadmin:donors' %}" {% if page_key == "donors" %}aria-current="page"{% endif %}>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/></svg>
+      Donors <span class="n">{{ nav_counts.donors }}</span></a>
+    <a href="{% url 'siteadmin:users' %}" {% if page_key == "users" %}aria-current="page"{% endif %}>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11h-6"/></svg>
+      Users <span class="n">{{ nav_counts.users }}</span></a>
+    <a href="{% url 'siteadmin:reports' %}" {% if page_key == "reports" %}aria-current="page"{% endif %}>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V4s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+      Reports <span class="n{% if nav_counts.reports %} due{% endif %}">{{ nav_counts.reports }}</span></a>
+    <a href="{% url 'siteadmin:hospitals' %}" {% if page_key == "hospitals" %}aria-current="page"{% endif %}>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M10 12h4M12 10v4"/></svg>
+      Hospitals <span class="n">{{ nav_counts.hospitals }}</span></a>
+  </nav>
+
+  <nav aria-label="System">
+    <a href="{% url 'siteadmin:settings' %}" {% if page_key == "settings" %}aria-current="page"{% endif %}>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+      Settings</a>
+    <a href="{% url 'siteadmin:audit' %}" {% if page_key == "audit" %}aria-current="page"{% endif %}>
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+      Audit log</a>
+  </nav>
+  {% comment %} Django admin is deliberately not listed here. It is still
+  reachable at /admin/ by address, but it is
+  not part of the daily work this panel is for. {% endcomment %}
+
+  <div class="sp"></div>
+  <div class="me">
+    <span class="av" aria-hidden="true">{{ user|initials }}</span>
+    <span><span class="who">{{ user.username }}</span><span class="rl">{% if user.is_superuser %}Superuser{% else %}Staff{% endif %}</span></span>
+    <form method="post" action="{% url 'accounts:logout' %}">
+      {% csrf_token %}
+      <button type="submit" title="Sign out">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg>
+      </button>
+    </form>
+  </div>
+</aside>
+
+<div class="main">
+  <header class="top">
+    <h1>{% block heading %}Admin{% endblock %}</h1>
+    <span class="state">{% block state %}{% endblock %}</span>
+    <div class="end">
+      <span class="now hide"><i aria-hidden="true"></i>{% now "H:i" %}</span>
+      {% include "notifications/_bell.html" %}
+      <button class="ghost" type="button" id="theme" title="Switch between dark and light">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  {% if messages %}
+    <div class="toasts" role="status" aria-live="polite">
+      {% for message in messages %}
+        <div class="toast {{ message.tags }}"><i aria-hidden="true"></i><span>{{ message }}</span>
+          <button type="button" aria-label="Dismiss">&times;</button></div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="wrap" id="main">
+    {% block content %}{% endblock %}
+  </div>
+</div>
+
+<script>
+// A notice goes away by itself after four seconds, or when it is closed.
+document.querySelectorAll(".toast").forEach(function (t) {
+  function hide() { t.classList.add("gone"); setTimeout(function () { t.remove(); }, 350); }
+  t.querySelector("button").addEventListener("click", hide);
+  setTimeout(hide, 4000);
+});
+// Search boxes work as you type: after a short pause the list is fetched and
+// swapped in place, so the box keeps focus. Enter does the same at once, and if
+// anything fails the form is simply submitted the ordinary way.
+(function () {
+  var form = document.querySelector("form.find");
+  if (!form) return;
+  var input = form.querySelector("input[type=search]");
+  var timer, ticket = 0, inflight;
+  function url() {
+    var q = new URLSearchParams(new FormData(form));
+    return location.pathname + "?" + q.toString();
+  }
+  function run() {
+    var mine = ++ticket, target = url();
+    if (inflight) inflight.abort();
+    inflight = window.AbortController ? new AbortController() : null;
+    fetch(target, { credentials: "same-origin", headers: { "X-Requested-With": "fetch" },
+                    signal: inflight && inflight.signal })
+      .then(function (r) { if (!r.ok) throw 0; return r.text(); })
+      .then(function (html) {
+        if (mine !== ticket) return;
+        var doc = new DOMParser().parseFromString(html, "text/html");
+        function swap(sel) {
+          var a = document.querySelector(sel), b = doc.querySelector(sel);
+          if (a && b) a.replaceWith(b);
+        }
+        swap(".rows");
+        swap(".sh .c");
+        var old = document.querySelector(".pageof"), fresh = doc.querySelector(".pageof");
+        if (old) old.remove();
+        if (fresh) document.querySelector(".rows").after(fresh);
+        var end = document.querySelector(".sh .end");
+        end.querySelectorAll(".filt").forEach(function (a) { a.remove(); });
+        doc.querySelectorAll(".sh .end .filt").forEach(function (a) { end.appendChild(a); });
+        history.replaceState(null, "", target);
+      })
+      .catch(function (err) { if (!err || err.name !== "AbortError") form.submit(); });
+  }
+  // Instant feedback: rows already on screen that cannot match are hidden at
+  // once, before the server has answered. The server's list then replaces them.
+  function prefilter() {
+    var words = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+    document.querySelectorAll(".rows tbody tr").forEach(function (tr) {
+      if (tr.querySelector(".empty")) return;
+      var text = tr.textContent.toLowerCase();
+      tr.hidden = !words.every(function (w) { return text.indexOf(w) !== -1; });
+    });
+  }
+  input.addEventListener("input", function () {
+    prefilter();
+    clearTimeout(timer);
+    timer = setTimeout(run, 120);
+  });
+  form.addEventListener("submit", function (e) { e.preventDefault(); clearTimeout(timer); run(); });
+})();
+
+// Writes the same localStorage key the public site reads, so the choice follows
+// the person out of the panel and back in. The page cross-fades between the two
+// themes where the browser can (View Transitions), and otherwise the colours
+// ease over for a moment.
+document.getElementById("theme").addEventListener("click", function () {
+  var root = document.documentElement;
+  var next = root.getAttribute("data-bs-theme") === "dark" ? "light" : "dark";
+  function apply() {
+    root.setAttribute("data-bs-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  }
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!calm && document.startViewTransition) {
+    document.startViewTransition(apply);
+  } else if (!calm) {
+    root.classList.add("theming");
+    apply();
+    setTimeout(function () { root.classList.remove("theming"); }, 500);
+  } else {
+    apply();
+  }
+});
+
+// Moving to another page: the content fades out first, so the next page's
+// fade-in reads as one movement. Forms and new-tab clicks are left alone.
+document.addEventListener("click", function (e) {
+  var a = e.target.closest("a[href]");
+  if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  if (a.target || a.hasAttribute("download") || a.origin !== location.origin) return;
+  if (a.pathname === location.pathname && a.search === location.search) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  e.preventDefault();
+  document.body.classList.add("leaving");
+  setTimeout(function () { location.href = a.href; }, 160);
+});
+// Coming back with the Back button can restore the faded page from memory.
+window.addEventListener("pageshow", function (e) {
+  if (e.persisted) document.body.classList.remove("leaving");
+});
+</script>
+<script src="{% static 'js/notifications.js' %}?v=20261026a" defer></script>
+</body>
+</html>

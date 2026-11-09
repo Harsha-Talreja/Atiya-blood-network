@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load core_extras %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Open requests | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block content %}
+<section class="page-section glass-page rq-page rq-list">
+  {% include "components/glass_orbs.html" %}
+  <div class="container">
+
+    <div class="board-head" data-aos="fade-up">
+      <div>
+        {% if result_count %}
+          <span class="live-kicker">
+            <span class="live-dot" aria-hidden="true"></span>
+            {% blocktrans trimmed count n=result_count %}{{ n }} request open right now{% plural %}{{ n }} requests open right now{% endblocktrans %}
+          </span>
+        {% endif %}
+        <h1 class="board-title">{% trans "Open requests" %}</h1>
+        <p class="text-soft mb-0">
+          {% if critical_count %}
+            {% blocktrans trimmed count n=critical_count %}{{ n }} of them is marked critical.{% plural %}{{ n }} of them are marked critical.{% endblocktrans %}
+          {% else %}
+            {% trans "Sign in to see contact details and offer to help." %}
+          {% endif %}
+        </p>
+      </div>
+
+      {% comment %}
+        Sorting is a set of links, not a script: each one is a real URL, so it
+        works without JavaScript and can be shared or bookmarked. The current
+        filters ride along so changing the order never silently drops them.
+      {% endcomment %}
+      <nav class="seg" aria-label="{% trans "Sort requests" %}">
+        {% for key, label, href in sort_links %}
+          <a href="{{ href }}" aria-pressed="{% if sort == key %}true{% else %}false{% endif %}">{{ label }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+
+    {% comment %}
+      The urgency tiles are links too. Each shows how many requests it would
+      leave (after the blood type and city filters), and the tile that is
+      already on turns itself off when clicked.
+    {% endcomment %}
+    <nav class="utiles" aria-label="{% trans "Filter by urgency" %}" data-aos="fade-up">
+      {% for level, count, href in urgency_tiles %}
+        <a href="{{ href }}" class="utile is-{{ level|lower }}" aria-pressed="{% if selected_urgency == level %}true{% else %}false{% endif %}">
+          <b>{{ count }}</b><span>{{ level|tr }}</span>
+        </a>
+      {% endfor %}
+    </nav>
+
+    <div class="row g-3">
+      <div class="col-lg-3">
+        <form method="get" class="filter-rail board-rail" data-aos="fade-up">
+          <h2>{% trans "Filter" %}</h2>
+          <input type="hidden" name="sort" value="{{ sort }}">
+          {% if selected_urgency %}<input type="hidden" name="urgency" value="{{ selected_urgency }}">{% endif %}
+
+          <fieldset class="filter-group chip-group">
+            <legend class="form-label">{% trans "Blood type" %}</legend>
+            <div class="chips8">
+              {% for bt in blood_types %}
+                <span class="chip8">
+                  <input type="radio" name="blood_type" id="bt-{{ forloop.counter }}" value="{{ bt }}"{% if bt == selected_blood_type %} checked{% endif %}>
+                  <label for="bt-{{ forloop.counter }}">{{ bt|pretty_blood }}</label>
+                </span>
+              {% endfor %}
+            </div>
+            <span class="chip8 chip8-any">
+              <input type="radio" name="blood_type" id="bt-any" value=""{% if not selected_blood_type %} checked{% endif %}>
+              <label for="bt-any">{% trans "Any type" %}</label>
+            </span>
+          </fieldset>
+
+          <div class="filter-group">
+            <label class="form-label" for="filter-city">{% trans "City" %}</label>
+            <select class="form-select" id="filter-city" name="city">
+              <option value="">{% trans "Any city" %}</option>
+              {% for city in cities %}
+                <option value="{{ city }}"{% if city == selected_city %} selected{% endif %}>{{ city }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="filter-group d-grid gap-2">
+            <button type="submit" class="btn btn-brand"><i class="bi bi-funnel" aria-hidden="true"></i> {% trans "Apply" %}</button>
+            {% if has_filters %}
+              <a href="{% url 'blood_requests:list' %}" class="btn btn-ghost">{% trans "Clear filters" %}</a>
+            {% endif %}
+          </div>
+        </form>
+      </div>
+
+      <div class="col-lg-9">
+        {% if requests %}
+          <p class="board-count text-soft">
+            {% if has_filters %}{% blocktrans trimmed count n=result_count %}Showing {{ n }} request that matches your filters.{% plural %}Showing {{ n }} requests that match your filters.{% endblocktrans %}{% else %}{% blocktrans trimmed count n=result_count %}Showing {{ n }} request.{% plural %}Showing {{ n }} requests.{% endblocktrans %}{% endif %}
+          </p>
+          <div class="row g-3">
+            {% for req in requests %}
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="{% widthratio forloop.counter0 1 50 %}">
+                {% include "components/request_card.html" with req=req %}
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          {% include "components/empty_state.html" with icon="bi-droplet" title="No matching requests" text="Try a different blood type or city." %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

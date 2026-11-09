@@ -1,0 +1,45 @@
+{% extends "siteadmin/base.html" %}
+{% load admin_extras core_extras %}
+
+{% block title %}Notifications{% endblock %}
+{% block heading %}Notifications{% endblock %}
+{% block state %}{{ unread }} unread{% endblock %}
+
+{% block content %}
+<section class="sec">
+  <div class="sh">
+    <h2>Inbox</h2>
+    <span class="c">{{ items|length }} shown</span>
+    <span class="end">
+      {% if unread %}
+        <form method="post" action="{% url 'notifications:read_all' %}">
+          {% csrf_token %}
+          <button class="btn out" type="submit">Mark all as read</button>
+        </form>
+      {% endif %}
+    </span>
+  </div>
+  <div class="rows" id="notif-list">
+    <table>
+      <tbody>
+        {% for note in items %}
+          <tr>
+            <td>
+              <div class="who">{% if not note.is_read %}<span class="st wait">New</span> {% endif %}{{ note.message }}</div>
+              <div class="qt">{{ note.created_at|time_ago }}</div>
+            </td>
+            <td class="r">
+              <form method="post" action="{% url 'notifications:read' note.pk %}">
+                {% csrf_token %}
+                <button class="btn {% if note.is_read %}bare{% else %}go{% endif %}" type="submit">{% if note.url %}Open{% else %}Mark read{% endif %}</button>
+              </form>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td class="empty">Nothing yet. Donor offers, timed-out requests and extra-unit requests show up here.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

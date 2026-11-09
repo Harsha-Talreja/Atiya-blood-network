@@ -1,0 +1,53 @@
+{% extends "dashboard/shell.html" %}
+{% load i18n %}
+{% load core_extras %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Dashboard | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block dash_main %}
+  <h1 class="dgreet">{{ greeting }}, {{ first_name }}</h1>
+
+  <div class="dtwo">
+    <div class="glass-card rolec" data-aos="fade-up">
+      <span class="roleic" aria-hidden="true"><i class="bi bi-heart"></i></span>
+      <h2>{% trans "Donate blood" %}</h2>
+      {% if donor %}
+        <p>{% if not donor.is_available %}{% trans "Not available right now" %}{% elif not donor.is_eligible %}{% blocktrans trimmed count n=donor.days_until_eligible %}Resting for {{ n }} more day{% plural %}Resting for {{ n }} more days{% endblocktrans %}{% else %}{% trans "Ready to donate" %}{% endif %} &middot; {% blocktrans trimmed count n=matching_total with city=donor.location.city %}{{ n }} matching request in {{ city }}{% plural %}{{ n }} matching requests in {{ city }}{% endblocktrans %}</p>
+        <form method="post" action="{% url 'donors:toggle' %}" class="bn-switch" data-availability-form>
+          {% csrf_token %}
+          <button type="submit" class="switch" role="switch" aria-checked="{{ donor.is_available|yesno:'true,false' }}" aria-labelledby="availability-label" data-availability-toggle></button>
+          <span id="availability-label" class="switch-label" data-availability-label>{% if donor.is_available %}{% trans "Available to donate" %}{% else %}{% trans "Not available right now" %}{% endif %}</span>
+        </form>
+        <div class="rolebtns"><a class="btn btn-brand btn-sm" href="{% url 'donors:profile' %}?tab=requests">{% trans "See requests" %}</a></div>
+      {% else %}
+        <p>{% trans "You are not a donor yet. A one-minute profile puts you in front of requests that match your blood type." %}</p>
+        <div class="rolebtns"><a class="btn btn-brand btn-sm" href="{% url 'donors:edit' %}">{% trans "Become a donor" %}</a></div>
+      {% endif %}
+    </div>
+    <div class="glass-card rolec" data-aos="fade-up" data-aos-delay="40">
+      <span class="roleic" aria-hidden="true"><i class="bi bi-droplet"></i></span>
+      <h2>{% trans "Request blood" %}</h2>
+      <p>{% blocktrans trimmed count n=open_count %}{{ n }} request open{% plural %}{{ n }} requests open{% endblocktrans %}{% if open_count %}{% if open_offers %} &middot; {% blocktrans trimmed count n=open_offers %}{{ n }} donor offered to help{% plural %}{{ n }} donors offered to help{% endblocktrans %}{% else %} {% trans "&middot; no offers yet" %}{% endif %}{% endif %} {% blocktrans trimmed with requests_left=requests_left daily_limit=daily_limit %}&middot; {{ requests_left }} of {{ daily_limit }} left today{% endblocktrans %}</p>
+      <div class="rolebtns">
+        <a class="btn btn-brand btn-sm" href="{% url 'blood_requests:new' %}">{% trans "Post a request" %}</a>
+        <a class="btn btn-outline-brand btn-sm" href="{% url 'blood_requests:mine' %}">{% trans "My requests" %}</a>
+      </div>
+    </div>
+  </div>
+
+  {% if donor %}
+    <div class="panel" data-aos="fade-up" data-aos-delay="60">
+      <div class="panel-head">
+        <h2>{% trans "Requests you can help with" %}</h2>
+        {% if not sidelined %}<a href="{% url 'blood_requests:list' %}">{% trans "View all" %} <i class="bi bi-arrow-right" aria-hidden="true"></i></a>{% endif %}
+      </div>
+      {% if sidelined %}
+        <div class="mine-empty"><i class="bi bi-hourglass-split" aria-hidden="true"></i><b>{{ sidelined }}</b></div>
+      {% elif matching_requests %}
+        <div class="activity-list">
+          {% for req in matching_requests %}{% include "components/request_row.html" with req=req %}{% endfor %}
+        </div>
+      {% else %}
+        {% include "components/empty_state.html" with icon="bi-heart-pulse" title="No matching requests right now" %}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "siteadmin/base.html" %}
+{% load admin_extras core_extras %}
+
+{% block title %}Review extra units{% endblock %}
+{% block heading %}Review extra units{% endblock %}
+{% block state %}{{ req.patient_name }}, {{ req.units_needed }} units{% endblock %}
+
+{% block content %}
+<section class="sec">
+  <div class="sh">
+    <h2>The request</h2>
+    <span class="c">#{{ req.pk }}, posted {{ req.created_at|time_ago }}</span>
+    <span class="end"><a class="btn bare" href="{% url 'siteadmin:requests' %}?state=review">Back to the list</a></span>
+  </div>
+  <div class="figs" style="margin-top:.8rem">
+    <div><div class="v">{{ req.units_needed }}</div><div class="l">Units asked for (limit {{ unit_limit }})</div></div>
+    <div><div class="v"><span class="bt">{{ req.blood_type|blood_mark }}</span></div><div class="l">Blood type</div></div>
+    <div><div class="v" style="font-size:1rem">{{ req.urgency }}</div><div class="l">Urgency</div></div>
+    <div><div class="v" style="font-size:1rem">{{ req.hospital.name }}</div><div class="l">{{ req.hospital.location.city }}{% if req.is_verified %}{% if req.verified_by_admin %}, verified by an admin{% else %}, hospital verified it{% endif %}{% else %}, not verified by the hospital yet{% endif %}</div></div>
+  </div>
+  <div class="rows">
+    <table>
+      <tbody>
+        <tr><td class="qt" style="width:11rem">Patient</td><td>{{ req.patient_name }}</td></tr>
+        <tr><td class="qt">Posted by</td><td>{{ req.requester.username }}, {{ poster_total }} request{{ poster_total|pluralize }} in total</td></tr>
+        <tr><td class="qt">Contact number</td><td>{{ req.contact_phone }}</td></tr>
+        {% if req.note %}<tr><td class="qt">Note for donors</td><td>{{ req.note }}</td></tr>{% endif %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sh"><h2>Reason for the extra blood</h2></div>
+  {% if req.extra_reason %}
+    <p style="white-space:pre-wrap;margin:.8rem 0 .2rem">{{ req.extra_reason }}</p>
+  {% else %}
+    <p class="empty">No reason was given.</p>
+  {% endif %}
+</section>
+
+<section class="sec">
+  {% if req.extra_review == "pending" %}
+    <div class="sh"><h2>Your decision</h2></div>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="fields" style="display:block;max-width:40rem">
+        {% if form.errors %}
+          <ul class="errors" style="list-style:none;padding:0;margin:.6rem 0">{% for field in form %}{% for error in field.errors %}<li>{{ error }}</li>{% endfor %}{% endfor %}</ul>
+        {% endif %}
+        <div class="field">
+          <label for="id_note">Note</label>
+          <textarea class="form-control" id="id_note" name="note" rows="3" style="width:100%" maxlength="1000">{{ form.note.value|default:"" }}</textarea>
+        </div>
+        <div class="acts" style="justify-content:flex-start;margin-top:.8rem">
+          <button class="btn go" type="submit" name="decision" value="approve">Approve</button>
+          <button class="btn stop" type="submit" name="decision" value="reject">Reject</button>
+        </div>
+      </div>
+    </form>
+  {% else %}
+    <div class="sh">
+      <h2>{% if req.extra_review == "approved" %}Approved{% elif req.extra_review == "rejected" %}Rejected{% else %}No decision needed{% endif %}</h2>
+      {% if req.reviewed_at %}<span class="c">{{ req.reviewed_at|time_ago }}{% if req.reviewed_by %} by {{ req.reviewed_by.username }}{% endif %}</span>{% endif %}
+    </div>
+    {% if req.review_note %}<p style="white-space:pre-wrap;margin:.8rem 0 .2rem">{{ req.review_note }}</p>{% endif %}
+  {% endif %}
+</section>
+{% endblock %}

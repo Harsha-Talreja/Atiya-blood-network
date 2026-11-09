@@ -1,0 +1,2957 @@
+# ATIYA translation catalogue
+msgid ""
+msgstr ""
+"Project-Id-Version: ATIYA VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-11-01 11:48+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: accounts/cnic_form.py:39
+msgid "Your CNIC number"
+msgstr ""
+
+#: accounts/cnic_form.py:43
+msgid "Enter all 13 digits of your CNIC."
+msgstr ""
+
+#: accounts/cnic_form.py:45
+msgid "Enter your CNIC number to continue."
+msgstr ""
+
+#: accounts/cnic_form.py:56 accounts/identity.py:64
+msgid "This CNIC is already used by another account."
+msgstr ""
+
+#: accounts/forms.py:13 templates/donors/profile.html:75
+msgid "Email"
+msgstr ""
+
+#: accounts/forms.py:25 accounts/forms.py:99 templates/donors/profile.html:74
+msgid "Username"
+msgstr ""
+
+#: accounts/forms.py:29
+msgid "e.g. ali.raza"
+msgstr ""
+
+#: accounts/forms.py:32 accounts/forms.py:105
+msgid "Password"
+msgstr ""
+
+#: accounts/forms.py:38
+msgid "Confirm password"
+msgstr ""
+
+#: accounts/forms.py:46
+msgid "That username is already taken. Please choose another."
+msgstr ""
+
+#: accounts/forms.py:52
+msgid "An account with this email already exists. Try logging in instead."
+msgstr ""
+
+#: accounts/forms.py:59
+msgid "Remember me on this device"
+msgstr ""
+
+#: accounts/forms.py:64
+msgid "That username and password don't match. Please check them and try again."
+msgstr ""
+
+#: accounts/forms.py:65
+msgid "This account is switched off. Please contact an administrator."
+msgstr ""
+
+#: accounts/forms.py:66
+msgid "This account has been blocked by an admin, so it cannot sign in."
+msgstr ""
+
+#: accounts/forms.py:67
+msgid "Too many wrong attempts. Please wait a few minutes and try again."
+msgstr ""
+
+#: accounts/forms.py:103
+msgid "Your username"
+msgstr ""
+
+#: accounts/identity.py:29
+msgid ""
+"This CNIC belonged to an account that an admin removed, so it cannot be used again. If you think "
+"this is a mistake, please contact an admin."
+msgstr ""
+
+#: accounts/views.py:32
+msgid "Account created"
+msgstr ""
+
+#: accounts/views.py:32
+#, python-format
+msgid "Welcome, %(name)s. Your account is ready."
+msgstr ""
+
+#: accounts/views.py:71
+#, python-format
+msgid "Welcome back, %(name)s."
+msgstr ""
+
+#: accounts/views.py:80
+msgid "You have been logged out."
+msgstr ""
+
+#: blood_requests/forms.py:26 templates/components/dash_panel.html:36 templates/core/home.html:214
+msgid "Hospital"
+msgstr ""
+
+#: blood_requests/forms.py:35
+msgid "Patient's name"
+msgstr ""
+
+#: blood_requests/forms.py:36
+msgid "Blood type needed"
+msgstr ""
+
+#: blood_requests/forms.py:37 templates/blood_requests/detail.html:58
+msgid "Units needed"
+msgstr ""
+
+#: blood_requests/forms.py:38
+msgid "How urgent?"
+msgstr ""
+
+#: blood_requests/forms.py:39 templates/blood_requests/detail.html:68
+msgid "Contact number"
+msgstr ""
+
+#: blood_requests/forms.py:40
+msgid "Note for donors"
+msgstr ""
+
+#: blood_requests/forms.py:41
+msgid "Why is extra blood needed?"
+msgstr ""
+
+#: blood_requests/forms.py:48
+msgid "e.g. Ahmed Khan"
+msgstr ""
+
+#: blood_requests/forms.py:53 donors/forms.py:60
+msgid "Enter an 11-digit mobile number that starts with 03, e.g. 03001234567"
+msgstr ""
+
+#: blood_requests/forms.py:56
+msgid "Ward, doctor's name, anything that helps a donor find you"
+msgstr ""
+
+#: blood_requests/forms.py:59
+msgid "Who needs the extra blood, and why"
+msgstr ""
+
+#: blood_requests/forms.py:72
+msgid "Choose the blood type needed."
+msgstr ""
+
+#: blood_requests/forms.py:77 templates/core/home.html:202
+msgid "Choose the hospital"
+msgstr ""
+
+#: blood_requests/forms.py:96
+#, python-format
+msgid "A single request can ask for at most %(max)s units."
+msgstr ""
+
+#: blood_requests/forms.py:107
+#, python-format
+msgid ""
+"You asked for %(units)s units, which is more than %(limit)s. Please explain why this much blood "
+"is needed, in a sentence or two."
+msgstr ""
+
+#: blood_requests/forms.py:117
+msgid "Please choose a hospital from the list."
+msgstr ""
+
+#: blood_requests/forms.py:127
+msgid "Why are you reporting this?"
+msgstr ""
+
+#: blood_requests/forms.py:127
+msgid "Anything else? (optional)"
+msgstr ""
+
+#: blood_requests/forms.py:129
+msgid "Optional details that would help an admin review this"
+msgstr ""
+
+#: blood_requests/models.py:204
+msgid "Verified by admin"
+msgstr ""
+
+#: blood_requests/models.py:204
+msgid "Verified by hospital"
+msgstr ""
+
+#: blood_requests/services.py:35
+#, python-format
+msgid "You have reached your daily limit of %(limit)s blood requests. Please try again tomorrow."
+msgstr ""
+
+#: blood_requests/services.py:205
+msgid "Your account is blocked, so you can't offer to help."
+msgstr ""
+
+#: blood_requests/services.py:208
+msgid "Register as a donor first so requesters can see your details."
+msgstr ""
+
+#: blood_requests/services.py:210
+msgid "You can't respond to your own request."
+msgstr ""
+
+#: blood_requests/services.py:212
+msgid "This request has already been fulfilled."
+msgstr ""
+
+#: blood_requests/services.py:214
+msgid "This request is closed."
+msgstr ""
+
+#: blood_requests/services.py:216
+msgid "This request has expired."
+msgstr ""
+
+#: blood_requests/services.py:218
+msgid "This request hasn't been verified or released yet."
+msgstr ""
+
+#: blood_requests/services.py:222
+#, python-format
+msgid "Your blood type (%(donor)s) can't be given to a %(patient)s patient."
+msgstr ""
+
+#: blood_requests/services.py:228
+#, python-format
+msgid ""
+"This request is in %(request_city)s, but your donor profile says %(donor_city)s. You can offer to"
+" help requests in your own city. If you have moved, update your area on your donor profile."
+msgstr ""
+
+#: blood_requests/services.py:234
+msgid "You're marked as unavailable. Turn availability on first."
+msgstr ""
+
+#: blood_requests/services.py:238
+#, python-format
+msgid "You're resting after your last donation until %(date)s."
+msgstr ""
+
+#: blood_requests/services.py:242
+msgid "You've already offered to help with this request."
+msgstr ""
+
+#: blood_requests/services.py:249
+#, python-format
+msgid ""
+"You've already offered to help %(patient)s. You can offer here once that request is fulfilled or "
+"closed, or if you withdraw your offer."
+msgstr ""
+
+#: blood_requests/services.py:297
+msgid "You haven't offered to help with this request."
+msgstr ""
+
+#: blood_requests/services.py:299
+msgid "This request is already closed, so the offer can't be withdrawn."
+msgstr ""
+
+#: blood_requests/services.py:338
+msgid "A rejected request can't be marked fulfilled."
+msgstr ""
+
+#: blood_requests/services.py:340
+msgid "A donor needs to offer to help before you can mark this fulfilled."
+msgstr ""
+
+#: blood_requests/services.py:366
+msgid "This request is already closed, so it can't be verified."
+msgstr ""
+
+#: blood_requests/tracking.py:45 blood_requests/views.py:298 templates/core/home.html:164
+msgid "Request posted"
+msgstr ""
+
+#: blood_requests/tracking.py:46
+msgid "The hospital and blood type were recorded."
+msgstr ""
+
+#: blood_requests/tracking.py:51 blood_requests/tracking.py:77 templates/blood_requests/detail.html:52
+#: templates/blood_requests/mine.html:33
+msgid "Waiting for an admin"
+msgstr ""
+
+#: blood_requests/tracking.py:52
+#, python-format
+msgid ""
+"This asks for %(units)s units, more than the standard limit, so an admin has to approve it before"
+" donors can see it."
+msgstr ""
+
+#: blood_requests/tracking.py:56 blood_requests/tracking.py:72
+msgid "Not approved"
+msgstr ""
+
+#: blood_requests/tracking.py:57
+msgid "An admin did not approve the extra units, so donors never saw this request."
+msgstr ""
+
+#: blood_requests/tracking.py:60
+msgid "Verified by an admin"
+msgstr ""
+
+#: blood_requests/tracking.py:60
+msgid "Verified by the hospital"
+msgstr ""
+
+#: blood_requests/tracking.py:62
+msgid "An admin confirmed this request with the hospital, so donors can see it."
+msgstr ""
+
+#: blood_requests/tracking.py:63
+#, python-format
+msgid "%(hospital)s confirmed this request, so donors can see it."
+msgstr ""
+
+#: blood_requests/tracking.py:67
+msgid "Approved by an admin"
+msgstr ""
+
+#: blood_requests/tracking.py:67
+msgid "Released by an admin"
+msgstr ""
+
+#: blood_requests/tracking.py:73
+#, python-format
+msgid "%(hospital)s did not verify it in time and an admin did not approve it, so donors never saw it."
+msgstr ""
+
+#: blood_requests/tracking.py:78
+#, python-format
+msgid ""
+"%(hospital)s did not verify it in time, so an admin will approve or reject it. Donors cannot see "
+"it until then."
+msgstr ""
+
+#: blood_requests/tracking.py:83
+msgid "Never reached donors"
+msgstr ""
+
+#: blood_requests/tracking.py:84
+msgid "The request closed before it was verified or approved."
+msgstr ""
+
+#: blood_requests/tracking.py:87
+msgid "Waiting for the hospital"
+msgstr ""
+
+#: blood_requests/tracking.py:88
+#, python-format
+msgid "If %(hospital)s does not verify it in time, an admin decides whether donors see it."
+msgstr ""
+
+#: blood_requests/tracking.py:94
+msgid "A donor offered to help"
+msgstr ""
+
+#: blood_requests/tracking.py:95
+#, python-format
+msgid "%(n)s donor said they can donate."
+msgid_plural "%(n)s donors said they can donate."
+msgstr[0] ""
+msgstr[1] ""
+
+#: blood_requests/tracking.py:99
+msgid "Waiting for a donor"
+msgstr ""
+
+#: blood_requests/tracking.py:100
+msgid "Compatible donors nearby can see this request now."
+msgstr ""
+
+#: blood_requests/tracking.py:102
+msgid "A donor offers to help"
+msgstr ""
+
+#: blood_requests/tracking.py:106 blood_requests/tracking.py:120
+msgid "Marked fulfilled"
+msgstr ""
+
+#: blood_requests/tracking.py:107
+msgid "The requester confirmed the blood was arranged."
+msgstr ""
+
+#: blood_requests/tracking.py:109 core/vocab.py:21
+msgid "Expired"
+msgstr ""
+
+#: blood_requests/tracking.py:110
+msgid "The request ran out of time and is no longer shown."
+msgstr ""
+
+#: blood_requests/tracking.py:112 blood_requests/tracking.py:115 blood_requests/tracking.py:118
+#: core/templatetags/core_extras.py:196 templates/blood_requests/detail.html:61
+msgid "Closed"
+msgstr ""
+
+#: blood_requests/tracking.py:113
+msgid "The request was closed when the extra units were not approved."
+msgstr ""
+
+#: blood_requests/tracking.py:116
+msgid "The request was closed because an admin did not approve it."
+msgstr ""
+
+#: blood_requests/tracking.py:121
+msgid "The requester closes the request once blood is arranged."
+msgstr ""
+
+#: blood_requests/views.py:61
+msgid ""
+"An admin has blocked this account from posting requests and offering to help, usually after "
+"reports about it. You can still sign in and see your own history. If you think this is a mistake,"
+" contact the site admin."
+msgstr ""
+
+#: blood_requests/views.py:77
+msgid "Most urgent"
+msgstr ""
+
+#: blood_requests/views.py:78
+msgid "Newest first"
+msgstr ""
+
+#: blood_requests/views.py:79
+msgid "Closing soon"
+msgstr ""
+
+#: blood_requests/views.py:290
+msgid "Sent for review"
+msgstr ""
+
+#: blood_requests/views.py:291
+#, python-format
+msgid ""
+"You asked for %(units)s units, which is more than the standard %(limit)s. An admin will read your"
+" reason and decide before donors see this request. You can follow it from \"My requests.\""
+msgstr ""
+
+#: blood_requests/views.py:299
+#, python-format
+msgid ""
+"%(hospital)s needs to verify this request before donors can see it. You'll be able to track its "
+"status from \"My requests.\""
+msgstr ""
+
+#: blood_requests/views.py:355
+msgid "Only the person who posted this request can mark it fulfilled."
+msgstr ""
+
+#: blood_requests/views.py:363
+msgid "Marked as fulfilled. Thank you for updating the request."
+msgstr ""
+
+#: blood_requests/views.py:385
+msgid ""
+"Thanks! The requester can now see that you're willing to help. The hospital will do the final "
+"medical screening."
+msgstr ""
+
+#: blood_requests/views.py:400
+msgid "Your offer was withdrawn. The requester has been told, and you can offer to help elsewhere."
+msgstr ""
+
+#: blood_requests/views.py:412
+msgid "Please choose a reason for the report."
+msgstr ""
+
+#: blood_requests/views.py:423
+msgid "You've already reported this request. An admin will review it."
+msgstr ""
+
+#: blood_requests/views.py:425
+msgid "Thanks for the report. An admin will review this request."
+msgstr ""
+
+#: core/middleware.py:14
+msgid "This account has been blocked by an admin, so it cannot be used."
+msgstr ""
+
+#: core/middleware.py:83
+msgid "You were logged out after a while without use. Please log in again."
+msgstr ""
+
+#: blood_requests/services.py
+msgid "You are marked as unavailable, so requests are hidden. Turn your availability on to see them."
+msgstr ""
+
+#: blood_requests/services.py
+#, python-format
+msgid "You are in your resting period until %(date)s, so requests are hidden. They will appear again when you can donate."
+msgstr ""
+
+#: donors/views.py
+msgid "You can record a donation after you offer to help a request. Open a request and tap \"I can help\" first."
+msgstr ""
+
+#: templates/donors/profile.html
+msgid "After you offer to help a request, you can record your donation here."
+msgstr ""
+
+#: blood_requests
+msgid "You told the requester you are at the hospital. Show your name at the hospital desk."
+msgstr ""
+
+#: blood_requests
+msgid "Tell the requester and the hospital that you have reached the hospital?"
+msgstr ""
+
+#: blood_requests
+msgid "I've reached the hospital"
+msgstr ""
+
+#: blood_requests
+msgid "At the hospital"
+msgstr ""
+
+#: blood_requests
+#, python-format
+msgid "arrived %(ago)s"
+msgstr ""
+
+#: blood_requests
+msgid "Thank you! The requester and the hospital have been told you are there. Show your name at the hospital desk."
+msgstr ""
+
+#: blood_requests
+msgid "This request is already closed."
+msgstr ""
+
+#: blood_requests
+msgid "A donor reached the hospital"
+msgstr ""
+
+#: blood_requests
+msgid "A donor reaches the hospital"
+msgstr ""
+
+#: blood_requests
+msgid "The donor taps \"I've reached the hospital\" when they get there."
+msgstr ""
+
+#: blood_requests
+#, python-format
+msgid "%(n)s donor is at the hospital."
+msgid_plural "%(n)s donors are at the hospital."
+msgstr[0] ""
+msgstr[1] ""
+
+#: blood_requests/services.py
+msgid "Another donor has already offered to help with this request. If they withdraw, it will open again."
+msgstr ""
+
+#: blood_requests/templates
+msgid "Waiting for the hospital to verify"
+msgstr ""
+
+#: templates/blood_requests/detail.html
+msgid "This request asks for %(units_needed)s units, which is more than the standard %(unit_limit)s. It stays hidden from donors until the hospital verifies it. If the hospital does not verify it in time, an admin decides."
+msgstr ""
+
+#: templates/blood_requests/detail.html
+msgid "Extra units accepted"
+msgstr ""
+
+#: templates/blood_requests/detail.html
+msgid "The hospital verified this request, so the %(units_needed)s units are accepted."
+msgstr ""
+
+#: templates/blood_requests/detail.html
+msgid "The hospital has to verify this request before donors can see it. If it does not in time, an admin decides. You will see the result here."
+msgstr ""
+
+#: templates/hospitals/dashboard.html
+msgid "Verifying this request also accepts the extra units. If it is not verified in time, an admin decides."
+msgstr ""
+
+#: blood_requests/tracking.py
+msgid "This asks for %(units)s units, more than the standard limit. Donors can see it once the hospital verifies it; if it does not in time, an admin decides."
+msgstr ""
+
+#: blood_requests/views.py
+msgid "%(hospital)s needs to verify this request before donors can see it. You asked for %(units)s units, more than the standard %(limit)s; if the hospital verifies it, the extra units are accepted. If it does not verify in time, an admin decides. You can follow it from \"My requests.\""
+msgstr ""
+
+#: core/middleware.py:121
+msgid "Hospital accounts only use the verification desk. Use a separate account to donate blood."
+msgstr ""
+
+#: core/middleware.py
+msgid "Admin accounts only use the admin panel. Use a separate account to donate or ask for blood."
+msgstr ""
+
+#: core/templatetags/core_extras.py:87
+#, python-format
+msgid "%(n)d year"
+msgid_plural "%(n)d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/templatetags/core_extras.py:88
+#, python-format
+msgid "%(n)d month"
+msgid_plural "%(n)d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/templatetags/core_extras.py:89
+#, python-format
+msgid "%(n)d week"
+msgid_plural "%(n)d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/templatetags/core_extras.py:90
+#, python-format
+msgid "%(n)d day"
+msgid_plural "%(n)d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/templatetags/core_extras.py:91
+#, python-format
+msgid "%(n)d hour"
+msgid_plural "%(n)d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/templatetags/core_extras.py:92
+#, python-format
+msgid "%(n)d minute"
+msgid_plural "%(n)d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/templatetags/core_extras.py:100 core/templatetags/core_extras.py:105
+msgid "under a minute"
+msgstr ""
+
+#: core/templatetags/core_extras.py:115
+msgid "just now"
+msgstr ""
+
+#: core/templatetags/core_extras.py:116
+#, python-format
+msgid "%(span)s ago"
+msgstr ""
+
+#: core/templatetags/core_extras.py:192 templates/partials/messages.html:14
+msgid "Dismiss this message"
+msgstr ""
+
+#: core/templatetags/core_extras.py:193
+msgid "Switch to light mode"
+msgstr ""
+
+#: core/templatetags/core_extras.py:194 templates/partials/navbar.html:66
+msgid "Switch to dark mode"
+msgstr ""
+
+#: core/templatetags/core_extras.py:195
+msgid "Closes in "
+msgstr ""
+
+#: core/templatetags/core_extras.py:197 templates/base.html:51
+msgid "Done"
+msgstr ""
+
+#: core/templatetags/core_extras.py:198
+msgid "Hide password"
+msgstr ""
+
+#: core/templatetags/core_extras.py:199 templates/components/form_field.html:8
+msgid "Show password"
+msgstr ""
+
+#: core/templatetags/core_extras.py:200
+msgid "Steps"
+msgstr ""
+
+#: core/templatetags/core_extras.py:201
+msgid "Back"
+msgstr ""
+
+#: core/templatetags/core_extras.py:202
+msgid "Next"
+msgstr ""
+
+#: core/templatetags/core_extras.py:203
+msgid "Please wait..."
+msgstr ""
+
+#: core/templatetags/core_extras.py:204
+msgid "(required)"
+msgstr ""
+
+#: core/templatetags/core_extras.py:205 templates/components/form_field.html:3
+msgid "(optional)"
+msgstr ""
+
+#: core/templatetags/core_extras.py:206
+msgid "Open the side panel"
+msgstr ""
+
+#: core/templatetags/core_extras.py:207 templates/components/dash_panel.html:52
+msgid "Fold the side panel"
+msgstr ""
+
+#: core/templatetags/core_extras.py:208
+msgid "Please confirm"
+msgstr ""
+
+#: core/templatetags/core_extras.py:209 templates/blood_requests/detail.html:185
+msgid "Close"
+msgstr ""
+
+#: core/templatetags/core_extras.py:210 templates/blood_requests/detail.html:193
+msgid "Cancel"
+msgstr ""
+
+#: core/templatetags/core_extras.py:211
+msgid "Yes, continue"
+msgstr ""
+
+#: core/templatetags/core_extras.py:212 templates/notifications/_bell.html:8
+#: templates/notifications/inbox.html:11
+msgid "Notifications"
+msgstr ""
+
+#: core/templatetags/core_extras.py:213 templates/notifications/_bell.html:8
+#, python-format
+msgid "Notifications, %(n)s unread"
+msgstr ""
+
+#: core/templatetags/core_extras.py:214
+#, python-format
+msgid "%(d)sd %(h)sh"
+msgstr ""
+
+#: core/templatetags/core_extras.py:215
+#, python-format
+msgid "%(h)sh %(m)sm"
+msgstr ""
+
+#: core/templatetags/core_extras.py:216
+#, python-format
+msgid "%(m)sm %(s)ss"
+msgstr ""
+
+#: core/templatetags/core_extras.py:218
+#, python-format
+msgid ""
+"%(units)s units is more than %(limit)s. An admin has to approve this request before donors can "
+"see it, so please explain why this much blood is needed."
+msgstr ""
+
+#: core/templatetags/core_extras.py:220
+#, python-format
+msgid "A patient with %(type)s blood can receive red blood cells from: %(list)s."
+msgstr ""
+
+#: core/templatetags/core_extras.py:221
+#, python-format
+msgid " (%(n)s of %(total)s types)"
+msgstr ""
+
+#: core/templatetags/core_extras.py:222
+msgid " O− patients can only receive O−."
+msgstr ""
+
+#: core/templatetags/core_extras.py:223
+msgid " AB+ is the universal recipient."
+msgstr ""
+
+#: core/validators.py:12
+msgid "Enter an 11-digit mobile number that starts with 03, e.g. 03001234567."
+msgstr ""
+
+#: core/validators.py:19
+msgid "Enter all 13 digits of the CNIC, numbers only."
+msgstr ""
+
+#: core/validators.py:27
+msgid "This date cannot be in the future."
+msgstr ""
+
+#: core/views.py:91
+msgid "Find a blood donor in minutes, not hours"
+msgstr ""
+
+#: core/vocab.py:19
+msgid "Normal"
+msgstr ""
+
+#: core/vocab.py:19
+msgid "Critical"
+msgstr ""
+
+#: core/vocab.py:19 templates/core/home.html:213
+msgid "Urgent"
+msgstr ""
+
+#: core/vocab.py:21
+msgid "Pending"
+msgstr ""
+
+#: core/vocab.py:21
+msgid "Rejected"
+msgstr ""
+
+#: core/vocab.py:21 templates/blood_requests/detail.html:61
+msgid "Fulfilled"
+msgstr ""
+
+#: core/vocab.py:23
+msgid "Fake or hoax"
+msgstr ""
+
+#: core/vocab.py:23
+msgid "Already fulfilled elsewhere"
+msgstr ""
+
+#: core/vocab.py:23
+msgid "Spam or advertising"
+msgstr ""
+
+#: core/vocab.py:24
+msgid "Inappropriate content"
+msgstr ""
+
+#: core/vocab.py:24 donors/health.py:11
+msgid "Other"
+msgstr ""
+
+#: core/vocab.py:26
+msgid "Admin released — not hospital verified."
+msgstr ""
+
+#: core/vocab.py:27
+msgid "Admin approved — not hospital verified."
+msgstr ""
+
+#: core/vocab.py:29
+msgid "Nothing waiting"
+msgstr ""
+
+#: core/vocab.py:30
+msgid "No matching requests"
+msgstr ""
+
+#: core/vocab.py:31
+msgid "Try a different blood type or city."
+msgstr ""
+
+#: core/vocab.py:32 templates/core/home.html:217
+msgid "Post request"
+msgstr ""
+
+#: core/vocab.py:33 templates/accounts/signup.html:20 templates/partials/footer.html:24
+#: templates/partials/navbar.html:80
+msgid "Log in"
+msgstr ""
+
+#: core/vocab.py:34
+msgid "Create account"
+msgstr ""
+
+#: core/vocab.py:35 templates/donors/profile.html:63
+msgid "No matching requests right now"
+msgstr ""
+
+#: core/vocab.py:36
+msgid "No donors found"
+msgstr ""
+
+#: core/vocab.py:37
+msgid "Search to see donors"
+msgstr ""
+
+#: core/vocab.py:38
+msgid "Choose a blood type, a city, or both, to see available donors."
+msgstr ""
+
+#: core/vocab.py:39 templates/components/live_strip.html:28
+msgid "No open requests right now"
+msgstr ""
+
+#: core/vocab.py:40
+msgid "No donors registered yet"
+msgstr ""
+
+#: core/vocab.py:41 templates/core/home.html:35 templates/core/home.html:37
+#: templates/core/home.html:231 templates/dashboard/overview.html:22 templates/donors/edit.html:3
+#: templates/donors/edit.html:12 templates/partials/footer.html:15
+msgid "Become a donor"
+msgstr ""
+
+#: core/vocab.py:42
+msgid "When someone posts a request it appears here first."
+msgstr ""
+
+#: core/vocab.py:43
+msgid "Save"
+msgstr ""
+
+#: donors/forms.py:21
+msgid "Your area"
+msgstr ""
+
+#: donors/forms.py:25
+msgid "Existing diseases or medical conditions"
+msgstr ""
+
+#: donors/forms.py:26
+msgid "Choose at least one. Choose None if you have no known condition."
+msgstr ""
+
+#: donors/forms.py:31
+msgid "I have never donated blood before"
+msgstr ""
+
+#: donors/forms.py:39
+msgid "Full name"
+msgstr ""
+
+#: donors/forms.py:40 templates/donors/profile.html:77
+msgid "Mobile number"
+msgstr ""
+
+#: donors/forms.py:41 templates/blood_requests/list.html:63 templates/components/blood_badge.html:1
+#: templates/core/home.html:212 templates/core/home.html:236 templates/donors/profile.html:76
+msgid "Blood type"
+msgstr ""
+
+#: donors/forms.py:42
+msgid "Date of your last donation"
+msgstr ""
+
+#: donors/forms.py:43
+msgid "Weight (kg)"
+msgstr ""
+
+#: donors/forms.py:44
+msgid "Height (cm)"
+msgstr ""
+
+#: donors/forms.py:45
+msgid "Tell us which condition"
+msgstr ""
+
+#: donors/forms.py:46 templates/dashboard/overview.html:17 templates/donors/profile.html:36
+msgid "Available to donate"
+msgstr ""
+
+#: donors/forms.py:47
+msgid "People with a matching blood request may see my phone number"
+msgstr ""
+
+#: donors/forms.py:48
+msgid "I confirm I am 18 or older and in good health"
+msgstr ""
+
+#: donors/forms.py:51
+msgid "Needed so we know when you can give again (90 days after)."
+msgstr ""
+
+#: donors/forms.py:52
+msgid "Only signed-in users with an open, matching request can see it. It is never shown publicly."
+msgstr ""
+
+#: donors/forms.py:53
+msgid "I understand that a hospital or blood bank will screen me before any donation."
+msgstr ""
+
+#: donors/forms.py:56
+msgid "e.g. Ali Raza"
+msgstr ""
+
+#: donors/forms.py:64
+msgid "Type the condition"
+msgstr ""
+
+#: donors/forms.py:76
+msgid "Choose your blood type."
+msgstr ""
+
+#: donors/forms.py:81
+msgid "Choose your area"
+msgstr ""
+
+#: donors/forms.py:101
+msgid "Please tick this so requesters can contact you."
+msgstr ""
+
+#: donors/forms.py:103
+msgid "Please confirm this to register as a donor."
+msgstr ""
+
+#: donors/forms.py:108
+msgid "Choose None on its own, or pick the conditions you have."
+msgstr ""
+
+#: donors/forms.py:118
+msgid "Enter the date you last donated, or tick “I have never donated blood before”."
+msgstr ""
+
+#: donors/forms.py:122
+msgid "Tell us which condition."
+msgstr ""
+
+#: donors/forms.py:139
+msgid "Please choose your area from the list."
+msgstr ""
+
+#: donors/health.py:5
+msgid "None"
+msgstr ""
+
+#: donors/health.py:6
+msgid "Diabetes"
+msgstr ""
+
+#: donors/health.py:7
+msgid "High blood pressure"
+msgstr ""
+
+#: donors/health.py:8
+msgid "Heart disease"
+msgstr ""
+
+#: donors/health.py:9
+msgid "Anaemia"
+msgstr ""
+
+#: donors/health.py:10
+msgid "Hepatitis or HIV"
+msgstr ""
+
+#: donors/views.py:40
+msgid "Good morning"
+msgstr ""
+
+#: donors/views.py:42
+msgid "Good afternoon"
+msgstr ""
+
+#: donors/views.py:43
+msgid "Good evening"
+msgstr ""
+
+#: donors/views.py:90
+msgid "You're a donor now"
+msgstr ""
+
+#: donors/views.py:90
+#, python-format
+msgid "Thank you, %(name)s. Matching requests will appear on your dashboard."
+msgstr ""
+
+#: donors/views.py:92
+msgid "Your donor profile has been updated."
+msgstr ""
+
+#: donors/views.py:108
+msgid "You are now available to donate."
+msgstr ""
+
+#: donors/views.py:108
+msgid "You are now marked as not available."
+msgstr ""
+
+#: donors/views.py:120
+msgid "You've already recorded a donation for today."
+msgstr ""
+
+#: donors/views.py:124
+#, python-format
+msgid "Thank you for donating. You can donate again on %(date)s."
+msgstr ""
+
+#: hospitals/views.py:31 hospitals/views.py:67
+msgid "This account isn't linked to a hospital."
+msgstr ""
+
+#: hospitals/views.py:71
+msgid "This request belongs to a different hospital."
+msgstr ""
+
+#: hospitals/views.py:73
+msgid "You can't verify a request you posted yourself. Ask another staff member to verify it."
+msgstr ""
+
+#: hospitals/views.py:85
+#, python-format
+msgid ""
+"Verified. %(patient)s's request asks for extra units, so it becomes visible once an admin "
+"approves them."
+msgstr ""
+
+#: hospitals/views.py:89
+#, python-format
+msgid "Verified. %(patient)s's request is now visible to donors."
+msgstr ""
+
+#: templates/403.html:3
+#, python-format
+msgid "Not allowed | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/403.html:14
+msgid "You can't do that"
+msgstr ""
+
+#: templates/403.html:17 templates/404.html:17 templates/500.html:25
+msgid "Back to home"
+msgstr ""
+
+#: templates/403.html:18 templates/404.html:18
+msgid "See open requests"
+msgstr ""
+
+#: templates/404.html:3
+#, python-format
+msgid "Page not found | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/404.html:14
+msgid "We can't find that page"
+msgstr ""
+
+#: templates/404.html:15
+msgid "The link may be old, or the page may have moved. Let's get you back to something useful."
+msgstr ""
+
+#: templates/500.html:6
+msgid "Something went wrong"
+msgstr ""
+
+#: templates/500.html:23
+msgid "Something went wrong on our side"
+msgstr ""
+
+#: templates/500.html:24
+msgid ""
+"We hit an unexpected problem and it has been noted. Please try again in a moment. If someone "
+"needs blood urgently, contact the hospital's blood bank directly."
+msgstr ""
+
+#: templates/accounts/auth_base.html:15 templates/core/home.html:26
+msgid "Post. Match."
+msgstr ""
+
+#: templates/accounts/auth_base.html:15 templates/core/home.html:26
+msgid "Donate."
+msgstr ""
+
+#: templates/accounts/auth_base.html:16 templates/partials/footer.html:10
+msgid "Helping people who need blood find willing, compatible donors nearby, faster than word of mouth."
+msgstr ""
+
+#: templates/accounts/login.html:3
+#, python-format
+msgid "Log in | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/accounts/login.html:5
+msgid "Welcome back"
+msgstr ""
+
+#: templates/accounts/login.html:6
+msgid "Log in to your account"
+msgstr ""
+
+#: templates/accounts/login.html:16
+msgid "New here?"
+msgstr ""
+
+#: templates/accounts/login.html:16
+msgid "Create an account"
+msgstr ""
+
+#: templates/accounts/signup.html:3
+#, python-format
+msgid "Create an account | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/accounts/signup.html:5
+msgid "Create your account"
+msgstr ""
+
+#: templates/accounts/signup.html:6
+msgid "Four quick boxes, then you are in"
+msgstr ""
+
+#: templates/accounts/signup.html:19
+msgid "We never see or email your password. Phone numbers are only shown to signed-in users."
+msgstr ""
+
+#: templates/accounts/signup.html:20
+msgid "Already have an account?"
+msgstr ""
+
+#: templates/base.html:31
+msgid "Skip to main content"
+msgstr ""
+
+#: templates/base.html:53
+msgid "Continue"
+msgstr ""
+
+#: templates/blood_requests/detail.html:4
+#, python-format
+msgid "%(blood_type)s needed at %(name)s | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/blood_requests/detail.html:10
+msgid "All requests"
+msgstr ""
+
+#: templates/blood_requests/detail.html:16
+#, python-format
+msgid "Match found! %(n)s compatible donor nearby"
+msgid_plural "Match found! %(n)s compatible donors nearby"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/blood_requests/detail.html:17
+msgid "See who's ready under \"Donors ready nearby\", or wait for someone to tap \"I can help.\""
+msgstr ""
+
+#: templates/blood_requests/detail.html:25
+#, python-format
+msgid "%(blood_type)s needed for %(patient_name)s"
+msgstr ""
+
+#: templates/blood_requests/detail.html:30 templates/blood_requests/mine.html:45
+msgid "Mark this request as fulfilled? It will no longer be shown as open."
+msgstr ""
+
+#: templates/blood_requests/detail.html:32 templates/blood_requests/detail.html:36
+#: templates/blood_requests/mine.html:47 templates/blood_requests/mine.html:51
+msgid "Mark fulfilled"
+msgstr ""
+
+#: templates/blood_requests/detail.html:37 templates/blood_requests/mine.html:52
+msgid "Available once a donor offers to help"
+msgstr ""
+
+#: templates/blood_requests/detail.html:47
+#, python-format
+msgid "Request #%(pk)s"
+msgstr ""
+
+#: templates/blood_requests/detail.html:53 templates/blood_requests/mine.html:34
+msgid "Extra units awaiting an admin"
+msgstr ""
+
+#: templates/blood_requests/detail.html:56
+#, python-format
+msgid "Requested %(created_at)s"
+msgstr ""
+
+#: templates/blood_requests/detail.html:56 templates/dashboard/overview.html:28
+#, python-format
+msgid "%(n)s donor offered to help"
+msgid_plural "%(n)s donors offered to help"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/blood_requests/detail.html:59
+msgid "Posted"
+msgstr ""
+
+#: templates/blood_requests/detail.html:61
+msgid "Closes"
+msgstr ""
+
+#: templates/blood_requests/detail.html:64
+#, python-format
+msgid "in %(expires_at)s"
+msgstr ""
+
+#: templates/blood_requests/detail.html:71
+msgid "The contact number is shown to the requester, the hospital and donors who offer to help."
+msgstr ""
+
+#: templates/blood_requests/detail.html:78
+msgid "Waiting for an admin to approve the extra units"
+msgstr ""
+
+#: templates/blood_requests/detail.html:79
+#, python-format
+msgid ""
+"This request asks for %(units_needed)s units, which is more than the standard %(unit_limit)s. It "
+"stays hidden from donors until an admin decides."
+msgstr ""
+
+#: templates/blood_requests/detail.html:81
+msgid "Extra units approved"
+msgstr ""
+
+#: templates/blood_requests/detail.html:82
+#, python-format
+msgid "An admin approved %(units_needed)s units"
+msgstr ""
+
+#: templates/blood_requests/detail.html:84
+msgid "Extra units not approved"
+msgstr ""
+
+#: templates/blood_requests/detail.html:85
+#, python-format
+msgid "An admin did not approve %(units_needed)s units, so this request was closed."
+msgstr ""
+
+#: templates/blood_requests/detail.html:85
+#, python-format
+msgid "Decided %(reviewed_at)s."
+msgstr ""
+
+#: templates/blood_requests/detail.html:87
+msgid "Reason given"
+msgstr ""
+
+#: templates/blood_requests/detail.html:88
+msgid "Admin's note"
+msgstr ""
+
+#: templates/blood_requests/detail.html:93
+msgid "Sign in"
+msgstr ""
+
+#: templates/blood_requests/detail.html:93
+msgid "to offer to help."
+msgstr ""
+
+#: templates/blood_requests/detail.html:95
+msgid "Let the requester know you're willing to donate?"
+msgstr ""
+
+#: templates/blood_requests/detail.html:97
+msgid "I can help"
+msgstr ""
+
+#: templates/blood_requests/detail.html:100
+msgid "You've offered to help with this request. The hospital will do the final medical screening."
+msgstr ""
+
+#: templates/blood_requests/detail.html:102
+msgid "Withdraw your offer? The requester will be told, and you can offer to help elsewhere."
+msgstr ""
+
+#: templates/blood_requests/detail.html:104
+msgid "Withdraw my offer"
+msgstr ""
+
+#: templates/blood_requests/detail.html:108
+msgid "Open that request"
+msgstr ""
+
+#: templates/blood_requests/detail.html:111
+msgid ""
+"An admin has to approve the extra units before donors can see this request. You will see their "
+"decision here."
+msgstr ""
+
+#: templates/blood_requests/detail.html:113
+msgid ""
+"This request was not approved, so donors never saw it. You can post a new request that fits the "
+"limit."
+msgstr ""
+
+#: templates/blood_requests/detail.html:115
+#, python-format
+msgid "%(name)s verified this. Donors can see it."
+msgstr ""
+
+#: templates/blood_requests/detail.html:117
+#, python-format
+msgid "%(name)s did not verify this in time and an admin did not approve it, so donors never saw it."
+msgstr ""
+
+#: templates/blood_requests/detail.html:119
+#, python-format
+msgid "%(release_label)s Donors can see it, marked as not verified by the hospital."
+msgstr ""
+
+#: templates/blood_requests/detail.html:121
+#, python-format
+msgid ""
+"%(name)s did not verify this in time, so an admin will approve or reject it. Donors can't see it "
+"until then."
+msgstr ""
+
+#: templates/blood_requests/detail.html:123
+#, python-format
+msgid "Waiting for %(name)s to verify this. If they don't verify it within"
+msgstr ""
+
+#: templates/blood_requests/detail.html:123
+msgid "a moment"
+msgstr ""
+
+#: templates/blood_requests/detail.html:123
+msgid ", an admin decides whether donors see it."
+msgstr ""
+
+#: templates/blood_requests/detail.html:126
+msgid "Register as a donor"
+msgstr ""
+
+#: templates/blood_requests/detail.html:126
+msgid "to offer to help with requests like this."
+msgstr ""
+
+#: templates/blood_requests/detail.html:132 templates/blood_requests/detail.html:184
+msgid "Report this request"
+msgstr ""
+
+#: templates/blood_requests/detail.html:143
+msgid "Donors who helped"
+msgstr ""
+
+#: templates/blood_requests/detail.html:143
+msgid "Donors who offered"
+msgstr ""
+
+#: templates/blood_requests/detail.html:149
+msgid "No one has offered to help yet."
+msgstr ""
+
+#: templates/blood_requests/detail.html:155
+msgid "Donors ready nearby"
+msgstr ""
+
+#: templates/blood_requests/detail.html:162
+msgid "Their numbers stay private until they tap \"I can help\"."
+msgstr ""
+
+#: templates/blood_requests/detail.html:164
+msgid "No available, eligible donors match this request yet."
+msgstr ""
+
+#: templates/blood_requests/detail.html:173 templates/blood_requests/form.html:63
+msgid "Back to all requests"
+msgstr ""
+
+#: templates/blood_requests/detail.html:194
+msgid "Submit report"
+msgstr ""
+
+#: templates/blood_requests/form.html:3
+#, python-format
+msgid "Post a request | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/blood_requests/form.html:12
+msgid "Post a blood request"
+msgstr ""
+
+#: templates/blood_requests/form.html:14
+#, python-format
+msgid "%(left)s of %(n)s request remaining today"
+msgid_plural "%(left)s of %(n)s requests remaining today"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/blood_requests/form.html:23
+msgid "Who needs blood"
+msgstr ""
+
+#: templates/blood_requests/form.html:50
+msgid "Where and contact"
+msgstr ""
+
+#: templates/blood_requests/form.html:59
+msgid "Donors can see the request after the hospital verifies it."
+msgstr ""
+
+#: templates/blood_requests/list.html:4
+#, python-format
+msgid "Open requests | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/blood_requests/list.html:15
+#, python-format
+msgid "%(n)s request open right now"
+msgid_plural "%(n)s requests open right now"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/blood_requests/list.html:18 templates/core/home.html:48
+msgid "Open requests"
+msgstr ""
+
+#: templates/blood_requests/list.html:21
+#, python-format
+msgid "%(n)s of them is marked critical."
+msgid_plural "%(n)s of them are marked critical."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/blood_requests/list.html:23
+msgid "Sign in to see contact details and offer to help."
+msgstr ""
+
+#: templates/blood_requests/list.html:34
+msgid "Sort requests"
+msgstr ""
+
+#: templates/blood_requests/list.html:47
+msgid "Filter by urgency"
+msgstr ""
+
+#: templates/blood_requests/list.html:58
+msgid "Filter"
+msgstr ""
+
+#: templates/blood_requests/list.html:74 templates/donors/search.html:25
+msgid "Any type"
+msgstr ""
+
+#: templates/blood_requests/list.html:79 templates/donors/search.html:30
+msgid "City"
+msgstr ""
+
+#: templates/blood_requests/list.html:81 templates/donors/search.html:32
+msgid "Any city"
+msgstr ""
+
+#: templates/blood_requests/list.html:89
+msgid "Apply"
+msgstr ""
+
+#: templates/blood_requests/list.html:91
+msgid "Clear filters"
+msgstr ""
+
+#: templates/blood_requests/list.html:100
+#, python-format
+msgid "Showing %(n)s request that matches your filters."
+msgid_plural "Showing %(n)s requests that match your filters."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/blood_requests/list.html:100
+#, python-format
+msgid "Showing %(n)s request."
+msgid_plural "Showing %(n)s requests."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/blood_requests/mine.html:4
+#, python-format
+msgid "My requests | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/blood_requests/mine.html:6 templates/components/dash_panel.html:46
+#: templates/core/style_guide.html:30 templates/dashboard/overview.html:27
+#: templates/donors/search.html:6 templates/partials/footer.html:14 templates/partials/navbar.html:84
+msgid "Request blood"
+msgstr ""
+
+#: templates/blood_requests/mine.html:10
+#, python-format
+msgid "%(requests_left)s of %(daily_limit)s requests remaining today."
+msgstr ""
+
+#: templates/blood_requests/mine.html:12
+msgid "Your request totals"
+msgstr ""
+
+#: templates/blood_requests/mine.html:13
+msgid "open"
+msgstr ""
+
+#: templates/blood_requests/mine.html:13
+msgid "no offers yet"
+msgstr ""
+
+#: templates/blood_requests/mine.html:13
+msgid "live or waiting"
+msgstr ""
+
+#: templates/blood_requests/mine.html:13 templates/blood_requests/mine.html:39
+#, python-format
+msgid "%(n)s donor offered"
+msgid_plural "%(n)s donors offered"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/blood_requests/mine.html:14
+msgid "fulfilled"
+msgstr ""
+
+#: templates/blood_requests/mine.html:15
+msgid "total posted"
+msgstr ""
+
+#: templates/blood_requests/mine.html:37
+#, python-format
+msgid "%(area)s, %(city)s &middot; %(n)s unit &middot; %(ago)s"
+msgid_plural "%(area)s, %(city)s &middot; %(n)s units &middot; %(ago)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/blood_requests/mine.html:38 templates/components/request_card.html:17
+#, python-format
+msgid "Closes in %(expires_at)s"
+msgstr ""
+
+#: templates/blood_requests/mine.html:55 templates/components/request_card.html:18
+msgid "View details"
+msgstr ""
+
+#: templates/blood_requests/mine.html:62
+msgid "No open requests"
+msgstr ""
+
+#: templates/blood_requests/mine.html:67
+msgid "Past requests"
+msgstr ""
+
+#: templates/blood_requests/mine.html:75
+#, python-format
+msgid "%(n)s donor"
+msgid_plural "%(n)s donors"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/blood_requests/mine.html:78
+msgid "View"
+msgstr ""
+
+#: templates/blood_requests/mine.html:87
+msgid "You haven't posted a request"
+msgstr ""
+
+#: templates/components/cnic_block.html:12
+#, python-format
+msgid "CNIC on file: %(masked)s"
+msgstr ""
+
+#: templates/components/cnic_block.html:12
+msgid "Nothing more to enter."
+msgstr ""
+
+#: templates/components/dash_panel.html:25 templates/components/dash_panel.html:37
+msgid "Verification desk"
+msgstr ""
+
+#: templates/components/dash_panel.html:29
+msgid "Requester"
+msgstr ""
+
+#: templates/components/dash_panel.html:34
+msgid "Dashboard sections"
+msgstr ""
+
+#: templates/components/dash_panel.html:38 templates/hospitals/dashboard.html:81
+msgid "Recently verified"
+msgstr ""
+
+#: templates/components/dash_panel.html:40
+msgid "Overview"
+msgstr ""
+
+#: templates/components/dash_panel.html:42 templates/components/dash_panel.html:44
+#: templates/dashboard/overview.html:11 templates/donors/profile.html:6
+msgid "Donate blood"
+msgstr ""
+
+#: templates/components/dash_panel.html:49
+msgid "Edit profile"
+msgstr ""
+
+#: templates/components/dash_panel.html:49
+msgid "Account"
+msgstr ""
+
+#: templates/components/dash_panel.html:50
+msgid "Log out"
+msgstr ""
+
+#: templates/components/donor_row.html:14 templates/core/home.html:238
+#: templates/dashboard/overview.html:13 templates/donors/profile.html:10
+#: templates/donors/profile.html:21 templates/donors/search.html:60
+msgid "Ready to donate"
+msgstr ""
+
+#: templates/components/donor_row.html:16
+#, python-format
+msgid "Resting until %(next_eligible_date)s"
+msgstr ""
+
+#: templates/components/donor_row.html:18 templates/donors/search.html:61
+msgid "Health details added"
+msgstr ""
+
+#: templates/components/live_box.html:9
+msgid "LIVE NETWORK"
+msgstr ""
+
+#: templates/components/live_box.html:10
+msgid "Right now"
+msgstr ""
+
+#: templates/components/live_box.html:13
+msgid "Donors ready now"
+msgstr ""
+
+#: templates/components/live_box.html:14
+msgid "Patients waiting"
+msgstr ""
+
+#: templates/components/live_box.html:21
+msgid "needed"
+msgstr ""
+
+#: templates/components/live_box.html:21
+msgid "donor ready"
+msgstr ""
+
+#: templates/components/live_box.html:27
+msgid "Nothing yet. New requests and donors show up here."
+msgstr ""
+
+#: templates/components/live_strip.html:12 templates/components/live_strip.html:26
+msgid "LIVE"
+msgstr ""
+
+#: templates/components/live_strip.html:18
+#, python-format
+msgid "%(n)s unit needed, %(city)s"
+msgid_plural "%(n)s units needed, %(city)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/components/live_strip.html:19
+#, python-format
+msgid "%(name)s &middot; posted %(created_at)s"
+msgstr ""
+
+#: templates/components/live_strip.html:24 templates/dashboard/overview.html:40
+#: templates/donors/profile.html:53
+msgid "View all"
+msgstr ""
+
+#: templates/components/live_strip.html:29
+msgid "Shown here once donors can see them."
+msgstr ""
+
+#: templates/components/live_strip.html:31 templates/core/home.html:207
+#: templates/dashboard/overview.html:30
+msgid "Post a request"
+msgstr ""
+
+#: templates/components/offer_row.html:11
+msgid "Number not shared"
+msgstr ""
+
+#: templates/components/offer_row.html:14
+#, python-format
+msgid "Call %(name)s"
+msgstr ""
+
+#: templates/components/offer_row.html:14
+msgid "Call"
+msgstr ""
+
+#: templates/components/offer_row.html:18
+#, python-format
+msgid "Thank %(name)s on WhatsApp"
+msgstr ""
+
+#: templates/components/offer_row.html:18
+#, python-format
+msgid "Message %(name)s on WhatsApp"
+msgstr ""
+
+#: templates/components/offer_row.html:19
+msgid "Say thanks on WhatsApp"
+msgstr ""
+
+#: templates/components/offer_row.html:19
+msgid "Message on WhatsApp"
+msgstr ""
+
+#: templates/components/request_card.html:13
+#, python-format
+msgid "%(n)s unit needed &middot; %(ago)s"
+msgid_plural "%(n)s units needed &middot; %(ago)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/components/request_row.html:12
+#, python-format
+msgid "%(n)s unit &middot; %(hospital)s"
+msgid_plural "%(n)s units &middot; %(hospital)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/components/request_row.html:16
+msgid "Respond"
+msgstr ""
+
+#: templates/components/tracking.html:18 templates/components/tracking_line.html:15
+#: templates/components/tracking_mini.html:12
+msgid "(done)"
+msgstr ""
+
+#: templates/components/tracking.html:18 templates/components/tracking_line.html:15
+#: templates/components/tracking_mini.html:12
+msgid "(happening now)"
+msgstr ""
+
+#: templates/components/tracking.html:18 templates/components/tracking_line.html:15
+#: templates/components/tracking_mini.html:12
+msgid "(not yet)"
+msgstr ""
+
+#: templates/components/tracking_line.html:9 templates/components/tracking_mini.html:6
+msgid "Request progress"
+msgstr ""
+
+#: templates/components/trend_chart.html:7
+#, python-format
+msgid "Requests per day over the last %(n)s days"
+msgstr ""
+
+#: templates/core/about.html:3
+#, python-format
+msgid "About %(SITE_NAME)s, privacy and safety | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/core/about.html:4
+#, python-format
+msgid ""
+"How %(SITE_NAME)s matches blood donors with families in Sukkur, what data it keeps, and how it "
+"protects people."
+msgstr ""
+
+#: templates/core/about.html:10
+#, python-format
+msgid "About %(SITE_NAME)s"
+msgstr ""
+
+#: templates/core/about.html:11
+#, python-format
+msgid ""
+"%(SITE_TAGLINE)s. %(SITE_NAME)s helps families who need blood and willing donors find each other "
+"faster than WhatsApp groups and phone calls."
+msgstr ""
+
+#: templates/core/about.html:12
+msgid "On this page"
+msgstr ""
+
+#: templates/core/about.html:13 templates/core/about.html:23
+msgid "How matching works"
+msgstr ""
+
+#: templates/core/about.html:14 templates/core/about.html:35
+msgid "Privacy notice"
+msgstr ""
+
+#: templates/core/about.html:15 templates/core/about.html:47
+msgid "Safety notice"
+msgstr ""
+
+#: templates/core/about.html:16 templates/core/about.html:58
+msgid "Accessibility"
+msgstr ""
+
+#: templates/core/about.html:19
+msgid "What this service is"
+msgstr ""
+
+#: templates/core/about.html:20
+#, python-format
+msgid ""
+"%(SITE_NAME)s is a website where donors register their blood type and area, and where families "
+"can see how many compatible donors are ready in their city. It does not store or supply blood. "
+"Hospitals and blood banks always make the final decision about who may donate."
+msgstr ""
+
+#: templates/core/about.html:21
+#, python-format
+msgid ""
+"%(SITE_NAME)s is a student project, built for the course CSC-206 Software Engineering at Aror "
+"University of Art, Architecture, Design and Heritage, Sukkur."
+msgstr ""
+
+#: templates/core/about.html:24
+msgid "A donor is shown as ready, and matched to a request, only when all of these are true:"
+msgstr ""
+
+#: templates/core/about.html:27
+msgid "Compatible blood"
+msgstr ""
+
+#: templates/core/about.html:27
+msgid ""
+"The donor's blood group can safely give red blood cells to the patient's group, using the "
+"standard chart."
+msgstr ""
+
+#: templates/core/about.html:28
+msgid "Available"
+msgstr ""
+
+#: templates/core/about.html:28
+msgid "The donor has switched availability on."
+msgstr ""
+
+#: templates/core/about.html:29
+msgid "Rested"
+msgstr ""
+
+#: templates/core/about.html:29
+#, python-format
+msgid "At least %(cooldown)s days have passed since the donor's last donation."
+msgstr ""
+
+#: templates/core/about.html:30
+msgid "Nearby"
+msgstr ""
+
+#: templates/core/about.html:30
+msgid "The donor is in the same city as the request, and donors in the same area come first."
+msgstr ""
+
+#: templates/core/about.html:31
+msgid "Still open"
+msgstr ""
+
+#: templates/core/about.html:31
+#, python-format
+msgid ""
+"A request stays open for %(Critical)s hours if Critical, %(Urgent)s hours if Urgent, and "
+"%(Normal)s hours if Normal, unless it is marked fulfilled sooner."
+msgstr ""
+
+#: templates/core/about.html:36
+msgid "What we keep."
+msgstr ""
+
+#: templates/core/about.html:36
+msgid ""
+"When you create an account we keep your username, your email address, and a scrambled (hashed and"
+" salted) version of your password. We never see or store your password as you typed it. If you "
+"register as a donor we also keep your name, mobile number, blood type, area, last donation date, "
+"whether you are available, and the two confirmations you gave. When you post a request we keep "
+"its details, such as the hospital, the blood type needed, and a contact number."
+msgstr ""
+
+#: templates/core/about.html:37
+msgid "Who can see what."
+msgstr ""
+
+#: templates/core/about.html:40
+msgid "Anyone"
+msgstr ""
+
+#: templates/core/about.html:40
+msgid ""
+"Only counts, such as how many donors are ready in an area, and open request cards showing the "
+"hospital, area, blood type and urgency. Never names, patient names or phone numbers."
+msgstr ""
+
+#: templates/core/about.html:41
+msgid "Signed-in people"
+msgstr ""
+
+#: templates/core/about.html:41
+msgid ""
+"Their own profile and requests. A donor's phone number is shared only with the person whose "
+"request that donor offered to help with, and only if the donor agreed when registering. A "
+"patient's contact number is shown only to the person who posted the request, the hospital it "
+"names, and donors who offered to help with it."
+msgstr ""
+
+#: templates/core/about.html:42
+msgid "Administrators"
+msgstr ""
+
+#: templates/core/about.html:42
+msgid "Can view records in the admin panel, for moderation and support."
+msgstr ""
+
+#: templates/core/about.html:45
+msgid "Cookies and browser storage."
+msgstr ""
+
+#: templates/core/about.html:45
+msgid ""
+"We use one cookie to keep you signed in and to protect forms from forgery. Your light or dark "
+"choice is saved in your own browser. We do not use advertising or tracking cookies, and nothing "
+"on these pages is loaded from other websites."
+msgstr ""
+
+#: templates/core/about.html:50
+msgid "In an emergency, contact the hospital's blood bank directly."
+msgstr ""
+
+#: templates/core/about.html:50
+#, python-format
+msgid "%(SITE_NAME)s is a helper, not a medical service, and it cannot promise that a donor will respond."
+msgstr ""
+
+#: templates/core/about.html:53
+msgid ""
+"Every donor is screened by a hospital or blood bank before donating. Being shown as ready here "
+"does not mean a person is medically fit to donate."
+msgstr ""
+
+#: templates/core/about.html:54
+msgid ""
+"The compatibility guide covers red blood cell donations only. Plasma and platelets follow "
+"different rules, so always confirm with the hospital."
+msgstr ""
+
+#: templates/core/about.html:55
+msgid ""
+"Donating blood should be voluntary. Be careful with anyone who asks for money, and confirm any "
+"request with the hospital before you travel."
+msgstr ""
+
+#: templates/core/about.html:59
+msgid ""
+"The site works with a keyboard, has text that meets recommended contrast levels in both light and"
+" dark modes, respects the device setting for reduced motion, and works on phones. If something is"
+" hard to use, please tell the project team so it can be fixed."
+msgstr ""
+
+#: templates/core/home.html:5
+#, python-format
+msgid "%(SITE_NAME)s | Find a blood donor fast"
+msgstr ""
+
+#: templates/core/home.html:27
+msgid "Three steps from need to donor."
+msgstr ""
+
+#: templates/core/home.html:31 templates/core/home.html:193
+msgid "I need blood"
+msgstr ""
+
+#: templates/core/home.html:46
+msgid "Network statistics"
+msgstr ""
+
+#: templates/core/home.html:47 templates/core/home.html:123
+msgid "Registered donors"
+msgstr ""
+
+#: templates/core/home.html:49
+msgid "Requests fulfilled"
+msgstr ""
+
+#: templates/core/home.html:50
+msgid "Cities covered"
+msgstr ""
+
+#: templates/core/home.html:89 templates/partials/navbar.html:41
+msgid "Compatibility"
+msgstr ""
+
+#: templates/core/home.html:90
+msgid "Who can donate to whom?"
+msgstr ""
+
+#: templates/core/home.html:91
+msgid "Pick the patient's blood type to see which donors are compatible."
+msgstr ""
+
+#: templates/core/home.html:94 templates/donors/search.html:14
+msgid "Patient's blood type"
+msgstr ""
+
+#: templates/core/home.html:100
+msgid "Can receive from"
+msgstr ""
+
+#: templates/core/home.html:106
+msgid "Select a blood type above to see who can donate."
+msgstr ""
+
+#: templates/core/home.html:107
+msgid "This guide is for red blood cell donations. Always confirm with the hospital's blood bank."
+msgstr ""
+
+#: templates/core/home.html:117
+msgid "Matching"
+msgstr ""
+
+#: templates/core/home.html:118
+msgid "The right match isn't just the right blood type."
+msgstr ""
+
+#: templates/core/home.html:119
+msgid "Three checks narrow the list before a donor is shown for a request."
+msgstr ""
+
+#: templates/core/home.html:124
+msgid "Everyone with a donor profile."
+msgstr ""
+
+#: templates/core/home.html:127
+msgid "Compatible blood type"
+msgstr ""
+
+#: templates/core/home.html:128
+msgid "Blood group rules decide who can give to whom, so an incompatible donor is never shown."
+msgstr ""
+
+#: templates/core/home.html:131
+msgid "Same city"
+msgstr ""
+
+#: templates/core/home.html:132
+msgid "Only donors registered in the patient's city are matched."
+msgstr ""
+
+#: templates/core/home.html:135
+msgid "Available and rested"
+msgstr ""
+
+#: templates/core/home.html:136
+msgid "Donors must be marked available and past their 90-day rest since the last donation."
+msgstr ""
+
+#: templates/core/home.html:139
+msgid "Shown for your request"
+msgstr ""
+
+#: templates/core/home.html:140
+msgid "A better starting point than a broadcast. Not a guarantee. The hospital screens every donation."
+msgstr ""
+
+#: templates/core/home.html:143
+msgid "The bars show the idea of narrowing down. They are not counts."
+msgstr ""
+
+#: templates/core/home.html:151
+msgid "The difference"
+msgstr ""
+
+#: templates/core/home.html:152 templates/partials/footer.html:20 templates/partials/navbar.html:42
+msgid "How it works"
+msgstr ""
+
+#: templates/core/home.html:153
+msgid ""
+"Asking around works, but every message starts the search again. Here is the same job with a "
+"network."
+msgstr ""
+
+#: templates/core/home.html:158
+msgid "Asking around"
+msgstr ""
+
+#: templates/core/home.html:158
+#, python-format
+msgid "With %(SITE_NAME)s"
+msgstr ""
+
+#: templates/core/home.html:162
+msgid "Post in a group"
+msgstr ""
+
+#: templates/core/home.html:162 templates/core/home.html:167 templates/core/home.html:172
+#: templates/core/home.html:177
+msgid "Asking around:"
+msgstr ""
+
+#: templates/core/home.html:164 templates/core/home.html:169 templates/core/home.html:174
+#: templates/core/home.html:179
+#, python-format
+msgid "With %(SITE_NAME)s:"
+msgstr ""
+
+#: templates/core/home.html:167
+msgid "Forwarded onward"
+msgstr ""
+
+#: templates/core/home.html:169
+msgid "Compatibility checked"
+msgstr ""
+
+#: templates/core/home.html:172
+msgid "Waiting for replies"
+msgstr ""
+
+#: templates/core/home.html:174
+msgid "Ready donors shown"
+msgstr ""
+
+#: templates/core/home.html:177
+msgid "Search restarts"
+msgstr ""
+
+#: templates/core/home.html:179
+msgid "Direct contact"
+msgstr ""
+
+#: templates/core/home.html:182
+msgid ""
+"Donors and requesters get in touch by phone or WhatsApp. When the need is met, the request is "
+"marked fulfilled."
+msgstr ""
+
+#: templates/core/home.html:192
+msgid "Who is this for"
+msgstr ""
+
+#: templates/core/home.html:194
+msgid "I can donate"
+msgstr ""
+
+#: templates/core/home.html:198
+msgid "You shouldn't have to broadcast an emergency to everyone you know."
+msgstr ""
+
+#: templates/core/home.html:199
+msgid "Tell us what's needed, and let the network do the searching."
+msgstr ""
+
+#: templates/core/home.html:201
+msgid "Enter the blood type needed and how urgent it is"
+msgstr ""
+
+#: templates/core/home.html:203
+msgid "Leave a contact number"
+msgstr ""
+
+#: templates/core/home.html:204
+msgid "See compatible, available donors as they are found"
+msgstr ""
+
+#: templates/core/home.html:205
+msgid "Contact a suitable donor directly"
+msgstr ""
+
+#: templates/core/home.html:210
+msgid "New blood request"
+msgstr ""
+
+#: templates/core/home.html:210 templates/core/home.html:234
+msgid "Example"
+msgstr ""
+
+#: templates/core/home.html:213
+msgid "Urgency"
+msgstr ""
+
+#: templates/core/home.html:214
+msgid "Civil Hospital, Sukkur"
+msgstr ""
+
+#: templates/core/home.html:215
+msgid "Contact"
+msgstr ""
+
+#: templates/core/home.html:215
+msgid "Add phone number"
+msgstr ""
+
+#: templates/core/home.html:222
+msgid "Be found when your blood type is the one someone needs."
+msgstr ""
+
+#: templates/core/home.html:223
+msgid "A one-minute profile. You stay in control of when you are shown."
+msgstr ""
+
+#: templates/core/home.html:225
+msgid "Add your blood type and area"
+msgstr ""
+
+#: templates/core/home.html:226
+msgid "Mark yourself available, or pause any time"
+msgstr ""
+
+#: templates/core/home.html:227
+msgid "See requests that match you"
+msgstr ""
+
+#: templates/core/home.html:228
+msgid "Your phone number is shared only if you allow it"
+msgstr ""
+
+#: templates/core/home.html:229
+msgid "A 90-day rest starts automatically after you donate"
+msgstr ""
+
+#: templates/core/home.html:234
+msgid "Your donor profile"
+msgstr ""
+
+#: templates/core/home.html:237
+msgid "Barrage Road, Sukkur"
+msgstr ""
+
+#: templates/core/home.html:237 templates/donors/profile.html:78
+msgid "Area"
+msgstr ""
+
+#: templates/core/home.html:238
+msgid "Status"
+msgstr ""
+
+#: templates/core/home.html:239
+msgid "Phone"
+msgstr ""
+
+#: templates/core/home.html:239
+msgid "Shared only with matching requests"
+msgstr ""
+
+#: templates/core/home.html:241
+msgid "Create profile"
+msgstr ""
+
+#: templates/core/home.html:253
+msgid "Live"
+msgstr ""
+
+#: templates/core/home.html:254
+msgid "Open requests right now"
+msgstr ""
+
+#: templates/core/home.html:255
+msgid "The most urgent requests come first."
+msgstr ""
+
+#: templates/core/home.html:264
+msgid "See all requests"
+msgstr ""
+
+#: templates/core/home.html:277
+msgid "Supply"
+msgstr ""
+
+#: templates/core/home.html:278
+msgid "Donors ready right now"
+msgstr ""
+
+#: templates/core/home.html:279
+msgid ""
+"These are registered donors who are marked available and are past their waiting period since the "
+"last donation."
+msgstr ""
+
+#: templates/core/home.html:284
+#, python-format
+msgid "<strong>%(n)s</strong> donor ready now"
+msgid_plural "<strong>%(n)s</strong> donors ready now"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/core/home.html:288
+#, python-format
+msgid "%(n)s ready donors with blood type %(bt)s"
+msgstr ""
+
+#: templates/core/home.html:294
+msgid "Amber bars: the fewest ready donors, where new donors help most."
+msgstr ""
+
+#: templates/core/home.html:316 templates/partials/footer.html:22 templates/partials/navbar.html:43
+msgid "FAQ"
+msgstr ""
+
+#: templates/core/home.html:317
+msgid "Common questions"
+msgstr ""
+
+#: templates/core/home.html:322
+msgid "Who can donate blood?"
+msgstr ""
+
+#: templates/core/home.html:325
+#, python-format
+msgid ""
+"Generally, healthy adults who feel well. Every donation is screened by the hospital or blood "
+"bank, and they make the final decision. %(SITE_NAME)s only helps people find and contact each "
+"other."
+msgstr ""
+
+#: templates/core/home.html:330
+msgid "How often can I donate?"
+msgstr ""
+
+#: templates/core/home.html:333
+msgid ""
+"This app uses a three-month (90-day) gap between donations and hides donors who are still inside "
+"it. The blood bank's own rules always come first."
+msgstr ""
+
+#: templates/core/home.html:338
+msgid "Is my phone number public?"
+msgstr ""
+
+#: templates/core/home.html:341
+msgid ""
+"No. A patient's number is shown only to the requester, the hospital named on the request, and "
+"donors who offered to help with it. A donor's number is shown only to the person whose request "
+"they offered to help with, and only if they agreed."
+msgstr ""
+
+#: templates/core/home.html:346
+msgid "What do Critical, Urgent, and Normal mean?"
+msgstr ""
+
+#: templates/core/home.html:349
+msgid ""
+"The requester chooses how urgent the need is. Critical requests stay open for 24 hours, Urgent "
+"for 48 hours, and Normal for 72 hours. After that they expire automatically unless they were "
+"marked fulfilled."
+msgstr ""
+
+#: templates/core/home.html:354
+#, python-format
+msgid "Does %(SITE_NAME)s supply blood?"
+msgstr ""
+
+#: templates/core/home.html:357
+msgid ""
+"No. It does not store or supply blood. In an emergency, also contact the hospital's blood bank "
+"directly."
+msgstr ""
+
+#: templates/core/style_guide.html:3
+#, python-format
+msgid "Style guide | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/core/style_guide.html:8
+msgid "Style guide"
+msgstr ""
+
+#: templates/core/style_guide.html:9
+msgid "Every reusable piece of the design in one place. Try the moon button to see dark mode."
+msgstr ""
+
+#: templates/core/style_guide.html:11
+msgid "Developer page (DEBUG only)"
+msgstr ""
+
+#: templates/core/style_guide.html:15
+msgid "Colours"
+msgstr ""
+
+#: templates/core/style_guide.html:25
+msgid "Buttons"
+msgstr ""
+
+#: templates/core/style_guide.html:27
+msgid "Primary"
+msgstr ""
+
+#: templates/core/style_guide.html:28
+msgid "Outline"
+msgstr ""
+
+#: templates/core/style_guide.html:29
+msgid "Ghost"
+msgstr ""
+
+#: templates/core/style_guide.html:31
+msgid "Large"
+msgstr ""
+
+#: templates/core/style_guide.html:36
+msgid "Blood badges and status pills"
+msgstr ""
+
+#: templates/core/style_guide.html:49
+msgid "Verified"
+msgstr ""
+
+#: templates/core/style_guide.html:54
+msgid "Request cards: urgency edge and live countdown"
+msgstr ""
+
+#: templates/core/style_guide.html:61
+msgid "Forms"
+msgstr ""
+
+#: templates/core/style_guide.html:65
+msgid "Ready to fill in"
+msgstr ""
+
+#: templates/core/style_guide.html:76
+msgid "How errors look"
+msgstr ""
+
+#: templates/core/style_guide.html:86
+msgid "Feedback"
+msgstr ""
+
+#: templates/core/style_guide.html:88
+msgid "Show success dialog"
+msgstr ""
+
+#: templates/core/style_guide.html:89
+msgid "Show toast"
+msgstr ""
+
+#: templates/core/style_guide.html:94
+msgid "Empty state and loading placeholders"
+msgstr ""
+
+#: templates/dashboard/overview.html:4
+#, python-format
+msgid "Dashboard | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/dashboard/overview.html:13
+#, python-format
+msgid "%(n)s matching request in %(city)s"
+msgid_plural "%(n)s matching requests in %(city)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/dashboard/overview.html:13 templates/dashboard/overview.html:17
+#: templates/donors/profile.html:36
+msgid "Not available right now"
+msgstr ""
+
+#: templates/dashboard/overview.html:13 templates/donors/profile.html:21
+#, python-format
+msgid "Resting for %(n)s more day"
+msgid_plural "Resting for %(n)s more days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/dashboard/overview.html:19
+msgid "See requests"
+msgstr ""
+
+#: templates/dashboard/overview.html:21
+msgid ""
+"You are not a donor yet. A one-minute profile puts you in front of requests that match your blood"
+" type."
+msgstr ""
+
+#: templates/dashboard/overview.html:28
+#, python-format
+msgid "%(n)s request open"
+msgid_plural "%(n)s requests open"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/dashboard/overview.html:28
+msgid "&middot; no offers yet"
+msgstr ""
+
+#: templates/dashboard/overview.html:28
+#, python-format
+msgid "&middot; %(requests_left)s of %(daily_limit)s left today"
+msgstr ""
+
+#: templates/dashboard/overview.html:31
+msgid "My requests"
+msgstr ""
+
+#: templates/dashboard/overview.html:39 templates/donors/profile.html:52
+msgid "Requests you can help with"
+msgstr ""
+
+#: templates/donors/edit.html:3
+msgid "Edit donor profile"
+msgstr ""
+
+#: templates/donors/edit.html:12
+msgid "Edit your donor profile"
+msgstr ""
+
+#: templates/donors/edit.html:22
+msgid "About you"
+msgstr ""
+
+#: templates/donors/edit.html:43
+msgid "Health check"
+msgstr ""
+
+#: templates/donors/edit.html:75
+msgid "Back to my dashboard"
+msgstr ""
+
+#: templates/donors/profile.html:4
+#, python-format
+msgid "My donor dashboard | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/donors/profile.html:10
+#, python-format
+msgid "%(n)s days until you can donate again"
+msgstr ""
+
+#: templates/donors/profile.html:15
+msgid "Ready"
+msgstr ""
+
+#: templates/donors/profile.html:16
+msgid "day left"
+msgid_plural "days left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/donors/profile.html:21
+msgid "Not available"
+msgstr ""
+
+#: templates/donors/profile.html:23
+msgid "You can donate now."
+msgstr ""
+
+#: templates/donors/profile.html:23
+msgid "You can donate again on"
+msgstr ""
+
+#: templates/donors/profile.html:25
+msgid "You are hidden from matching until you switch this on."
+msgstr ""
+
+#: templates/donors/profile.html:26
+#, python-format
+msgid "You are resting until %(next_eligible_date)s."
+msgstr ""
+
+#: templates/donors/profile.html:27
+msgid "You are visible to matching requests."
+msgstr ""
+
+#: templates/donors/profile.html:39
+msgid "Donation recorded for today"
+msgstr ""
+
+#: templates/donors/profile.html:41
+msgid "Record today as your last donation date? You will not be matched for the next 90 days."
+msgstr ""
+
+#: templates/donors/profile.html:43
+msgid "I donated today"
+msgstr ""
+
+#: templates/donors/profile.html:56
+msgid "You are not being matched right now, but you can still see who needs help."
+msgstr ""
+
+#: templates/donors/profile.html:69
+msgid "Your details"
+msgstr ""
+
+#: templates/donors/profile.html:70
+msgid "Edit"
+msgstr ""
+
+#: templates/donors/profile.html:73
+msgid "Name"
+msgstr ""
+
+#: templates/donors/profile.html:76
+#, python-format
+msgid "can give to %(n)s type"
+msgid_plural "can give to %(n)s types"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/donors/profile.html:79
+msgid "CNIC"
+msgstr ""
+
+#: templates/donors/profile.html:79 templates/donors/profile.html:80 templates/donors/profile.html:81
+msgid "Add it"
+msgstr ""
+
+#: templates/donors/profile.html:80
+msgid "Weight"
+msgstr ""
+
+#: templates/donors/profile.html:80
+#, python-format
+msgid "%(weight_kg)s kg"
+msgstr ""
+
+#: templates/donors/profile.html:81
+msgid "Height"
+msgstr ""
+
+#: templates/donors/profile.html:81
+#, python-format
+msgid "%(height_cm)s cm"
+msgstr ""
+
+#: templates/donors/profile.html:82
+msgid "Conditions"
+msgstr ""
+
+#: templates/donors/profile.html:82
+msgid "Add them"
+msgstr ""
+
+#: templates/donors/profile.html:83
+msgid "Last donation"
+msgstr ""
+
+#: templates/donors/profile.html:83
+msgid "Never donated"
+msgstr ""
+
+#: templates/donors/profile.html:84
+msgid "Phone sharing"
+msgstr ""
+
+#: templates/donors/profile.html:84
+msgid "Allowed for matching requests"
+msgstr ""
+
+#: templates/donors/profile.html:84
+msgid "Not allowed"
+msgstr ""
+
+#: templates/donors/search.html:4
+#, python-format
+msgid "Find donors | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/donors/search.html:12 templates/donors/search.html:39
+msgid "Search"
+msgstr ""
+
+#: templates/donors/search.html:27
+#, python-format
+msgid "Showing donors who can give to %(selected_blood_type)s."
+msgstr ""
+
+#: templates/donors/search.html:27
+msgid "Choose a type to see who can give to that patient."
+msgstr ""
+
+#: templates/donors/search.html:41
+msgid "Clear"
+msgstr ""
+
+#: templates/donors/search.html:50
+#, python-format
+msgid "%(n)s donor can donate to this patient."
+msgid_plural "%(n)s donors can donate to this patient."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/donors/search.html:67
+msgid "Post a request to be matched with this donor and, if they've allowed it, see their number."
+msgstr ""
+
+#: templates/hospitals/dashboard.html:4
+#, python-format
+msgid "%(name)s dashboard | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:8
+msgid "Waiting on you"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:11
+msgid "Verified this week"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:12
+#, python-format
+msgid "of %(kpi_week)s"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:15
+msgid "Missed deadline"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:16
+msgid "this week"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:19
+msgid "Last 7 days"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:25
+msgid "Waiting on your verification"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:26
+msgid "Confirm each request is genuine before you verify it. If you miss the deadline, an admin decides."
+msgstr ""
+
+#: templates/hospitals/dashboard.html:38
+msgid "Extra units: awaiting an admin"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:42
+msgid "Deadline missed, with an admin"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:44
+msgid "Deadline in"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:44
+msgid "Deadline passed"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:48
+#, python-format
+msgid "%(n)s unit &middot; %(phone)s"
+msgid_plural "%(n)s units &middot; %(phone)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/hospitals/dashboard.html:52
+#, python-format
+msgid "Reason for %(units_needed)s units"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:54
+msgid "An admin must also approve the extra units."
+msgstr ""
+
+#: templates/hospitals/dashboard.html:58
+msgid "Verify this request as genuine? It will become visible to donors immediately."
+msgstr ""
+
+#: templates/hospitals/dashboard.html:60
+msgid "Verify"
+msgstr ""
+
+#: templates/hospitals/dashboard.html:74
+#, python-format
+msgid "You posted %(n)s request naming this hospital. Another staff member has to verify it."
+msgid_plural "You posted %(n)s requests naming this hospital. Another staff member has to verify them."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/notifications/_list.html:9
+msgid "New"
+msgstr ""
+
+#: templates/notifications/_list.html:13
+msgid "Open"
+msgstr ""
+
+#: templates/notifications/_list.html:13
+msgid "Mark read"
+msgstr ""
+
+#: templates/notifications/_list.html:19
+msgid "Nothing yet."
+msgstr ""
+
+#: templates/notifications/inbox.html:4
+#, python-format
+msgid "Notifications | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/notifications/inbox.html:16
+msgid "Mark all as read"
+msgstr ""
+
+#: templates/partials/footer.html:19
+msgid "Footer"
+msgstr ""
+
+#: templates/partials/footer.html:21
+msgid "Blood compatibility"
+msgstr ""
+
+#: templates/partials/footer.html:23
+msgid "About, privacy &amp; safety"
+msgstr ""
+
+#: templates/partials/footer.html:28
+#, python-format
+msgid ""
+"%(SITE_NAME)s connects people. It does not store or supply blood and is not a medical service. "
+"Every donation is screened by a hospital or blood bank. In an emergency, also contact the "
+"hospital's blood bank directly. &copy;"
+msgstr ""
+
+#: templates/partials/navbar.html:3
+msgid "Main navigation"
+msgstr ""
+
+#: templates/partials/navbar.html:14
+msgid "Toggle navigation"
+msgstr ""
+
+#: templates/partials/navbar.html:22
+msgid "Dashboard"
+msgstr ""
+
+#: templates/partials/navbar.html:27
+msgid "Home"
+msgstr ""
+
+#: templates/partials/navbar.html:32
+msgid "Live requests"
+msgstr ""
+
+#: templates/partials/navbar.html:33
+#, python-format
+msgid "%(n)s open"
+msgstr ""
+
+#: templates/partials/navbar.html:58
+msgid "Language"
+msgstr ""
+
+#: templates/partials/navbar.html:63
+msgid "Go"
+msgstr ""
+
+#: templates/partials/navbar.html:66
+msgid "Switch theme"
+msgstr ""
+
+#: templates/partials/navbar.html:81
+msgid "Sign up"
+msgstr ""
+
+#: templates/partials/notice.html:4
+msgid "Emergency?"
+msgstr ""
+
+#: templates/partials/notice.html:4
+#, python-format
+msgid ""
+"Contact the hospital's blood bank directly. %(SITE_NAME)s helps families and donors find each "
+"other and is not a medical service."
+msgstr ""
+
+#: templates/partials/notice.html:4
+msgid "Read the safety notice"
+msgstr ""
+

@@ -1,0 +1,3127 @@
+# ATIYA translation catalogue
+msgid ""
+msgstr ""
+"Project-Id-Version: ATIYA 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-01 11:59+0000\n"
+"PO-Revision-Date: 2026-11-01 11:59+0000\n"
+"Last-Translator: ATIYA team (needs native-speaker review)\n"
+"Language: ur\n"
+"Language-Team: Urdu <ur@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "This field is required."
+msgstr "یہ خانہ پُر کرنا ضروری ہے۔"
+
+msgid "Enter a valid email address."
+msgstr "درست ای میل ایڈریس لکھیں۔"
+
+msgid "The two password fields didn’t match."
+msgstr "دونوں پاس ورڈ ایک جیسے نہیں ہیں۔"
+
+msgid "Enter a whole number."
+msgstr "پورا عدد لکھیں۔"
+
+msgid "Enter a number."
+msgstr "عدد لکھیں۔"
+
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr "یقینی بنائیں کہ یہ قدر %(limit_value)s یا اس سے کم ہو۔"
+
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "یقینی بنائیں کہ یہ قدر %(limit_value)s یا اس سے زیادہ ہو۔"
+
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr "درست انتخاب چنیں۔ %(value)s دستیاب انتخابات میں شامل نہیں۔"
+
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr "درست انتخاب چنیں۔ یہ انتخاب دستیاب انتخابات میں شامل نہیں۔"
+
+msgid "Enter a valid date."
+msgstr "درست تاریخ لکھیں۔"
+
+msgid "Enter a valid value."
+msgstr "درست قدر لکھیں۔"
+
+msgid ""
+"Enter a valid username. This value may contain only unaccented lowercase a-z and uppercase A-Z "
+"letters, numbers, and @/./+/-/_ characters."
+msgstr "درست صارف نام لکھیں۔ اس میں صرف انگریزی حروف (a-z، A-Z)، ہندسے، اور @/./+/-/_ علامات ہو سکتی ہیں۔"
+
+#, python-format
+msgid "Ensure this value has at most %(limit_value)d character (it has %(show_value)d)."
+msgid_plural "Ensure this value has at most %(limit_value)d characters (it has %(show_value)d)."
+msgstr[0] "اس میں زیادہ سے زیادہ %(limit_value)d حرف ہونے چاہییں (اس میں %(show_value)d ہیں)۔"
+msgstr[1] "اس میں زیادہ سے زیادہ %(limit_value)d حرف ہونے چاہییں (اس میں %(show_value)d ہیں)۔"
+
+#, python-format
+msgid "Ensure this value has at least %(limit_value)d character (it has %(show_value)d)."
+msgid_plural "Ensure this value has at least %(limit_value)d characters (it has %(show_value)d)."
+msgstr[0] "اس میں کم از کم %(limit_value)d حرف ہونے چاہییں (اس میں %(show_value)d ہیں)۔"
+msgstr[1] "اس میں کم از کم %(limit_value)d حرف ہونے چاہییں (اس میں %(show_value)d ہیں)۔"
+
+#, python-format
+msgid "This password is too short. It must contain at least %(min_length)d character."
+msgid_plural "This password is too short. It must contain at least %(min_length)d characters."
+msgstr[0] "پاس ورڈ بہت چھوٹا ہے۔ اس میں کم از کم %(min_length)d حرف ہونے چاہییں۔"
+msgstr[1] "پاس ورڈ بہت چھوٹا ہے۔ اس میں کم از کم %(min_length)d حرف ہونے چاہییں۔"
+
+#: accounts/cnic_form.py:39
+msgid "Your CNIC number"
+msgstr "آپ کا شناختی کارڈ (CNIC) نمبر"
+
+#: accounts/cnic_form.py:43
+msgid "Enter all 13 digits of your CNIC."
+msgstr "اپنے شناختی کارڈ کے تمام 13 ہندسے درج کریں۔"
+
+#: accounts/cnic_form.py:45
+msgid "Enter your CNIC number to continue."
+msgstr "آگے بڑھنے کے لیے اپنا شناختی کارڈ نمبر درج کریں۔"
+
+#: accounts/cnic_form.py:56 accounts/identity.py:64
+msgid "This CNIC is already used by another account."
+msgstr "یہ شناختی کارڈ نمبر پہلے سے کسی اور اکاؤنٹ میں استعمال ہو رہا ہے۔"
+
+#: accounts/forms.py:13 templates/donors/profile.html:75
+msgid "Email"
+msgstr "ای میل"
+
+#: accounts/forms.py:25 accounts/forms.py:99 templates/donors/profile.html:74
+msgid "Username"
+msgstr "صارف نام"
+
+#: accounts/forms.py:29
+msgid "e.g. ali.raza"
+msgstr "مثلاً ali.raza"
+
+#: accounts/forms.py:32 accounts/forms.py:105
+msgid "Password"
+msgstr "پاس ورڈ"
+
+#: accounts/forms.py:38
+msgid "Confirm password"
+msgstr "پاس ورڈ دوبارہ لکھیں"
+
+#: accounts/forms.py:46
+msgid "That username is already taken. Please choose another."
+msgstr "یہ صارف نام پہلے سے لیا جا چکا ہے۔ براہِ کرم کوئی اور چنیں۔"
+
+#: accounts/forms.py:52
+msgid "An account with this email already exists. Try logging in instead."
+msgstr "اس ای میل سے پہلے ہی اکاؤنٹ موجود ہے۔ لاگ اِن کر کے دیکھیں۔"
+
+#: accounts/forms.py:59
+msgid "Remember me on this device"
+msgstr "اس ڈیوائس پر مجھے یاد رکھیں"
+
+#: accounts/forms.py:64
+msgid "That username and password don't match. Please check them and try again."
+msgstr "صارف نام اور پاس ورڈ میل نہیں کھاتے۔ براہِ کرم دوبارہ چیک کر کے کوشش کریں۔"
+
+#: accounts/forms.py:65
+msgid "This account is switched off. Please contact an administrator."
+msgstr "یہ اکاؤنٹ بند ہے۔ براہِ کرم ایڈمن سے رابطہ کریں۔"
+
+#: accounts/forms.py:66
+msgid "This account has been blocked by an admin, so it cannot sign in."
+msgstr "اس اکاؤنٹ کو ایڈمن نے بلاک کر دیا ہے، اس لیے یہ لاگ اِن نہیں ہو سکتا۔"
+
+#: accounts/forms.py:67
+msgid "Too many wrong attempts. Please wait a few minutes and try again."
+msgstr "بہت زیادہ غلط کوششیں۔ براہِ کرم چند منٹ انتظار کر کے دوبارہ کوشش کریں۔"
+
+#: accounts/forms.py:103
+msgid "Your username"
+msgstr "آپ کا صارف نام"
+
+#: accounts/identity.py:29
+msgid ""
+"This CNIC belonged to an account that an admin removed, so it cannot be used again. If you think "
+"this is a mistake, please contact an admin."
+msgstr ""
+"یہ شناختی کارڈ ایسے اکاؤنٹ کا تھا جسے ایڈمن نے ہٹا دیا، اس لیے اسے دوبارہ استعمال نہیں کیا جا "
+"سکتا۔ اگر آپ کو لگتا ہے کہ یہ غلطی ہے تو براہِ کرم ایڈمن سے رابطہ کریں۔"
+
+#: accounts/views.py:32
+msgid "Account created"
+msgstr "اکاؤنٹ بن گیا"
+
+#: accounts/views.py:32
+#, python-format
+msgid "Welcome, %(name)s. Your account is ready."
+msgstr "خوش آمدید، %(name)s۔ آپ کا اکاؤنٹ تیار ہے۔"
+
+#: accounts/views.py:71
+#, python-format
+msgid "Welcome back, %(name)s."
+msgstr "واپسی پر خوش آمدید، %(name)s۔"
+
+#: accounts/views.py:80
+msgid "You have been logged out."
+msgstr "آپ لاگ آؤٹ ہو گئے ہیں۔"
+
+#: blood_requests/forms.py:26 templates/components/dash_panel.html:36 templates/core/home.html:214
+msgid "Hospital"
+msgstr "ہسپتال"
+
+#: blood_requests/forms.py:35
+msgid "Patient's name"
+msgstr "مریض کا نام"
+
+#: blood_requests/forms.py:36
+msgid "Blood type needed"
+msgstr "درکار خون کا گروپ"
+
+#: blood_requests/forms.py:37 templates/blood_requests/detail.html:58
+msgid "Units needed"
+msgstr "درکار یونٹس"
+
+#: blood_requests/forms.py:38
+msgid "How urgent?"
+msgstr "کتنی جلدی ہے؟"
+
+#: blood_requests/forms.py:39 templates/blood_requests/detail.html:68
+msgid "Contact number"
+msgstr "رابطہ نمبر"
+
+#: blood_requests/forms.py:40
+msgid "Note for donors"
+msgstr "ڈونرز کے لیے نوٹ"
+
+#: blood_requests/forms.py:41
+msgid "Why is extra blood needed?"
+msgstr "اضافی خون کی ضرورت کیوں ہے؟"
+
+#: blood_requests/forms.py:48
+msgid "e.g. Ahmed Khan"
+msgstr "مثلاً احمد خان"
+
+#: blood_requests/forms.py:53 donors/forms.py:60
+msgid "Enter an 11-digit mobile number that starts with 03, e.g. 03001234567"
+msgstr "11 ہندسوں کا موبائل نمبر لکھیں جو 03 سے شروع ہو، مثلاً 03001234567"
+
+#: blood_requests/forms.py:56
+msgid "Ward, doctor's name, anything that helps a donor find you"
+msgstr "وارڈ، ڈاکٹر کا نام، یا کوئی بھی بات جس سے ڈونر آپ کو ڈھونڈ سکے"
+
+#: blood_requests/forms.py:59
+msgid "Who needs the extra blood, and why"
+msgstr "اضافی خون کس کو چاہیے اور کیوں"
+
+#: blood_requests/forms.py:72
+msgid "Choose the blood type needed."
+msgstr "درکار خون کا گروپ چنیں۔"
+
+#: blood_requests/forms.py:77 templates/core/home.html:202
+msgid "Choose the hospital"
+msgstr "ہسپتال چنیں"
+
+#: blood_requests/forms.py:96
+#, python-format
+msgid "A single request can ask for at most %(max)s units."
+msgstr "ایک درخواست میں زیادہ سے زیادہ %(max)s یونٹس مانگے جا سکتے ہیں۔"
+
+#: blood_requests/forms.py:107
+#, python-format
+msgid ""
+"You asked for %(units)s units, which is more than %(limit)s. Please explain why this much blood "
+"is needed, in a sentence or two."
+msgstr ""
+"آپ نے %(units)s یونٹس مانگے ہیں، جو %(limit)s سے زیادہ ہیں۔ براہِ کرم ایک دو جملوں میں بتائیں کہ "
+"اتنا خون کیوں چاہیے۔"
+
+#: blood_requests/forms.py:117
+msgid "Please choose a hospital from the list."
+msgstr "براہِ کرم فہرست میں سے ہسپتال چنیں۔"
+
+#: blood_requests/forms.py:127
+msgid "Why are you reporting this?"
+msgstr "آپ اس کی رپورٹ کیوں کر رہے ہیں؟"
+
+#: blood_requests/forms.py:127
+msgid "Anything else? (optional)"
+msgstr "کچھ اور؟ (اختیاری)"
+
+#: blood_requests/forms.py:129
+msgid "Optional details that would help an admin review this"
+msgstr "اختیاری تفصیل جو ایڈمن کو جائزہ لینے میں مدد دے"
+
+#: blood_requests/models.py:204
+msgid "Verified by admin"
+msgstr "ایڈمن نے تصدیق کی"
+
+#: blood_requests/models.py:204
+msgid "Verified by hospital"
+msgstr "ہسپتال نے تصدیق کی"
+
+#: blood_requests/services.py:35
+#, python-format
+msgid "You have reached your daily limit of %(limit)s blood requests. Please try again tomorrow."
+msgstr "آپ آج کی %(limit)s خون کی درخواستوں کی حد پوری کر چکے ہیں۔ براہِ کرم کل دوبارہ کوشش کریں۔"
+
+#: blood_requests/services.py:205
+msgid "Your account is blocked, so you can't offer to help."
+msgstr "آپ کا اکاؤنٹ بلاک ہے، اس لیے آپ مدد کی پیشکش نہیں کر سکتے۔"
+
+#: blood_requests/services.py:208
+msgid "Register as a donor first so requesters can see your details."
+msgstr "پہلے ڈونر کے طور پر رجسٹر ہوں تاکہ درخواست دینے والے آپ کی تفصیل دیکھ سکیں۔"
+
+#: blood_requests/services.py:210
+msgid "You can't respond to your own request."
+msgstr "آپ اپنی ہی درخواست کا جواب نہیں دے سکتے۔"
+
+#: blood_requests/services.py:212
+msgid "This request has already been fulfilled."
+msgstr "یہ درخواست پہلے ہی پوری ہو چکی ہے۔"
+
+#: blood_requests/services.py:214
+msgid "This request is closed."
+msgstr "یہ درخواست بند ہے۔"
+
+#: blood_requests/services.py:216
+msgid "This request has expired."
+msgstr "اس درخواست کی میعاد ختم ہو چکی ہے۔"
+
+#: blood_requests/services.py:218
+msgid "This request hasn't been verified or released yet."
+msgstr "اس درخواست کی ابھی تصدیق یا اجازت نہیں ہوئی۔"
+
+#: blood_requests/services.py:222
+#, python-format
+msgid "Your blood type (%(donor)s) can't be given to a %(patient)s patient."
+msgstr "آپ کا خون کا گروپ (%(donor)s) %(patient)s والے مریض کو نہیں دیا جا سکتا۔"
+
+#: blood_requests/services.py:228
+#, python-format
+msgid ""
+"This request is in %(request_city)s, but your donor profile says %(donor_city)s. You can offer to"
+" help requests in your own city. If you have moved, update your area on your donor profile."
+msgstr ""
+"یہ درخواست %(request_city)s میں ہے، لیکن آپ کی ڈونر پروفائل میں %(donor_city)s درج ہے۔ آپ صرف "
+"اپنے شہر کی درخواستوں میں مدد کی پیشکش کر سکتے ہیں۔ اگر آپ منتقل ہو گئے ہیں تو اپنی ڈونر پروفائل "
+"میں علاقہ بدل لیں۔"
+
+#: blood_requests/services.py:234
+msgid "You're marked as unavailable. Turn availability on first."
+msgstr "آپ دستیاب نہیں ہیں۔ پہلے دستیابی آن کریں۔"
+
+#: blood_requests/services.py:238
+#, python-format
+msgid "You're resting after your last donation until %(date)s."
+msgstr "آپ پچھلے عطیے کے بعد %(date)s تک آرام کر رہے ہیں۔"
+
+#: blood_requests/services.py:242
+msgid "You've already offered to help with this request."
+msgstr "آپ اس درخواست میں پہلے ہی مدد کی پیشکش کر چکے ہیں۔"
+
+#: blood_requests/services.py:249
+#, python-format
+msgid ""
+"You've already offered to help %(patient)s. You can offer here once that request is fulfilled or "
+"closed, or if you withdraw your offer."
+msgstr ""
+"آپ پہلے ہی %(patient)s کی مدد کی پیشکش کر چکے ہیں۔ جب وہ درخواست پوری یا بند ہو جائے، یا آپ اپنی "
+"پیشکش واپس لے لیں، تب آپ یہاں پیشکش کر سکتے ہیں۔"
+
+#: blood_requests/services.py:297
+msgid "You haven't offered to help with this request."
+msgstr "آپ نے اس درخواست میں مدد کی پیشکش نہیں کی۔"
+
+#: blood_requests/services.py:299
+msgid "This request is already closed, so the offer can't be withdrawn."
+msgstr "یہ درخواست پہلے ہی بند ہے، اس لیے پیشکش واپس نہیں لی جا سکتی۔"
+
+#: blood_requests/services.py:338
+msgid "A rejected request can't be marked fulfilled."
+msgstr "مسترد شدہ درخواست کو “پوری ہو گئی” نہیں لکھا جا سکتا۔"
+
+#: blood_requests/services.py:340
+msgid "A donor needs to offer to help before you can mark this fulfilled."
+msgstr "اسے “پوری ہو گئی” لکھنے سے پہلے کسی ڈونر کا مدد کی پیشکش کرنا ضروری ہے۔"
+
+#: blood_requests/services.py:366
+msgid "This request is already closed, so it can't be verified."
+msgstr "یہ درخواست پہلے ہی بند ہے، اس لیے اس کی تصدیق نہیں ہو سکتی۔"
+
+#: blood_requests/tracking.py:45 blood_requests/views.py:298 templates/core/home.html:164
+msgid "Request posted"
+msgstr "درخواست جمع ہو گئی"
+
+#: blood_requests/tracking.py:46
+msgid "The hospital and blood type were recorded."
+msgstr "ہسپتال اور خون کا گروپ درج کر لیا گیا۔"
+
+#: blood_requests/tracking.py:51 blood_requests/tracking.py:77 templates/blood_requests/detail.html:52
+#: templates/blood_requests/mine.html:33
+msgid "Waiting for an admin"
+msgstr "ایڈمن کے فیصلے کا انتظار"
+
+#: blood_requests/tracking.py:52
+#, python-format
+msgid ""
+"This asks for %(units)s units, more than the standard limit, so an admin has to approve it before"
+" donors can see it."
+msgstr ""
+"اس میں %(units)s یونٹس مانگے گئے ہیں، جو معیاری حد سے زیادہ ہیں، اس لیے ڈونرز کو دکھانے سے پہلے "
+"ایڈمن کی منظوری ضروری ہے۔"
+
+#: blood_requests/tracking.py:56 blood_requests/tracking.py:72
+msgid "Not approved"
+msgstr "منظور نہیں ہوئی"
+
+#: blood_requests/tracking.py:57
+msgid "An admin did not approve the extra units, so donors never saw this request."
+msgstr "ایڈمن نے اضافی یونٹس منظور نہیں کیے، اس لیے ڈونرز نے یہ درخواست کبھی نہیں دیکھی۔"
+
+#: blood_requests/tracking.py:60
+msgid "Verified by an admin"
+msgstr "ایڈمن نے تصدیق کی"
+
+#: blood_requests/tracking.py:60
+msgid "Verified by the hospital"
+msgstr "ہسپتال نے تصدیق کی"
+
+#: blood_requests/tracking.py:62
+msgid "An admin confirmed this request with the hospital, so donors can see it."
+msgstr "ایڈمن نے ہسپتال سے اس درخواست کی تصدیق کر لی، اس لیے ڈونرز اسے دیکھ سکتے ہیں۔"
+
+#: blood_requests/tracking.py:63
+#, python-format
+msgid "%(hospital)s confirmed this request, so donors can see it."
+msgstr "%(hospital)s نے اس درخواست کی تصدیق کر دی، اس لیے ڈونرز اسے دیکھ سکتے ہیں۔"
+
+#: blood_requests/tracking.py:67
+msgid "Approved by an admin"
+msgstr "ایڈمن نے منظور کی"
+
+#: blood_requests/tracking.py:67
+msgid "Released by an admin"
+msgstr "ایڈمن نے جاری کی"
+
+#: blood_requests/tracking.py:73
+#, python-format
+msgid "%(hospital)s did not verify it in time and an admin did not approve it, so donors never saw it."
+msgstr ""
+"%(hospital)s نے وقت پر تصدیق نہیں کی اور ایڈمن نے بھی منظور نہیں کی، اس لیے ڈونرز نے اسے کبھی "
+"نہیں دیکھا۔"
+
+#: blood_requests/tracking.py:78
+#, python-format
+msgid ""
+"%(hospital)s did not verify it in time, so an admin will approve or reject it. Donors cannot see "
+"it until then."
+msgstr ""
+"%(hospital)s نے وقت پر تصدیق نہیں کی، اس لیے ایڈمن اسے منظور یا مسترد کرے گا۔ تب تک ڈونرز اسے "
+"نہیں دیکھ سکتے۔"
+
+#: blood_requests/tracking.py:83
+msgid "Never reached donors"
+msgstr "ڈونرز تک نہیں پہنچی"
+
+#: blood_requests/tracking.py:84
+msgid "The request closed before it was verified or approved."
+msgstr "درخواست تصدیق یا منظوری سے پہلے ہی بند ہو گئی۔"
+
+#: blood_requests/tracking.py:87
+msgid "Waiting for the hospital"
+msgstr "ہسپتال کا انتظار"
+
+#: blood_requests/tracking.py:88
+#, python-format
+msgid "If %(hospital)s does not verify it in time, an admin decides whether donors see it."
+msgstr "اگر %(hospital)s وقت پر تصدیق نہ کرے تو ایڈمن فیصلہ کرے گا کہ ڈونرز اسے دیکھیں یا نہیں۔"
+
+#: blood_requests/tracking.py:94
+msgid "A donor offered to help"
+msgstr "ایک ڈونر نے مدد کی پیشکش کی"
+
+#: blood_requests/tracking.py:95
+#, python-format
+msgid "%(n)s donor said they can donate."
+msgid_plural "%(n)s donors said they can donate."
+msgstr[0] "%(n)s ڈونر نے کہا کہ وہ خون دے سکتا ہے۔"
+msgstr[1] "%(n)s ڈونرز نے کہا کہ وہ خون دے سکتے ہیں۔"
+
+#: blood_requests/tracking.py:99
+msgid "Waiting for a donor"
+msgstr "ڈونر کا انتظار"
+
+#: blood_requests/tracking.py:100
+msgid "Compatible donors nearby can see this request now."
+msgstr "قریب کے موزوں ڈونرز اب یہ درخواست دیکھ سکتے ہیں۔"
+
+#: blood_requests/tracking.py:102
+msgid "A donor offers to help"
+msgstr "ڈونر کی پیشکش"
+
+#: blood_requests/tracking.py:106 blood_requests/tracking.py:120
+msgid "Marked fulfilled"
+msgstr "پوری ہو گئی"
+
+#: blood_requests/tracking.py:107
+msgid "The requester confirmed the blood was arranged."
+msgstr "درخواست دینے والے نے تصدیق کی کہ خون کا انتظام ہو گیا۔"
+
+#: blood_requests/tracking.py:109 core/vocab.py:21
+msgid "Expired"
+msgstr "میعاد ختم"
+
+#: blood_requests/tracking.py:110
+msgid "The request ran out of time and is no longer shown."
+msgstr "درخواست کا وقت ختم ہو گیا اور اب نظر نہیں آتی۔"
+
+#: blood_requests/tracking.py:112 blood_requests/tracking.py:115 blood_requests/tracking.py:118
+#: core/templatetags/core_extras.py:196 templates/blood_requests/detail.html:61
+msgid "Closed"
+msgstr "بند"
+
+#: blood_requests/tracking.py:113
+msgid "The request was closed when the extra units were not approved."
+msgstr "اضافی یونٹس منظور نہ ہونے پر درخواست بند کر دی گئی۔"
+
+#: blood_requests/tracking.py:116
+msgid "The request was closed because an admin did not approve it."
+msgstr "ایڈمن کے منظور نہ کرنے پر درخواست بند کر دی گئی۔"
+
+#: blood_requests/tracking.py:121
+msgid "The requester closes the request once blood is arranged."
+msgstr "خون کا انتظام ہو جانے پر درخواست دینے والا درخواست بند کرتا ہے۔"
+
+#: blood_requests/views.py:61
+msgid ""
+"An admin has blocked this account from posting requests and offering to help, usually after "
+"reports about it. You can still sign in and see your own history. If you think this is a mistake,"
+" contact the site admin."
+msgstr ""
+"ایڈمن نے اس اکاؤنٹ کو درخواستیں دینے اور مدد کی پیشکش کرنے سے روک دیا ہے، عموماً اس کے بارے میں "
+"رپورٹس کے بعد۔ آپ اب بھی لاگ اِن کر کے اپنی ہسٹری دیکھ سکتے ہیں۔ اگر آپ کو لگتا ہے کہ یہ غلطی ہے "
+"تو سائٹ ایڈمن سے رابطہ کریں۔"
+
+#: blood_requests/views.py:77
+msgid "Most urgent"
+msgstr "سب سے فوری"
+
+#: blood_requests/views.py:78
+msgid "Newest first"
+msgstr "نئی پہلے"
+
+#: blood_requests/views.py:79
+msgid "Closing soon"
+msgstr "جلد بند ہونے والی"
+
+#: blood_requests/views.py:290
+msgid "Sent for review"
+msgstr "جائزے کے لیے بھیج دی گئی"
+
+#: blood_requests/views.py:291
+#, python-format
+msgid ""
+"You asked for %(units)s units, which is more than the standard %(limit)s. An admin will read your"
+" reason and decide before donors see this request. You can follow it from \"My requests.\""
+msgstr ""
+"آپ نے %(units)s یونٹس مانگے ہیں، جو معیاری %(limit)s سے زیادہ ہیں۔ ڈونرز کو دکھانے سے پہلے ایڈمن "
+"آپ کی وجہ پڑھ کر فیصلہ کرے گا۔ آپ اسے “میری درخواستیں” میں دیکھ سکتے ہیں۔"
+
+#: blood_requests/views.py:299
+#, python-format
+msgid ""
+"%(hospital)s needs to verify this request before donors can see it. You'll be able to track its "
+"status from \"My requests.\""
+msgstr ""
+"ڈونرز کو دکھانے سے پہلے %(hospital)s کو اس درخواست کی تصدیق کرنا ہوگی۔ آپ “میری درخواستیں” میں اس"
+" کی صورتحال دیکھ سکیں گے۔"
+
+#: blood_requests/views.py:355
+msgid "Only the person who posted this request can mark it fulfilled."
+msgstr "صرف درخواست دینے والا ہی اسے “پوری ہو گئی” لکھ سکتا ہے۔"
+
+#: blood_requests/views.py:363
+msgid "Marked as fulfilled. Thank you for updating the request."
+msgstr "“پوری ہو گئی” درج کر دیا گیا۔ درخواست اپ ڈیٹ کرنے کا شکریہ۔"
+
+#: blood_requests/views.py:385
+msgid ""
+"Thanks! The requester can now see that you're willing to help. The hospital will do the final "
+"medical screening."
+msgstr "شکریہ! درخواست دینے والا اب دیکھ سکتا ہے کہ آپ مدد کرنا چاہتے ہیں۔ ہسپتال آخری طبی معائنہ کرے گا۔"
+
+#: blood_requests/views.py:400
+msgid "Your offer was withdrawn. The requester has been told, and you can offer to help elsewhere."
+msgstr ""
+"آپ کی پیشکش واپس لے لی گئی۔ درخواست دینے والے کو بتا دیا گیا ہے، اور آپ کہیں اور مدد کی پیشکش کر "
+"سکتے ہیں۔"
+
+#: blood_requests/views.py:412
+msgid "Please choose a reason for the report."
+msgstr "براہِ کرم رپورٹ کی وجہ چنیں۔"
+
+#: blood_requests/views.py:423
+msgid "You've already reported this request. An admin will review it."
+msgstr "آپ پہلے ہی اس درخواست کی رپورٹ کر چکے ہیں۔ ایڈمن اس کا جائزہ لے گا۔"
+
+#: blood_requests/views.py:425
+msgid "Thanks for the report. An admin will review this request."
+msgstr "رپورٹ کا شکریہ۔ ایڈمن اس درخواست کا جائزہ لے گا۔"
+
+#: core/middleware.py:14
+msgid "This account has been blocked by an admin, so it cannot be used."
+msgstr "اس اکاؤنٹ کو ایڈمن نے بلاک کر دیا ہے، اس لیے اسے استعمال نہیں کیا جا سکتا۔"
+
+#: core/middleware.py:83
+msgid "You were logged out after a while without use. Please log in again."
+msgstr "کچھ دیر استعمال نہ کرنے پر آپ کو لاگ آؤٹ کر دیا گیا۔ براہِ کرم دوبارہ لاگ اِن کریں۔"
+
+#: blood_requests/services.py
+msgid "You are marked as unavailable, so requests are hidden. Turn your availability on to see them."
+msgstr "آپ کو غیر دستیاب کے طور پر نشان زد کیا گیا ہے، اس لیے درخواستیں چھپی ہوئی ہیں۔ انہیں دیکھنے کے لیے اپنی دستیابی آن کریں۔"
+
+#: blood_requests/services.py
+#, python-format
+msgid "You are in your resting period until %(date)s, so requests are hidden. They will appear again when you can donate."
+msgstr "آپ %(date)s تک آرام کے دورانیے میں ہیں، اس لیے درخواستیں چھپی ہوئی ہیں۔ جب آپ عطیہ دے سکیں گے تو یہ دوبارہ نظر آئیں گی۔"
+
+#: donors/views.py
+msgid "You can record a donation after you offer to help a request. Open a request and tap \"I can help\" first."
+msgstr "آپ کسی درخواست میں مدد کی پیشکش کرنے کے بعد عطیہ درج کر سکتے ہیں۔ پہلے کوئی درخواست کھولیں اور \"میں مدد کر سکتا ہوں\" دبائیں۔"
+
+#: templates/donors/profile.html
+msgid "After you offer to help a request, you can record your donation here."
+msgstr "کسی درخواست میں مدد کی پیشکش کرنے کے بعد آپ اپنا عطیہ یہاں درج کر سکتے ہیں۔"
+
+#: blood_requests
+msgid "You told the requester you are at the hospital. Show your name at the hospital desk."
+msgstr "آپ نے درخواست دہندہ کو بتایا ہے کہ آپ ہسپتال میں ہیں۔ ہسپتال کے ڈیسک پر اپنا نام دکھائیں۔"
+
+#: blood_requests
+msgid "Tell the requester and the hospital that you have reached the hospital?"
+msgstr "کیا آپ درخواست دہندہ اور ہسپتال کو بتانا چاہتے ہیں کہ آپ ہسپتال پہنچ گئے ہیں؟"
+
+#: blood_requests
+msgid "I've reached the hospital"
+msgstr "میں ہسپتال پہنچ گیا ہوں"
+
+#: blood_requests
+msgid "At the hospital"
+msgstr "ہسپتال میں"
+
+#: blood_requests
+#, python-format
+msgid "arrived %(ago)s"
+msgstr "%(ago)s پہنچا"
+
+#: blood_requests
+msgid "Thank you! The requester and the hospital have been told you are there. Show your name at the hospital desk."
+msgstr "شکریہ! درخواست دہندہ اور ہسپتال کو بتا دیا گیا ہے کہ آپ وہاں ہیں۔ ہسپتال کے ڈیسک پر اپنا نام دکھائیں۔"
+
+#: blood_requests
+msgid "This request is already closed."
+msgstr "یہ درخواست پہلے ہی بند ہو چکی ہے۔"
+
+#: blood_requests
+msgid "A donor reached the hospital"
+msgstr "ایک ڈونر ہسپتال پہنچ گیا"
+
+#: blood_requests
+msgid "A donor reaches the hospital"
+msgstr "ڈونر ہسپتال پہنچتا ہے"
+
+#: blood_requests
+msgid "The donor taps \"I've reached the hospital\" when they get there."
+msgstr "ڈونر وہاں پہنچ کر \"میں ہسپتال پہنچ گیا ہوں\" دباتا ہے۔"
+
+#: blood_requests
+#, python-format
+msgid "%(n)s donor is at the hospital."
+msgid_plural "%(n)s donors are at the hospital."
+msgstr[0] "%(n)s ڈونر ہسپتال میں ہے۔"
+msgstr[1] "%(n)s ڈونرز ہسپتال میں ہیں۔"
+
+#: blood_requests/services.py
+msgid "Another donor has already offered to help with this request. If they withdraw, it will open again."
+msgstr "ایک اور ڈونر پہلے ہی اس درخواست میں مدد کی پیشکش کر چکا ہے۔ اگر وہ پیشکش واپس لے لے تو یہ دوبارہ کھل جائے گی۔"
+
+#: blood_requests/templates
+msgid "Waiting for the hospital to verify"
+msgstr "ہسپتال کی تصدیق کا انتظار"
+
+#: templates/blood_requests/detail.html
+msgid "This request asks for %(units_needed)s units, which is more than the standard %(unit_limit)s. It stays hidden from donors until the hospital verifies it. If the hospital does not verify it in time, an admin decides."
+msgstr "اس درخواست میں %(units_needed)s یونٹس مانگے گئے ہیں، جو معیاری حد %(unit_limit)s سے زیادہ ہیں۔ جب تک ہسپتال تصدیق نہ کرے یہ ڈونرز سے چھپی رہے گی۔ اگر ہسپتال وقت پر تصدیق نہ کرے تو ایڈمن فیصلہ کرے گا۔"
+
+#: templates/blood_requests/detail.html
+msgid "Extra units accepted"
+msgstr "اضافی یونٹس منظور"
+
+#: templates/blood_requests/detail.html
+msgid "The hospital verified this request, so the %(units_needed)s units are accepted."
+msgstr "ہسپتال نے اس درخواست کی تصدیق کر دی ہے، اس لیے %(units_needed)s یونٹس منظور ہیں۔"
+
+#: templates/blood_requests/detail.html
+msgid "The hospital has to verify this request before donors can see it. If it does not in time, an admin decides. You will see the result here."
+msgstr "ڈونرز کے دیکھنے سے پہلے ہسپتال کو اس درخواست کی تصدیق کرنی ہوگی۔ اگر وہ وقت پر نہ کرے تو ایڈمن فیصلہ کرے گا۔ نتیجہ آپ کو یہاں نظر آئے گا۔"
+
+#: templates/hospitals/dashboard.html
+msgid "Verifying this request also accepts the extra units. If it is not verified in time, an admin decides."
+msgstr "اس درخواست کی تصدیق کرنے سے اضافی یونٹس بھی منظور ہو جاتے ہیں۔ اگر وقت پر تصدیق نہ ہوئی تو ایڈمن فیصلہ کرے گا۔"
+
+#: blood_requests/tracking.py
+msgid "This asks for %(units)s units, more than the standard limit. Donors can see it once the hospital verifies it; if it does not in time, an admin decides."
+msgstr "اس میں %(units)s یونٹس مانگے گئے ہیں، جو معیاری حد سے زیادہ ہیں۔ ہسپتال کی تصدیق کے بعد ڈونرز اسے دیکھ سکیں گے؛ اگر وہ وقت پر نہ کرے تو ایڈمن فیصلہ کرے گا۔"
+
+#: blood_requests/views.py
+msgid "%(hospital)s needs to verify this request before donors can see it. You asked for %(units)s units, more than the standard %(limit)s; if the hospital verifies it, the extra units are accepted. If it does not verify in time, an admin decides. You can follow it from \"My requests.\""
+msgstr "ڈونرز کے دیکھنے سے پہلے %(hospital)s کو اس درخواست کی تصدیق کرنی ہوگی۔ آپ نے %(units)s یونٹس مانگے ہیں، جو معیاری حد %(limit)s سے زیادہ ہیں؛ اگر ہسپتال تصدیق کر دے تو اضافی یونٹس منظور ہو جائیں گے۔ اگر وہ وقت پر تصدیق نہ کرے تو ایڈمن فیصلہ کرے گا۔ آپ اسے \"میری درخواستیں\" میں دیکھ سکتے ہیں۔"
+
+#: core/middleware.py:121
+msgid "Hospital accounts only use the verification desk. Use a separate account to donate blood."
+msgstr "ہسپتال اکاؤنٹس صرف تصدیقی ڈیسک استعمال کرتے ہیں۔ خون عطیہ کرنے کے لیے الگ اکاؤنٹ استعمال کریں۔"
+
+#: core/middleware.py
+msgid "Admin accounts only use the admin panel. Use a separate account to donate or ask for blood."
+msgstr ""
+"ایڈمن اکاؤنٹس صرف ایڈمن پینل استعمال کرتے ہیں۔ عطیہ دینے یا خون مانگنے کے لیے الگ اکاؤنٹ استعمال "
+"کریں۔"
+
+#: core/templatetags/core_extras.py:87
+#, python-format
+msgid "%(n)d year"
+msgid_plural "%(n)d years"
+msgstr[0] "%(n)d سال"
+msgstr[1] "%(n)d سال"
+
+#: core/templatetags/core_extras.py:88
+#, python-format
+msgid "%(n)d month"
+msgid_plural "%(n)d months"
+msgstr[0] "%(n)d مہینہ"
+msgstr[1] "%(n)d مہینے"
+
+#: core/templatetags/core_extras.py:89
+#, python-format
+msgid "%(n)d week"
+msgid_plural "%(n)d weeks"
+msgstr[0] "%(n)d ہفتہ"
+msgstr[1] "%(n)d ہفتے"
+
+#: core/templatetags/core_extras.py:90
+#, python-format
+msgid "%(n)d day"
+msgid_plural "%(n)d days"
+msgstr[0] "%(n)d دن"
+msgstr[1] "%(n)d دن"
+
+#: core/templatetags/core_extras.py:91
+#, python-format
+msgid "%(n)d hour"
+msgid_plural "%(n)d hours"
+msgstr[0] "%(n)d گھنٹہ"
+msgstr[1] "%(n)d گھنٹے"
+
+#: core/templatetags/core_extras.py:92
+#, python-format
+msgid "%(n)d minute"
+msgid_plural "%(n)d minutes"
+msgstr[0] "%(n)d منٹ"
+msgstr[1] "%(n)d منٹ"
+
+#: core/templatetags/core_extras.py:100 core/templatetags/core_extras.py:105
+msgid "under a minute"
+msgstr "ایک منٹ سے کم"
+
+#: core/templatetags/core_extras.py:115
+msgid "just now"
+msgstr "ابھی ابھی"
+
+#: core/templatetags/core_extras.py:116
+#, python-format
+msgid "%(span)s ago"
+msgstr "%(span)s پہلے"
+
+#: core/templatetags/core_extras.py:192 templates/partials/messages.html:14
+msgid "Dismiss this message"
+msgstr "یہ پیغام بند کریں"
+
+#: core/templatetags/core_extras.py:193
+msgid "Switch to light mode"
+msgstr "لائٹ موڈ لگائیں"
+
+#: core/templatetags/core_extras.py:194 templates/partials/navbar.html:66
+msgid "Switch to dark mode"
+msgstr "ڈارک موڈ لگائیں"
+
+#: core/templatetags/core_extras.py:195
+msgid "Closes in "
+msgstr "بند ہونے میں "
+
+#: core/templatetags/core_extras.py:197 templates/base.html:51
+msgid "Done"
+msgstr "ہو گیا"
+
+#: core/templatetags/core_extras.py:198
+msgid "Hide password"
+msgstr "پاس ورڈ چھپائیں"
+
+#: core/templatetags/core_extras.py:199 templates/components/form_field.html:8
+msgid "Show password"
+msgstr "پاس ورڈ دکھائیں"
+
+#: core/templatetags/core_extras.py:200
+msgid "Steps"
+msgstr "مراحل"
+
+#: core/templatetags/core_extras.py:201
+msgid "Back"
+msgstr "پیچھے"
+
+#: core/templatetags/core_extras.py:202
+msgid "Next"
+msgstr "آگے"
+
+#: core/templatetags/core_extras.py:203
+msgid "Please wait..."
+msgstr "براہِ کرم انتظار کریں..."
+
+#: core/templatetags/core_extras.py:204
+msgid "(required)"
+msgstr "(ضروری)"
+
+#: core/templatetags/core_extras.py:205 templates/components/form_field.html:3
+msgid "(optional)"
+msgstr "(اختیاری)"
+
+#: core/templatetags/core_extras.py:206
+msgid "Open the side panel"
+msgstr "سائیڈ پینل کھولیں"
+
+#: core/templatetags/core_extras.py:207 templates/components/dash_panel.html:52
+msgid "Fold the side panel"
+msgstr "سائیڈ پینل سمیٹیں"
+
+#: core/templatetags/core_extras.py:208
+msgid "Please confirm"
+msgstr "براہِ کرم تصدیق کریں"
+
+#: core/templatetags/core_extras.py:209 templates/blood_requests/detail.html:185
+msgid "Close"
+msgstr "بند کریں"
+
+#: core/templatetags/core_extras.py:210 templates/blood_requests/detail.html:193
+msgid "Cancel"
+msgstr "منسوخ کریں"
+
+#: core/templatetags/core_extras.py:211
+msgid "Yes, continue"
+msgstr "ہاں، جاری رکھیں"
+
+#: core/templatetags/core_extras.py:212 templates/notifications/_bell.html:8
+#: templates/notifications/inbox.html:11
+msgid "Notifications"
+msgstr "اطلاعات"
+
+#: core/templatetags/core_extras.py:213 templates/notifications/_bell.html:8
+#, python-format
+msgid "Notifications, %(n)s unread"
+msgstr "اطلاعات، %(n)s نئی"
+
+#: core/templatetags/core_extras.py:214
+#, python-format
+msgid "%(d)sd %(h)sh"
+msgstr "%(d)s دن %(h)s گھنٹے"
+
+#: core/templatetags/core_extras.py:215
+#, python-format
+msgid "%(h)sh %(m)sm"
+msgstr "%(h)s گھنٹے %(m)s منٹ"
+
+#: core/templatetags/core_extras.py:216
+#, python-format
+msgid "%(m)sm %(s)ss"
+msgstr "%(m)s منٹ %(s)s سیکنڈ"
+
+#: core/templatetags/core_extras.py:218
+#, python-format
+msgid ""
+"%(units)s units is more than %(limit)s. An admin has to approve this request before donors can "
+"see it, so please explain why this much blood is needed."
+msgstr ""
+"%(units)s یونٹس %(limit)s سے زیادہ ہیں۔ ڈونرز کو دکھانے سے پہلے ایڈمن کو اسے منظور کرنا ہوگا، اس "
+"لیے براہِ کرم بتائیں کہ اتنا خون کیوں چاہیے۔"
+
+#: core/templatetags/core_extras.py:220
+#, python-format
+msgid "A patient with %(type)s blood can receive red blood cells from: %(list)s."
+msgstr "%(type)s خون والا مریض ان سے سرخ خلیات لے سکتا ہے: %(list)s۔"
+
+#: core/templatetags/core_extras.py:221
+#, python-format
+msgid " (%(n)s of %(total)s types)"
+msgstr " (%(total)s میں سے %(n)s گروپ)"
+
+#: core/templatetags/core_extras.py:222
+msgid " O− patients can only receive O−."
+msgstr " O− والے مریض صرف O− لے سکتے ہیں۔"
+
+#: core/templatetags/core_extras.py:223
+msgid " AB+ is the universal recipient."
+msgstr " AB+ ہر گروپ سے خون لے سکتا ہے۔"
+
+#: core/validators.py:12
+msgid "Enter an 11-digit mobile number that starts with 03, e.g. 03001234567."
+msgstr "11 ہندسوں کا موبائل نمبر لکھیں جو 03 سے شروع ہو، مثلاً 03001234567۔"
+
+#: core/validators.py:19
+msgid "Enter all 13 digits of the CNIC, numbers only."
+msgstr "شناختی کارڈ کے تمام 13 ہندسے لکھیں، صرف نمبر۔"
+
+#: core/validators.py:27
+msgid "This date cannot be in the future."
+msgstr "یہ تاریخ مستقبل کی نہیں ہو سکتی۔"
+
+#: core/views.py:91
+msgid "Find a blood donor in minutes, not hours"
+msgstr "منٹوں میں خون کا ڈونر ڈھونڈیں، گھنٹوں میں نہیں"
+
+#: core/vocab.py:19
+msgid "Normal"
+msgstr "عام"
+
+#: core/vocab.py:19
+msgid "Critical"
+msgstr "ہنگامی"
+
+#: core/vocab.py:19 templates/core/home.html:213
+msgid "Urgent"
+msgstr "فوری"
+
+#: core/vocab.py:21
+msgid "Pending"
+msgstr "زیرِ انتظار"
+
+#: core/vocab.py:21
+msgid "Rejected"
+msgstr "مسترد"
+
+#: core/vocab.py:21 templates/blood_requests/detail.html:61
+msgid "Fulfilled"
+msgstr "پوری ہو گئی"
+
+#: core/vocab.py:23
+msgid "Fake or hoax"
+msgstr "جعلی یا جھوٹی"
+
+#: core/vocab.py:23
+msgid "Already fulfilled elsewhere"
+msgstr "کہیں اور پوری ہو چکی"
+
+#: core/vocab.py:23
+msgid "Spam or advertising"
+msgstr "سپیم یا اشتہار"
+
+#: core/vocab.py:24
+msgid "Inappropriate content"
+msgstr "نامناسب مواد"
+
+#: core/vocab.py:24 donors/health.py:11
+msgid "Other"
+msgstr "دیگر"
+
+#: core/vocab.py:26
+msgid "Admin released — not hospital verified."
+msgstr "ایڈمن نے جاری کی — ہسپتال سے تصدیق شدہ نہیں۔"
+
+#: core/vocab.py:27
+msgid "Admin approved — not hospital verified."
+msgstr "ایڈمن نے منظور کی — ہسپتال سے تصدیق شدہ نہیں۔"
+
+#: core/vocab.py:29
+msgid "Nothing waiting"
+msgstr "کچھ بھی انتظار میں نہیں"
+
+#: core/vocab.py:30
+msgid "No matching requests"
+msgstr "کوئی موزوں درخواست نہیں"
+
+#: core/vocab.py:31
+msgid "Try a different blood type or city."
+msgstr "کوئی اور خون کا گروپ یا شہر آزمائیں۔"
+
+#: core/vocab.py:32 templates/core/home.html:217
+msgid "Post request"
+msgstr "درخواست جمع کریں"
+
+#: core/vocab.py:33 templates/accounts/signup.html:20 templates/partials/footer.html:24
+#: templates/partials/navbar.html:80
+msgid "Log in"
+msgstr "لاگ اِن"
+
+#: core/vocab.py:34
+msgid "Create account"
+msgstr "اکاؤنٹ بنائیں"
+
+#: core/vocab.py:35 templates/donors/profile.html:63
+msgid "No matching requests right now"
+msgstr "ابھی کوئی موزوں درخواست نہیں"
+
+#: core/vocab.py:36
+msgid "No donors found"
+msgstr "کوئی ڈونر نہیں ملا"
+
+#: core/vocab.py:37
+msgid "Search to see donors"
+msgstr "ڈونرز دیکھنے کے لیے تلاش کریں"
+
+#: core/vocab.py:38
+msgid "Choose a blood type, a city, or both, to see available donors."
+msgstr "دستیاب ڈونرز دیکھنے کے لیے خون کا گروپ، شہر، یا دونوں چنیں۔"
+
+#: core/vocab.py:39 templates/components/live_strip.html:28
+msgid "No open requests right now"
+msgstr "ابھی کوئی کھلی درخواست نہیں"
+
+#: core/vocab.py:40
+msgid "No donors registered yet"
+msgstr "ابھی تک کوئی ڈونر رجسٹر نہیں ہوا"
+
+#: core/vocab.py:41 templates/core/home.html:35 templates/core/home.html:37
+#: templates/core/home.html:231 templates/dashboard/overview.html:22 templates/donors/edit.html:3
+#: templates/donors/edit.html:12 templates/partials/footer.html:15
+msgid "Become a donor"
+msgstr "ڈونر بنیں"
+
+#: core/vocab.py:42
+msgid "When someone posts a request it appears here first."
+msgstr "جب کوئی درخواست دیتا ہے تو وہ سب سے پہلے یہاں نظر آتی ہے۔"
+
+#: core/vocab.py:43
+msgid "Save"
+msgstr "محفوظ کریں"
+
+#: donors/forms.py:21
+msgid "Your area"
+msgstr "آپ کا علاقہ"
+
+#: donors/forms.py:25
+msgid "Existing diseases or medical conditions"
+msgstr "موجودہ بیماریاں یا طبی مسائل"
+
+#: donors/forms.py:26
+msgid "Choose at least one. Choose None if you have no known condition."
+msgstr "کم از کم ایک چنیں۔ اگر کوئی معلوم بیماری نہیں تو “کوئی نہیں” چنیں۔"
+
+#: donors/forms.py:31
+msgid "I have never donated blood before"
+msgstr "میں نے پہلے کبھی خون عطیہ نہیں کیا"
+
+#: donors/forms.py:39
+msgid "Full name"
+msgstr "پورا نام"
+
+#: donors/forms.py:40 templates/donors/profile.html:77
+msgid "Mobile number"
+msgstr "موبائل نمبر"
+
+#: donors/forms.py:41 templates/blood_requests/list.html:63 templates/components/blood_badge.html:1
+#: templates/core/home.html:212 templates/core/home.html:236 templates/donors/profile.html:76
+msgid "Blood type"
+msgstr "خون کا گروپ"
+
+#: donors/forms.py:42
+msgid "Date of your last donation"
+msgstr "آپ کے آخری عطیے کی تاریخ"
+
+#: donors/forms.py:43
+msgid "Weight (kg)"
+msgstr "وزن (کلو)"
+
+#: donors/forms.py:44
+msgid "Height (cm)"
+msgstr "قد (سینٹی میٹر)"
+
+#: donors/forms.py:45
+msgid "Tell us which condition"
+msgstr "بتائیں کون سی بیماری ہے"
+
+#: donors/forms.py:46 templates/dashboard/overview.html:17 templates/donors/profile.html:36
+msgid "Available to donate"
+msgstr "عطیہ دینے کے لیے دستیاب"
+
+#: donors/forms.py:47
+msgid "People with a matching blood request may see my phone number"
+msgstr "موزوں خون کی درخواست والے لوگ میرا فون نمبر دیکھ سکتے ہیں"
+
+#: donors/forms.py:48
+msgid "I confirm I am 18 or older and in good health"
+msgstr "میری تصدیق ہے کہ میری عمر 18 سال یا اس سے زیادہ ہے اور میں صحت مند ہوں"
+
+#: donors/forms.py:51
+msgid "Needed so we know when you can give again (90 days after)."
+msgstr "تاکہ ہمیں معلوم ہو کہ آپ دوبارہ کب عطیہ دے سکتے ہیں (90 دن بعد)۔"
+
+#: donors/forms.py:52
+msgid "Only signed-in users with an open, matching request can see it. It is never shown publicly."
+msgstr ""
+"صرف لاگ اِن صارفین جن کی کوئی کھلی موزوں درخواست ہو، اسے دیکھ سکتے ہیں۔ یہ کبھی عوام کو نہیں "
+"دکھایا جاتا۔"
+
+#: donors/forms.py:53
+msgid "I understand that a hospital or blood bank will screen me before any donation."
+msgstr "مجھے معلوم ہے کہ کسی بھی عطیے سے پہلے ہسپتال یا بلڈ بینک میرا معائنہ کرے گا۔"
+
+#: donors/forms.py:56
+msgid "e.g. Ali Raza"
+msgstr "مثلاً علی رضا"
+
+#: donors/forms.py:64
+msgid "Type the condition"
+msgstr "بیماری لکھیں"
+
+#: donors/forms.py:76
+msgid "Choose your blood type."
+msgstr "اپنا خون کا گروپ چنیں۔"
+
+#: donors/forms.py:81
+msgid "Choose your area"
+msgstr "اپنا علاقہ چنیں"
+
+#: donors/forms.py:101
+msgid "Please tick this so requesters can contact you."
+msgstr "براہِ کرم اس پر نشان لگائیں تاکہ درخواست دینے والے آپ سے رابطہ کر سکیں۔"
+
+#: donors/forms.py:103
+msgid "Please confirm this to register as a donor."
+msgstr "ڈونر کے طور پر رجسٹر ہونے کے لیے براہِ کرم اس کی تصدیق کریں۔"
+
+#: donors/forms.py:108
+msgid "Choose None on its own, or pick the conditions you have."
+msgstr "“کوئی نہیں” اکیلا چنیں، یا جو بیماریاں ہیں وہ چنیں۔"
+
+#: donors/forms.py:118
+msgid "Enter the date you last donated, or tick “I have never donated blood before”."
+msgstr "آخری عطیے کی تاریخ لکھیں، یا “میں نے پہلے کبھی خون عطیہ نہیں کیا” پر نشان لگائیں۔"
+
+#: donors/forms.py:122
+msgid "Tell us which condition."
+msgstr "بتائیں کون سی بیماری ہے۔"
+
+#: donors/forms.py:139
+msgid "Please choose your area from the list."
+msgstr "براہِ کرم فہرست میں سے اپنا علاقہ چنیں۔"
+
+#: donors/health.py:5
+msgid "None"
+msgstr "کوئی نہیں"
+
+#: donors/health.py:6
+msgid "Diabetes"
+msgstr "ذیابیطس"
+
+#: donors/health.py:7
+msgid "High blood pressure"
+msgstr "ہائی بلڈ پریشر"
+
+#: donors/health.py:8
+msgid "Heart disease"
+msgstr "دل کی بیماری"
+
+#: donors/health.py:9
+msgid "Anaemia"
+msgstr "خون کی کمی"
+
+#: donors/health.py:10
+msgid "Hepatitis or HIV"
+msgstr "ہیپاٹائٹس یا ایچ آئی وی"
+
+#: donors/views.py:40
+msgid "Good morning"
+msgstr "صبح بخیر"
+
+#: donors/views.py:42
+msgid "Good afternoon"
+msgstr "دوپہر بخیر"
+
+#: donors/views.py:43
+msgid "Good evening"
+msgstr "شام بخیر"
+
+#: donors/views.py:90
+msgid "You're a donor now"
+msgstr "اب آپ ڈونر ہیں"
+
+#: donors/views.py:90
+#, python-format
+msgid "Thank you, %(name)s. Matching requests will appear on your dashboard."
+msgstr "شکریہ، %(name)s۔ موزوں درخواستیں آپ کے ڈیش بورڈ پر نظر آئیں گی۔"
+
+#: donors/views.py:92
+msgid "Your donor profile has been updated."
+msgstr "آپ کی ڈونر پروفائل اپ ڈیٹ ہو گئی۔"
+
+#: donors/views.py:108
+msgid "You are now available to donate."
+msgstr "اب آپ عطیہ دینے کے لیے دستیاب ہیں۔"
+
+#: donors/views.py:108
+msgid "You are now marked as not available."
+msgstr "اب آپ دستیاب نہیں ہیں۔"
+
+#: donors/views.py:120
+msgid "You've already recorded a donation for today."
+msgstr "آپ آج کے لیے عطیہ پہلے ہی درج کر چکے ہیں۔"
+
+#: donors/views.py:124
+#, python-format
+msgid "Thank you for donating. You can donate again on %(date)s."
+msgstr "عطیہ دینے کا شکریہ۔ آپ %(date)s کو دوبارہ عطیہ دے سکتے ہیں۔"
+
+#: hospitals/views.py:31 hospitals/views.py:67
+msgid "This account isn't linked to a hospital."
+msgstr "یہ اکاؤنٹ کسی ہسپتال سے منسلک نہیں۔"
+
+#: hospitals/views.py:71
+msgid "This request belongs to a different hospital."
+msgstr "یہ درخواست کسی دوسرے ہسپتال کی ہے۔"
+
+#: hospitals/views.py:73
+msgid "You can't verify a request you posted yourself. Ask another staff member to verify it."
+msgstr "آپ اپنی ہی دی ہوئی درخواست کی تصدیق نہیں کر سکتے۔ کسی اور اسٹاف ممبر سے تصدیق کروائیں۔"
+
+#: hospitals/views.py:85
+#, python-format
+msgid ""
+"Verified. %(patient)s's request asks for extra units, so it becomes visible once an admin "
+"approves them."
+msgstr ""
+"تصدیق ہو گئی۔ %(patient)s کی درخواست میں اضافی یونٹس مانگے گئے ہیں، اس لیے ایڈمن کی منظوری کے بعد"
+" ہی نظر آئے گی۔"
+
+#: hospitals/views.py:89
+#, python-format
+msgid "Verified. %(patient)s's request is now visible to donors."
+msgstr "تصدیق ہو گئی۔ %(patient)s کی درخواست اب ڈونرز کو نظر آ رہی ہے۔"
+
+#: templates/403.html:3
+#, python-format
+msgid "Not allowed | %(SITE_NAME)s"
+msgstr "اجازت نہیں | %(SITE_NAME)s"
+
+#: templates/403.html:14
+msgid "You can't do that"
+msgstr "آپ یہ نہیں کر سکتے"
+
+#: templates/403.html:17 templates/404.html:17 templates/500.html:25
+msgid "Back to home"
+msgstr "ہوم پر واپس جائیں"
+
+#: templates/403.html:18 templates/404.html:18
+msgid "See open requests"
+msgstr "کھلی درخواستیں دیکھیں"
+
+#: templates/404.html:3
+#, python-format
+msgid "Page not found | %(SITE_NAME)s"
+msgstr "صفحہ نہیں ملا | %(SITE_NAME)s"
+
+#: templates/404.html:14
+msgid "We can't find that page"
+msgstr "ہمیں وہ صفحہ نہیں مل رہا"
+
+#: templates/404.html:15
+msgid "The link may be old, or the page may have moved. Let's get you back to something useful."
+msgstr "ہو سکتا ہے لنک پرانا ہو، یا صفحہ ہٹ گیا ہو۔ آئیے آپ کو کسی کام کی جگہ پر واپس لے چلیں۔"
+
+#: templates/500.html:6
+msgid "Something went wrong"
+msgstr "کچھ گڑبڑ ہو گئی"
+
+#: templates/500.html:23
+msgid "Something went wrong on our side"
+msgstr "ہماری طرف کچھ گڑبڑ ہو گئی"
+
+#: templates/500.html:24
+msgid ""
+"We hit an unexpected problem and it has been noted. Please try again in a moment. If someone "
+"needs blood urgently, contact the hospital's blood bank directly."
+msgstr ""
+"ہمیں ایک غیر متوقع مسئلہ پیش آیا ہے اور اس کا اندراج کر لیا گیا ہے۔ براہِ کرم کچھ دیر بعد دوبارہ "
+"کوشش کریں۔ اگر کسی کو فوری خون چاہیے تو براہِ راست ہسپتال کے بلڈ بینک سے رابطہ کریں۔"
+
+#: templates/accounts/auth_base.html:15 templates/core/home.html:26
+msgid "Post. Match."
+msgstr "درخواست دیں۔ ملاپ پائیں۔"
+
+#: templates/accounts/auth_base.html:15 templates/core/home.html:26
+msgid "Donate."
+msgstr "عطیہ دیں۔"
+
+#: templates/accounts/auth_base.html:16 templates/partials/footer.html:10
+msgid "Helping people who need blood find willing, compatible donors nearby, faster than word of mouth."
+msgstr "خون کے ضرورت مند افراد کو قریب کے رضامند اور موزوں ڈونرز تک جلدی پہنچانا، زبانی کلامی سے کہیں تیز۔"
+
+#: templates/accounts/login.html:3
+#, python-format
+msgid "Log in | %(SITE_NAME)s"
+msgstr "لاگ اِن | %(SITE_NAME)s"
+
+#: templates/accounts/login.html:5
+msgid "Welcome back"
+msgstr "خوش آمدید"
+
+#: templates/accounts/login.html:6
+msgid "Log in to your account"
+msgstr "اپنے اکاؤنٹ میں لاگ اِن کریں"
+
+#: templates/accounts/login.html:16
+msgid "New here?"
+msgstr "نئے ہیں؟"
+
+#: templates/accounts/login.html:16
+msgid "Create an account"
+msgstr "اکاؤنٹ بنائیں"
+
+#: templates/accounts/signup.html:3
+#, python-format
+msgid "Create an account | %(SITE_NAME)s"
+msgstr "اکاؤنٹ بنائیں | %(SITE_NAME)s"
+
+#: templates/accounts/signup.html:5
+msgid "Create your account"
+msgstr "اپنا اکاؤنٹ بنائیں"
+
+#: templates/accounts/signup.html:6
+msgid "Four quick boxes, then you are in"
+msgstr "بس چار خانے بھریں، اور آپ اندر"
+
+#: templates/accounts/signup.html:19
+msgid "We never see or email your password. Phone numbers are only shown to signed-in users."
+msgstr ""
+"ہم آپ کا پاس ورڈ نہ کبھی دیکھتے ہیں نہ ای میل کرتے ہیں۔ فون نمبر صرف لاگ اِن صارفین کو دکھائے "
+"جاتے ہیں۔"
+
+#: templates/accounts/signup.html:20
+msgid "Already have an account?"
+msgstr "پہلے سے اکاؤنٹ ہے؟"
+
+#: templates/base.html:31
+msgid "Skip to main content"
+msgstr "مرکزی مواد پر جائیں"
+
+#: templates/base.html:53
+msgid "Continue"
+msgstr "جاری رکھیں"
+
+#: templates/blood_requests/detail.html:4
+#, python-format
+msgid "%(blood_type)s needed at %(name)s | %(SITE_NAME)s"
+msgstr "%(name)s میں %(blood_type)s درکار ہے | %(SITE_NAME)s"
+
+#: templates/blood_requests/detail.html:10
+msgid "All requests"
+msgstr "تمام درخواستیں"
+
+#: templates/blood_requests/detail.html:16
+#, python-format
+msgid "Match found! %(n)s compatible donor nearby"
+msgid_plural "Match found! %(n)s compatible donors nearby"
+msgstr[0] "ملاپ مل گیا! قریب میں %(n)s موزوں ڈونر"
+msgstr[1] "ملاپ مل گیا! قریب میں %(n)s موزوں ڈونرز"
+
+#: templates/blood_requests/detail.html:17
+msgid "See who's ready under \"Donors ready nearby\", or wait for someone to tap \"I can help.\""
+msgstr ""
+"“قریبی تیار ڈونرز” میں دیکھیں کون تیار ہے، یا کسی کے “میں مدد کے لیے تیار ہوں” دبانے کا انتظار "
+"کریں۔"
+
+#: templates/blood_requests/detail.html:25
+#, python-format
+msgid "%(blood_type)s needed for %(patient_name)s"
+msgstr "%(patient_name)s کے لیے %(blood_type)s درکار"
+
+#: templates/blood_requests/detail.html:30 templates/blood_requests/mine.html:45
+msgid "Mark this request as fulfilled? It will no longer be shown as open."
+msgstr "کیا اس درخواست کو “پوری ہو گئی” لکھ دیں؟ پھر یہ کھلی درخواست کے طور پر نہیں دکھائی جائے گی۔"
+
+#: templates/blood_requests/detail.html:32 templates/blood_requests/detail.html:36
+#: templates/blood_requests/mine.html:47 templates/blood_requests/mine.html:51
+msgid "Mark fulfilled"
+msgstr "پوری ہو گئی لکھیں"
+
+#: templates/blood_requests/detail.html:37 templates/blood_requests/mine.html:52
+msgid "Available once a donor offers to help"
+msgstr "جب کوئی ڈونر مدد کی پیشکش کرے تو یہ دستیاب ہوگا"
+
+#: templates/blood_requests/detail.html:47
+#, python-format
+msgid "Request #%(pk)s"
+msgstr "درخواست #%(pk)s"
+
+#: templates/blood_requests/detail.html:53 templates/blood_requests/mine.html:34
+msgid "Extra units awaiting an admin"
+msgstr "اضافی یونٹس ایڈمن کے انتظار میں"
+
+#: templates/blood_requests/detail.html:56
+#, python-format
+msgid "Requested %(created_at)s"
+msgstr "درخواست دی گئی: %(created_at)s"
+
+#: templates/blood_requests/detail.html:56 templates/dashboard/overview.html:28
+#, python-format
+msgid "%(n)s donor offered to help"
+msgid_plural "%(n)s donors offered to help"
+msgstr[0] "%(n)s ڈونر نے مدد کی پیشکش کی"
+msgstr[1] "%(n)s ڈونرز نے مدد کی پیشکش کی"
+
+#: templates/blood_requests/detail.html:59
+msgid "Posted"
+msgstr "دی گئی"
+
+#: templates/blood_requests/detail.html:61
+msgid "Closes"
+msgstr "بند ہوگی"
+
+#: templates/blood_requests/detail.html:64
+#, python-format
+msgid "in %(expires_at)s"
+msgstr "%(expires_at)s میں"
+
+#: templates/blood_requests/detail.html:71
+msgid "The contact number is shown to the requester, the hospital and donors who offer to help."
+msgstr "رابطہ نمبر درخواست دینے والے، ہسپتال اور مدد کی پیشکش کرنے والے ڈونرز کو دکھایا جاتا ہے۔"
+
+#: templates/blood_requests/detail.html:78
+msgid "Waiting for an admin to approve the extra units"
+msgstr "ایڈمن کی طرف سے اضافی یونٹس کی منظوری کا انتظار"
+
+#: templates/blood_requests/detail.html:79
+#, python-format
+msgid ""
+"This request asks for %(units_needed)s units, which is more than the standard %(unit_limit)s. It "
+"stays hidden from donors until an admin decides."
+msgstr ""
+"اس درخواست میں %(units_needed)s یونٹس مانگے گئے ہیں، جو معیاری %(unit_limit)s سے زیادہ ہیں۔ ایڈمن"
+" کے فیصلے تک یہ ڈونرز سے چھپی رہے گی۔"
+
+#: templates/blood_requests/detail.html:81
+msgid "Extra units approved"
+msgstr "اضافی یونٹس منظور"
+
+#: templates/blood_requests/detail.html:82
+#, python-format
+msgid "An admin approved %(units_needed)s units"
+msgstr "ایڈمن نے %(units_needed)s یونٹس منظور کیے"
+
+#: templates/blood_requests/detail.html:84
+msgid "Extra units not approved"
+msgstr "اضافی یونٹس منظور نہیں ہوئے"
+
+#: templates/blood_requests/detail.html:85
+#, python-format
+msgid "An admin did not approve %(units_needed)s units, so this request was closed."
+msgstr "ایڈمن نے %(units_needed)s یونٹس منظور نہیں کیے، اس لیے یہ درخواست بند کر دی گئی۔"
+
+#: templates/blood_requests/detail.html:85
+#, python-format
+msgid "Decided %(reviewed_at)s."
+msgstr "فیصلہ: %(reviewed_at)s۔"
+
+#: templates/blood_requests/detail.html:87
+msgid "Reason given"
+msgstr "بتائی گئی وجہ"
+
+#: templates/blood_requests/detail.html:88
+msgid "Admin's note"
+msgstr "ایڈمن کا نوٹ"
+
+#: templates/blood_requests/detail.html:93
+msgid "Sign in"
+msgstr "لاگ اِن کریں"
+
+#: templates/blood_requests/detail.html:93
+msgid "to offer to help."
+msgstr "تاکہ مدد کی پیشکش کر سکیں۔"
+
+#: templates/blood_requests/detail.html:95
+msgid "Let the requester know you're willing to donate?"
+msgstr "کیا درخواست دینے والے کو بتا دیں کہ آپ عطیہ دینے کو تیار ہیں؟"
+
+#: templates/blood_requests/detail.html:97
+msgid "I can help"
+msgstr "میں مدد کے لیے تیار ہوں"
+
+#: templates/blood_requests/detail.html:100
+msgid "You've offered to help with this request. The hospital will do the final medical screening."
+msgstr "آپ نے اس درخواست میں مدد کی پیشکش کی ہے۔ ہسپتال آخری طبی معائنہ کرے گا۔"
+
+#: templates/blood_requests/detail.html:102
+msgid "Withdraw your offer? The requester will be told, and you can offer to help elsewhere."
+msgstr ""
+"اپنی پیشکش واپس لیں؟ درخواست دینے والے کو بتا دیا جائے گا، اور آپ کہیں اور مدد کی پیشکش کر سکتے "
+"ہیں۔"
+
+#: templates/blood_requests/detail.html:104
+msgid "Withdraw my offer"
+msgstr "میری پیشکش واپس لیں"
+
+#: templates/blood_requests/detail.html:108
+msgid "Open that request"
+msgstr "وہ درخواست کھولیں"
+
+#: templates/blood_requests/detail.html:111
+msgid ""
+"An admin has to approve the extra units before donors can see this request. You will see their "
+"decision here."
+msgstr ""
+"ڈونرز کو یہ درخواست دکھانے سے پہلے ایڈمن کو اضافی یونٹس منظور کرنے ہوں گے۔ آپ کو ان کا فیصلہ یہاں"
+" نظر آئے گا۔"
+
+#: templates/blood_requests/detail.html:113
+msgid ""
+"This request was not approved, so donors never saw it. You can post a new request that fits the "
+"limit."
+msgstr ""
+"یہ درخواست منظور نہیں ہوئی، اس لیے ڈونرز نے اسے کبھی نہیں دیکھا۔ آپ حد کے مطابق نئی درخواست دے "
+"سکتے ہیں۔"
+
+#: templates/blood_requests/detail.html:115
+#, python-format
+msgid "%(name)s verified this. Donors can see it."
+msgstr "%(name)s نے اس کی تصدیق کی۔ ڈونرز اسے دیکھ سکتے ہیں۔"
+
+#: templates/blood_requests/detail.html:117
+#, python-format
+msgid "%(name)s did not verify this in time and an admin did not approve it, so donors never saw it."
+msgstr ""
+"%(name)s نے وقت پر تصدیق نہیں کی اور ایڈمن نے بھی منظور نہیں کی، اس لیے ڈونرز نے اسے کبھی نہیں "
+"دیکھا۔"
+
+#: templates/blood_requests/detail.html:119
+#, python-format
+msgid "%(release_label)s Donors can see it, marked as not verified by the hospital."
+msgstr "%(release_label)s ڈونرز اسے دیکھ سکتے ہیں، اور اس پر نشان ہے کہ ہسپتال نے تصدیق نہیں کی۔"
+
+#: templates/blood_requests/detail.html:121
+#, python-format
+msgid ""
+"%(name)s did not verify this in time, so an admin will approve or reject it. Donors can't see it "
+"until then."
+msgstr ""
+"%(name)s نے وقت پر تصدیق نہیں کی، اس لیے ایڈمن اسے منظور یا مسترد کرے گا۔ تب تک ڈونرز اسے نہیں "
+"دیکھ سکتے۔"
+
+#: templates/blood_requests/detail.html:123
+#, python-format
+msgid "Waiting for %(name)s to verify this. If they don't verify it within"
+msgstr "%(name)s کی تصدیق کا انتظار ہے۔ اگر وہ"
+
+#: templates/blood_requests/detail.html:123
+msgid "a moment"
+msgstr "ایک لمحہ"
+
+#: templates/blood_requests/detail.html:123
+msgid ", an admin decides whether donors see it."
+msgstr "کے اندر تصدیق نہ کریں تو ایڈمن فیصلہ کرے گا کہ ڈونرز اسے دیکھیں یا نہیں۔"
+
+#: templates/blood_requests/detail.html:126
+msgid "Register as a donor"
+msgstr "ڈونر کے طور پر رجسٹر ہوں"
+
+#: templates/blood_requests/detail.html:126
+msgid "to offer to help with requests like this."
+msgstr "تاکہ ایسی درخواستوں میں مدد کی پیشکش کر سکیں۔"
+
+#: templates/blood_requests/detail.html:132 templates/blood_requests/detail.html:184
+msgid "Report this request"
+msgstr "اس درخواست کی رپورٹ کریں"
+
+#: templates/blood_requests/detail.html:143
+msgid "Donors who helped"
+msgstr "مدد کرنے والے ڈونرز"
+
+#: templates/blood_requests/detail.html:143
+msgid "Donors who offered"
+msgstr "پیشکش کرنے والے ڈونرز"
+
+#: templates/blood_requests/detail.html:149
+msgid "No one has offered to help yet."
+msgstr "ابھی تک کسی نے مدد کی پیشکش نہیں کی۔"
+
+#: templates/blood_requests/detail.html:155
+msgid "Donors ready nearby"
+msgstr "قریبی تیار ڈونرز"
+
+#: templates/blood_requests/detail.html:162
+msgid "Their numbers stay private until they tap \"I can help\"."
+msgstr "ان کے نمبر اس وقت تک نجی رہتے ہیں جب تک وہ “میں مدد کے لیے تیار ہوں” نہ دبائیں۔"
+
+#: templates/blood_requests/detail.html:164
+msgid "No available, eligible donors match this request yet."
+msgstr "اس درخواست کے لیے ابھی کوئی دستیاب، اہل ڈونر نہیں ملا۔"
+
+#: templates/blood_requests/detail.html:173 templates/blood_requests/form.html:63
+msgid "Back to all requests"
+msgstr "تمام درخواستوں پر واپس"
+
+#: templates/blood_requests/detail.html:194
+msgid "Submit report"
+msgstr "رپورٹ بھیجیں"
+
+#: templates/blood_requests/form.html:3
+#, python-format
+msgid "Post a request | %(SITE_NAME)s"
+msgstr "درخواست دیں | %(SITE_NAME)s"
+
+#: templates/blood_requests/form.html:12
+msgid "Post a blood request"
+msgstr "خون کی درخواست دیں"
+
+#: templates/blood_requests/form.html:14
+#, python-format
+msgid "%(left)s of %(n)s request remaining today"
+msgid_plural "%(left)s of %(n)s requests remaining today"
+msgstr[0] "آج %(n)s میں سے %(left)s درخواست باقی ہے"
+msgstr[1] "آج %(n)s میں سے %(left)s درخواستیں باقی ہیں"
+
+#: templates/blood_requests/form.html:23
+msgid "Who needs blood"
+msgstr "خون کس کو چاہیے"
+
+#: templates/blood_requests/form.html:50
+msgid "Where and contact"
+msgstr "کہاں اور رابطہ"
+
+#: templates/blood_requests/form.html:59
+msgid "Donors can see the request after the hospital verifies it."
+msgstr "ہسپتال کی تصدیق کے بعد ڈونرز درخواست دیکھ سکتے ہیں۔"
+
+#: templates/blood_requests/list.html:4
+#, python-format
+msgid "Open requests | %(SITE_NAME)s"
+msgstr "کھلی درخواستیں | %(SITE_NAME)s"
+
+#: templates/blood_requests/list.html:15
+#, python-format
+msgid "%(n)s request open right now"
+msgid_plural "%(n)s requests open right now"
+msgstr[0] "%(n)s درخواست ابھی کھلی ہے"
+msgstr[1] "%(n)s درخواستیں ابھی کھلی ہیں"
+
+#: templates/blood_requests/list.html:18 templates/core/home.html:48
+msgid "Open requests"
+msgstr "کھلی درخواستیں"
+
+#: templates/blood_requests/list.html:21
+#, python-format
+msgid "%(n)s of them is marked critical."
+msgid_plural "%(n)s of them are marked critical."
+msgstr[0] "ان میں سے %(n)s ہنگامی نشان زد ہے۔"
+msgstr[1] "ان میں سے %(n)s ہنگامی نشان زد ہیں۔"
+
+#: templates/blood_requests/list.html:23
+msgid "Sign in to see contact details and offer to help."
+msgstr "رابطے کی تفصیل دیکھنے اور مدد کی پیشکش کے لیے لاگ اِن کریں۔"
+
+#: templates/blood_requests/list.html:34
+msgid "Sort requests"
+msgstr "درخواستیں ترتیب دیں"
+
+#: templates/blood_requests/list.html:47
+msgid "Filter by urgency"
+msgstr "فوری ضرورت کے مطابق چھانٹیں"
+
+#: templates/blood_requests/list.html:58
+msgid "Filter"
+msgstr "چھانٹیں"
+
+#: templates/blood_requests/list.html:74 templates/donors/search.html:25
+msgid "Any type"
+msgstr "کوئی بھی گروپ"
+
+#: templates/blood_requests/list.html:79 templates/donors/search.html:30
+msgid "City"
+msgstr "شہر"
+
+#: templates/blood_requests/list.html:81 templates/donors/search.html:32
+msgid "Any city"
+msgstr "کوئی بھی شہر"
+
+#: templates/blood_requests/list.html:89
+msgid "Apply"
+msgstr "لگائیں"
+
+#: templates/blood_requests/list.html:91
+msgid "Clear filters"
+msgstr "فلٹر ہٹائیں"
+
+#: templates/blood_requests/list.html:100
+#, python-format
+msgid "Showing %(n)s request that matches your filters."
+msgid_plural "Showing %(n)s requests that match your filters."
+msgstr[0] "آپ کے فلٹر سے ملتی %(n)s درخواست دکھائی جا رہی ہے۔"
+msgstr[1] "آپ کے فلٹر سے ملتی %(n)s درخواستیں دکھائی جا رہی ہیں۔"
+
+#: templates/blood_requests/list.html:100
+#, python-format
+msgid "Showing %(n)s request."
+msgid_plural "Showing %(n)s requests."
+msgstr[0] "%(n)s درخواست دکھائی جا رہی ہے۔"
+msgstr[1] "%(n)s درخواستیں دکھائی جا رہی ہیں۔"
+
+#: templates/blood_requests/mine.html:4
+#, python-format
+msgid "My requests | %(SITE_NAME)s"
+msgstr "میری درخواستیں | %(SITE_NAME)s"
+
+#: templates/blood_requests/mine.html:6 templates/components/dash_panel.html:46
+#: templates/core/style_guide.html:30 templates/dashboard/overview.html:27
+#: templates/donors/search.html:6 templates/partials/footer.html:14 templates/partials/navbar.html:84
+msgid "Request blood"
+msgstr "خون مانگیں"
+
+#: templates/blood_requests/mine.html:10
+#, python-format
+msgid "%(requests_left)s of %(daily_limit)s requests remaining today."
+msgstr "آج %(daily_limit)s میں سے %(requests_left)s درخواستیں باقی ہیں۔"
+
+#: templates/blood_requests/mine.html:12
+msgid "Your request totals"
+msgstr "آپ کی درخواستوں کا خلاصہ"
+
+#: templates/blood_requests/mine.html:13
+msgid "open"
+msgstr "کھلی"
+
+#: templates/blood_requests/mine.html:13
+msgid "no offers yet"
+msgstr "ابھی کوئی پیشکش نہیں"
+
+#: templates/blood_requests/mine.html:13
+msgid "live or waiting"
+msgstr "جاری یا انتظار میں"
+
+#: templates/blood_requests/mine.html:13 templates/blood_requests/mine.html:39
+#, python-format
+msgid "%(n)s donor offered"
+msgid_plural "%(n)s donors offered"
+msgstr[0] "%(n)s ڈونر نے پیشکش کی"
+msgstr[1] "%(n)s ڈونرز نے پیشکش کی"
+
+#: templates/blood_requests/mine.html:14
+msgid "fulfilled"
+msgstr "پوری ہوئیں"
+
+#: templates/blood_requests/mine.html:15
+msgid "total posted"
+msgstr "کل دی گئی"
+
+#: templates/blood_requests/mine.html:37
+#, python-format
+msgid "%(area)s, %(city)s &middot; %(n)s unit &middot; %(ago)s"
+msgid_plural "%(area)s, %(city)s &middot; %(n)s units &middot; %(ago)s"
+msgstr[0] "%(area)s، %(city)s &middot; %(n)s یونٹ &middot; %(ago)s"
+msgstr[1] "%(area)s، %(city)s &middot; %(n)s یونٹس &middot; %(ago)s"
+
+#: templates/blood_requests/mine.html:38 templates/components/request_card.html:17
+#, python-format
+msgid "Closes in %(expires_at)s"
+msgstr "بند ہونے میں %(expires_at)s"
+
+#: templates/blood_requests/mine.html:55 templates/components/request_card.html:18
+msgid "View details"
+msgstr "تفصیل دیکھیں"
+
+#: templates/blood_requests/mine.html:62
+msgid "No open requests"
+msgstr "کوئی کھلی درخواست نہیں"
+
+#: templates/blood_requests/mine.html:67
+msgid "Past requests"
+msgstr "پچھلی درخواستیں"
+
+#: templates/blood_requests/mine.html:75
+#, python-format
+msgid "%(n)s donor"
+msgid_plural "%(n)s donors"
+msgstr[0] "%(n)s ڈونر"
+msgstr[1] "%(n)s ڈونرز"
+
+#: templates/blood_requests/mine.html:78
+msgid "View"
+msgstr "دیکھیں"
+
+#: templates/blood_requests/mine.html:87
+msgid "You haven't posted a request"
+msgstr "آپ نے کوئی درخواست نہیں دی"
+
+#: templates/components/cnic_block.html:12
+#, python-format
+msgid "CNIC on file: %(masked)s"
+msgstr "فائل میں شناختی کارڈ: %(masked)s"
+
+#: templates/components/cnic_block.html:12
+msgid "Nothing more to enter."
+msgstr "مزید کچھ درج کرنے کی ضرورت نہیں۔"
+
+#: templates/components/dash_panel.html:25 templates/components/dash_panel.html:37
+msgid "Verification desk"
+msgstr "تصدیقی ڈیسک"
+
+#: templates/components/dash_panel.html:29
+msgid "Requester"
+msgstr "درخواست دہندہ"
+
+#: templates/components/dash_panel.html:34
+msgid "Dashboard sections"
+msgstr "ڈیش بورڈ کے حصے"
+
+#: templates/components/dash_panel.html:38 templates/hospitals/dashboard.html:81
+msgid "Recently verified"
+msgstr "حال ہی میں تصدیق شدہ"
+
+#: templates/components/dash_panel.html:40
+msgid "Overview"
+msgstr "جائزہ"
+
+#: templates/components/dash_panel.html:42 templates/components/dash_panel.html:44
+#: templates/dashboard/overview.html:11 templates/donors/profile.html:6
+msgid "Donate blood"
+msgstr "خون کا عطیہ دیں"
+
+#: templates/components/dash_panel.html:49
+msgid "Edit profile"
+msgstr "پروفائل میں ترمیم"
+
+#: templates/components/dash_panel.html:49
+msgid "Account"
+msgstr "اکاؤنٹ"
+
+#: templates/components/dash_panel.html:50
+msgid "Log out"
+msgstr "لاگ آؤٹ"
+
+#: templates/components/donor_row.html:14 templates/core/home.html:238
+#: templates/dashboard/overview.html:13 templates/donors/profile.html:10
+#: templates/donors/profile.html:21 templates/donors/search.html:60
+msgid "Ready to donate"
+msgstr "عطیہ دینے کے لیے تیار"
+
+#: templates/components/donor_row.html:16
+#, python-format
+msgid "Resting until %(next_eligible_date)s"
+msgstr "%(next_eligible_date)s تک آرام"
+
+#: templates/components/donor_row.html:18 templates/donors/search.html:61
+msgid "Health details added"
+msgstr "صحت کی تفصیل شامل ہے"
+
+#: templates/components/live_box.html:9
+msgid "LIVE NETWORK"
+msgstr "لائیو نیٹ ورک"
+
+#: templates/components/live_box.html:10
+msgid "Right now"
+msgstr "ابھی"
+
+#: templates/components/live_box.html:13
+msgid "Donors ready now"
+msgstr "ابھی تیار ڈونرز"
+
+#: templates/components/live_box.html:14
+msgid "Patients waiting"
+msgstr "انتظار میں مریض"
+
+#: templates/components/live_box.html:21
+msgid "needed"
+msgstr "درکار"
+
+#: templates/components/live_box.html:21
+msgid "donor ready"
+msgstr "ڈونر تیار"
+
+#: templates/components/live_box.html:27
+msgid "Nothing yet. New requests and donors show up here."
+msgstr "ابھی کچھ نہیں۔ نئی درخواستیں اور ڈونرز یہاں نظر آئیں گے۔"
+
+#: templates/components/live_strip.html:12 templates/components/live_strip.html:26
+msgid "LIVE"
+msgstr "لائیو"
+
+#: templates/components/live_strip.html:18
+#, python-format
+msgid "%(n)s unit needed, %(city)s"
+msgid_plural "%(n)s units needed, %(city)s"
+msgstr[0] "%(n)s یونٹ درکار، %(city)s"
+msgstr[1] "%(n)s یونٹس درکار، %(city)s"
+
+#: templates/components/live_strip.html:19
+#, python-format
+msgid "%(name)s &middot; posted %(created_at)s"
+msgstr "%(name)s &middot; %(created_at)s دی گئی"
+
+#: templates/components/live_strip.html:24 templates/dashboard/overview.html:40
+#: templates/donors/profile.html:53
+msgid "View all"
+msgstr "سب دیکھیں"
+
+#: templates/components/live_strip.html:29
+msgid "Shown here once donors can see them."
+msgstr "یہاں اس وقت نظر آئیں گی جب ڈونرز انہیں دیکھ سکیں۔"
+
+#: templates/components/live_strip.html:31 templates/core/home.html:207
+#: templates/dashboard/overview.html:30
+msgid "Post a request"
+msgstr "درخواست دیں"
+
+#: templates/components/offer_row.html:11
+msgid "Number not shared"
+msgstr "نمبر شیئر نہیں کیا گیا"
+
+#: templates/components/offer_row.html:14
+#, python-format
+msgid "Call %(name)s"
+msgstr "%(name)s کو کال کریں"
+
+#: templates/components/offer_row.html:14
+msgid "Call"
+msgstr "کال"
+
+#: templates/components/offer_row.html:18
+#, python-format
+msgid "Thank %(name)s on WhatsApp"
+msgstr "%(name)s کا واٹس ایپ پر شکریہ ادا کریں"
+
+#: templates/components/offer_row.html:18
+#, python-format
+msgid "Message %(name)s on WhatsApp"
+msgstr "%(name)s کو واٹس ایپ پر پیغام بھیجیں"
+
+#: templates/components/offer_row.html:19
+msgid "Say thanks on WhatsApp"
+msgstr "واٹس ایپ پر شکریہ کہیں"
+
+#: templates/components/offer_row.html:19
+msgid "Message on WhatsApp"
+msgstr "واٹس ایپ پر پیغام"
+
+#: templates/components/request_card.html:13
+#, python-format
+msgid "%(n)s unit needed &middot; %(ago)s"
+msgid_plural "%(n)s units needed &middot; %(ago)s"
+msgstr[0] "%(n)s یونٹ درکار &middot; %(ago)s"
+msgstr[1] "%(n)s یونٹس درکار &middot; %(ago)s"
+
+#: templates/components/request_row.html:12
+#, python-format
+msgid "%(n)s unit &middot; %(hospital)s"
+msgid_plural "%(n)s units &middot; %(hospital)s"
+msgstr[0] "%(n)s یونٹ &middot; %(hospital)s"
+msgstr[1] "%(n)s یونٹس &middot; %(hospital)s"
+
+#: templates/components/request_row.html:16
+msgid "Respond"
+msgstr "جواب دیں"
+
+#: templates/components/tracking.html:18 templates/components/tracking_line.html:15
+#: templates/components/tracking_mini.html:12
+msgid "(done)"
+msgstr "(ہو گیا)"
+
+#: templates/components/tracking.html:18 templates/components/tracking_line.html:15
+#: templates/components/tracking_mini.html:12
+msgid "(happening now)"
+msgstr "(ابھی جاری)"
+
+#: templates/components/tracking.html:18 templates/components/tracking_line.html:15
+#: templates/components/tracking_mini.html:12
+msgid "(not yet)"
+msgstr "(ابھی نہیں)"
+
+#: templates/components/tracking_line.html:9 templates/components/tracking_mini.html:6
+msgid "Request progress"
+msgstr "درخواست کی پیشرفت"
+
+#: templates/components/trend_chart.html:7
+#, python-format
+msgid "Requests per day over the last %(n)s days"
+msgstr "پچھلے %(n)s دنوں میں روزانہ درخواستیں"
+
+#: templates/core/about.html:3
+#, python-format
+msgid "About %(SITE_NAME)s, privacy and safety | %(SITE_NAME)s"
+msgstr "%(SITE_NAME)s کے بارے میں، رازداری اور حفاظت | %(SITE_NAME)s"
+
+#: templates/core/about.html:4
+#, python-format
+msgid ""
+"How %(SITE_NAME)s matches blood donors with families in Sukkur, what data it keeps, and how it "
+"protects people."
+msgstr ""
+"%(SITE_NAME)s سکھر کے خاندانوں کو خون کے ڈونرز سے کیسے ملاتا ہے، کون سا ڈیٹا رکھتا ہے، اور لوگوں "
+"کی حفاظت کیسے کرتا ہے۔"
+
+#: templates/core/about.html:10
+#, python-format
+msgid "About %(SITE_NAME)s"
+msgstr "%(SITE_NAME)s کے بارے میں"
+
+#: templates/core/about.html:11
+#, python-format
+msgid ""
+"%(SITE_TAGLINE)s. %(SITE_NAME)s helps families who need blood and willing donors find each other "
+"faster than WhatsApp groups and phone calls."
+msgstr ""
+"%(SITE_TAGLINE)s۔ %(SITE_NAME)s خون کے ضرورت مند خاندانوں اور رضامند ڈونرز کو واٹس ایپ گروپس اور "
+"فون کالز سے کہیں تیزی سے ایک دوسرے تک پہنچانے میں مدد دیتا ہے۔"
+
+#: templates/core/about.html:12
+msgid "On this page"
+msgstr "اس صفحے پر"
+
+#: templates/core/about.html:13 templates/core/about.html:23
+msgid "How matching works"
+msgstr "ملاپ کیسے ہوتا ہے"
+
+#: templates/core/about.html:14 templates/core/about.html:35
+msgid "Privacy notice"
+msgstr "رازداری کا نوٹس"
+
+#: templates/core/about.html:15 templates/core/about.html:47
+msgid "Safety notice"
+msgstr "حفاظتی نوٹس"
+
+#: templates/core/about.html:16 templates/core/about.html:58
+msgid "Accessibility"
+msgstr "رسائی"
+
+#: templates/core/about.html:19
+msgid "What this service is"
+msgstr "یہ سروس کیا ہے"
+
+#: templates/core/about.html:20
+#, python-format
+msgid ""
+"%(SITE_NAME)s is a website where donors register their blood type and area, and where families "
+"can see how many compatible donors are ready in their city. It does not store or supply blood. "
+"Hospitals and blood banks always make the final decision about who may donate."
+msgstr ""
+"%(SITE_NAME)s ایک ویب سائٹ ہے جہاں ڈونرز اپنا خون کا گروپ اور علاقہ درج کرتے ہیں، اور خاندان دیکھ"
+" سکتے ہیں کہ ان کے شہر میں کتنے موزوں ڈونرز تیار ہیں۔ یہ خون جمع یا فراہم نہیں کرتی۔ کون عطیہ دے "
+"سکتا ہے، اس کا آخری فیصلہ ہمیشہ ہسپتال اور بلڈ بینک کرتے ہیں۔"
+
+#: templates/core/about.html:21
+#, python-format
+msgid ""
+"%(SITE_NAME)s is a student project, built for the course CSC-206 Software Engineering at Aror "
+"University of Art, Architecture, Design and Heritage, Sukkur."
+msgstr ""
+"%(SITE_NAME)s ایک طلبہ کا پراجیکٹ ہے، جو آرور یونیورسٹی آف آرٹ، آرکیٹیکچر، ڈیزائن اینڈ ہیریٹیج، "
+"سکھر میں کورس CSC-206 سافٹ ویئر انجینئرنگ کے لیے بنایا گیا۔"
+
+#: templates/core/about.html:24
+msgid "A donor is shown as ready, and matched to a request, only when all of these are true:"
+msgstr "ڈونر کو تیار دکھایا جاتا ہے اور درخواست سے تب ملایا جاتا ہے جب یہ سب باتیں درست ہوں:"
+
+#: templates/core/about.html:27
+msgid "Compatible blood"
+msgstr "موزوں خون"
+
+#: templates/core/about.html:27
+msgid ""
+"The donor's blood group can safely give red blood cells to the patient's group, using the "
+"standard chart."
+msgstr "ڈونر کا بلڈ گروپ معیاری چارٹ کے مطابق مریض کے گروپ کو سرخ خلیات محفوظ طریقے سے دے سکتا ہو۔"
+
+#: templates/core/about.html:28
+msgid "Available"
+msgstr "دستیاب"
+
+#: templates/core/about.html:28
+msgid "The donor has switched availability on."
+msgstr "ڈونر نے دستیابی آن کی ہو۔"
+
+#: templates/core/about.html:29
+msgid "Rested"
+msgstr "آرام مکمل"
+
+#: templates/core/about.html:29
+#, python-format
+msgid "At least %(cooldown)s days have passed since the donor's last donation."
+msgstr "ڈونر کے آخری عطیے کو کم از کم %(cooldown)s دن گزر چکے ہوں۔"
+
+#: templates/core/about.html:30
+msgid "Nearby"
+msgstr "قریب"
+
+#: templates/core/about.html:30
+msgid "The donor is in the same city as the request, and donors in the same area come first."
+msgstr "ڈونر درخواست والے شہر ہی میں ہو، اور ایک ہی علاقے کے ڈونرز کو پہلے رکھا جاتا ہے۔"
+
+#: templates/core/about.html:31
+msgid "Still open"
+msgstr "ابھی کھلی"
+
+#: templates/core/about.html:31
+#, python-format
+msgid ""
+"A request stays open for %(Critical)s hours if Critical, %(Urgent)s hours if Urgent, and "
+"%(Normal)s hours if Normal, unless it is marked fulfilled sooner."
+msgstr ""
+"درخواست “ہنگامی” ہو تو %(Critical)s گھنٹے، “فوری” ہو تو %(Urgent)s گھنٹے، اور “عام” ہو تو "
+"%(Normal)s گھنٹے کھلی رہتی ہے، جب تک اسے پہلے پوری نہ لکھ دیا جائے۔"
+
+#: templates/core/about.html:36
+msgid "What we keep."
+msgstr "ہم کیا رکھتے ہیں۔"
+
+#: templates/core/about.html:36
+msgid ""
+"When you create an account we keep your username, your email address, and a scrambled (hashed and"
+" salted) version of your password. We never see or store your password as you typed it. If you "
+"register as a donor we also keep your name, mobile number, blood type, area, last donation date, "
+"whether you are available, and the two confirmations you gave. When you post a request we keep "
+"its details, such as the hospital, the blood type needed, and a contact number."
+msgstr ""
+"جب آپ اکاؤنٹ بناتے ہیں تو ہم آپ کا صارف نام، ای میل ایڈریس، اور پاس ورڈ کا ایک خفیہ (ہیش اور سالٹ"
+" کیا ہوا) روپ رکھتے ہیں۔ ہم آپ کا پاس ورڈ، جیسا آپ لکھتے ہیں، کبھی نہیں دیکھتے نہ محفوظ کرتے ہیں۔"
+" اگر آپ ڈونر کے طور پر رجسٹر ہوں تو ہم آپ کا نام، موبائل نمبر، خون کا گروپ، علاقہ، آخری عطیے کی "
+"تاریخ، آپ دستیاب ہیں یا نہیں، اور آپ کی دی ہوئی دو تصدیقیں بھی رکھتے ہیں۔ جب آپ درخواست دیتے ہیں "
+"تو ہم اس کی تفصیل رکھتے ہیں، جیسے ہسپتال، درکار خون کا گروپ، اور رابطہ نمبر۔"
+
+#: templates/core/about.html:37
+msgid "Who can see what."
+msgstr "کون کیا دیکھ سکتا ہے۔"
+
+#: templates/core/about.html:40
+msgid "Anyone"
+msgstr "کوئی بھی"
+
+#: templates/core/about.html:40
+msgid ""
+"Only counts, such as how many donors are ready in an area, and open request cards showing the "
+"hospital, area, blood type and urgency. Never names, patient names or phone numbers."
+msgstr ""
+"صرف تعداد، جیسے کسی علاقے میں کتنے ڈونرز تیار ہیں، اور کھلی درخواستوں کے کارڈ جن پر ہسپتال، "
+"علاقہ، خون کا گروپ اور فوری ضرورت ہوتی ہے۔ نام، مریض کے نام یا فون نمبر کبھی نہیں۔"
+
+#: templates/core/about.html:41
+msgid "Signed-in people"
+msgstr "لاگ اِن لوگ"
+
+#: templates/core/about.html:41
+msgid ""
+"Their own profile and requests. A donor's phone number is shared only with the person whose "
+"request that donor offered to help with, and only if the donor agreed when registering. A "
+"patient's contact number is shown only to the person who posted the request, the hospital it "
+"names, and donors who offered to help with it."
+msgstr ""
+"اپنی پروفائل اور درخواستیں۔ ڈونر کا فون نمبر صرف اس شخص کے ساتھ شیئر ہوتا ہے جس کی درخواست میں "
+"ڈونر نے مدد کی پیشکش کی، اور صرف تب جب ڈونر نے رجسٹریشن کے وقت اجازت دی ہو۔ مریض کا رابطہ نمبر "
+"صرف درخواست دینے والے، اس میں نامزد ہسپتال، اور مدد کی پیشکش کرنے والے ڈونرز کو دکھایا جاتا ہے۔"
+
+#: templates/core/about.html:42
+msgid "Administrators"
+msgstr "ایڈمنز"
+
+#: templates/core/about.html:42
+msgid "Can view records in the admin panel, for moderation and support."
+msgstr "نگرانی اور مدد کے لیے ایڈمن پینل میں ریکارڈ دیکھ سکتے ہیں۔"
+
+#: templates/core/about.html:45
+msgid "Cookies and browser storage."
+msgstr "کوکیز اور براؤزر اسٹوریج۔"
+
+#: templates/core/about.html:45
+msgid ""
+"We use one cookie to keep you signed in and to protect forms from forgery. Your light or dark "
+"choice is saved in your own browser. We do not use advertising or tracking cookies, and nothing "
+"on these pages is loaded from other websites."
+msgstr ""
+"ہم آپ کو لاگ اِن رکھنے اور فارم کو جعلسازی سے بچانے کے لیے ایک کوکی استعمال کرتے ہیں۔ آپ کا لائٹ "
+"یا ڈارک موڈ کا انتخاب آپ کے اپنے براؤزر میں محفوظ ہوتا ہے۔ ہم اشتہاری یا ٹریکنگ کوکیز استعمال "
+"نہیں کرتے، اور ان صفحات پر کچھ بھی دوسری ویب سائٹس سے لوڈ نہیں ہوتا۔"
+
+#: templates/core/about.html:50
+msgid "In an emergency, contact the hospital's blood bank directly."
+msgstr "ہنگامی صورت میں براہِ راست ہسپتال کے بلڈ بینک سے رابطہ کریں۔"
+
+#: templates/core/about.html:50
+#, python-format
+msgid "%(SITE_NAME)s is a helper, not a medical service, and it cannot promise that a donor will respond."
+msgstr "%(SITE_NAME)s ایک مددگار ہے، طبی سروس نہیں، اور یہ وعدہ نہیں کر سکتا کہ کوئی ڈونر جواب دے گا۔"
+
+#: templates/core/about.html:53
+msgid ""
+"Every donor is screened by a hospital or blood bank before donating. Being shown as ready here "
+"does not mean a person is medically fit to donate."
+msgstr ""
+"ہر ڈونر کا عطیے سے پہلے ہسپتال یا بلڈ بینک معائنہ کرتا ہے۔ یہاں تیار دکھائے جانے کا مطلب یہ نہیں "
+"کہ وہ شخص طبی طور پر عطیہ دینے کے قابل ہے۔"
+
+#: templates/core/about.html:54
+msgid ""
+"The compatibility guide covers red blood cell donations only. Plasma and platelets follow "
+"different rules, so always confirm with the hospital."
+msgstr ""
+"مطابقت کی گائیڈ صرف سرخ خلیات کے عطیے کے لیے ہے۔ پلازما اور پلیٹ لیٹس کے اصول مختلف ہیں، اس لیے "
+"ہمیشہ ہسپتال سے تصدیق کریں۔"
+
+#: templates/core/about.html:55
+msgid ""
+"Donating blood should be voluntary. Be careful with anyone who asks for money, and confirm any "
+"request with the hospital before you travel."
+msgstr ""
+"خون کا عطیہ رضاکارانہ ہونا چاہیے۔ جو شخص پیسے مانگے اس سے محتاط رہیں، اور سفر سے پہلے ہسپتال سے "
+"درخواست کی تصدیق کر لیں۔"
+
+#: templates/core/about.html:59
+msgid ""
+"The site works with a keyboard, has text that meets recommended contrast levels in both light and"
+" dark modes, respects the device setting for reduced motion, and works on phones. If something is"
+" hard to use, please tell the project team so it can be fixed."
+msgstr ""
+"سائٹ کی بورڈ سے چلتی ہے، لائٹ اور ڈارک دونوں موڈ میں تجویز کردہ کنٹراسٹ والا متن رکھتی ہے، ڈیوائس"
+" کی کم حرکت کی سیٹنگ کا احترام کرتی ہے، اور فون پر چلتی ہے۔ اگر کچھ استعمال کرنا مشکل لگے تو "
+"براہِ کرم پراجیکٹ ٹیم کو بتائیں تاکہ اسے ٹھیک کیا جا سکے۔"
+
+#: templates/core/home.html:5
+#, python-format
+msgid "%(SITE_NAME)s | Find a blood donor fast"
+msgstr "%(SITE_NAME)s | خون کا ڈونر جلدی ڈھونڈیں"
+
+#: templates/core/home.html:27
+msgid "Three steps from need to donor."
+msgstr "ضرورت سے ڈونر تک تین قدم۔"
+
+#: templates/core/home.html:31 templates/core/home.html:193
+msgid "I need blood"
+msgstr "مجھے خون چاہیے"
+
+#: templates/core/home.html:46
+msgid "Network statistics"
+msgstr "نیٹ ورک کے اعداد و شمار"
+
+#: templates/core/home.html:47 templates/core/home.html:123
+msgid "Registered donors"
+msgstr "رجسٹرڈ ڈونرز"
+
+#: templates/core/home.html:49
+msgid "Requests fulfilled"
+msgstr "پوری ہونے والی درخواستیں"
+
+#: templates/core/home.html:50
+msgid "Cities covered"
+msgstr "شامل شہر"
+
+#: templates/core/home.html:89 templates/partials/navbar.html:41
+msgid "Compatibility"
+msgstr "مطابقت"
+
+#: templates/core/home.html:90
+msgid "Who can donate to whom?"
+msgstr "کون کس کو عطیہ دے سکتا ہے؟"
+
+#: templates/core/home.html:91
+msgid "Pick the patient's blood type to see which donors are compatible."
+msgstr "مریض کا خون کا گروپ چنیں اور دیکھیں کون سے ڈونرز موزوں ہیں۔"
+
+#: templates/core/home.html:94 templates/donors/search.html:14
+msgid "Patient's blood type"
+msgstr "مریض کا خون کا گروپ"
+
+#: templates/core/home.html:100
+msgid "Can receive from"
+msgstr "ان سے لے سکتا ہے"
+
+#: templates/core/home.html:106
+msgid "Select a blood type above to see who can donate."
+msgstr "عطیہ کون دے سکتا ہے یہ دیکھنے کے لیے اوپر سے خون کا گروپ چنیں۔"
+
+#: templates/core/home.html:107
+msgid "This guide is for red blood cell donations. Always confirm with the hospital's blood bank."
+msgstr "یہ گائیڈ سرخ خلیات کے عطیے کے لیے ہے۔ ہمیشہ ہسپتال کے بلڈ بینک سے تصدیق کریں۔"
+
+#: templates/core/home.html:117
+msgid "Matching"
+msgstr "ملاپ"
+
+#: templates/core/home.html:118
+msgid "The right match isn't just the right blood type."
+msgstr "درست ملاپ صرف درست خون کا گروپ نہیں ہوتا۔"
+
+#: templates/core/home.html:119
+msgid "Three checks narrow the list before a donor is shown for a request."
+msgstr "درخواست کے لیے ڈونر دکھانے سے پہلے تین جانچیں فہرست کو مختصر کرتی ہیں۔"
+
+#: templates/core/home.html:124
+msgid "Everyone with a donor profile."
+msgstr "ہر وہ شخص جس کی ڈونر پروفائل ہے۔"
+
+#: templates/core/home.html:127
+msgid "Compatible blood type"
+msgstr "موزوں خون کا گروپ"
+
+#: templates/core/home.html:128
+msgid "Blood group rules decide who can give to whom, so an incompatible donor is never shown."
+msgstr "بلڈ گروپ کے اصول طے کرتے ہیں کون کس کو دے سکتا ہے، اس لیے غیر موزوں ڈونر کبھی نہیں دکھایا جاتا۔"
+
+#: templates/core/home.html:131
+msgid "Same city"
+msgstr "ایک ہی شہر"
+
+#: templates/core/home.html:132
+msgid "Only donors registered in the patient's city are matched."
+msgstr "صرف مریض کے شہر میں رجسٹرڈ ڈونرز کا ملاپ ہوتا ہے۔"
+
+#: templates/core/home.html:135
+msgid "Available and rested"
+msgstr "دستیاب اور آرام کے بعد"
+
+#: templates/core/home.html:136
+msgid "Donors must be marked available and past their 90-day rest since the last donation."
+msgstr "ڈونرز کا دستیاب نشان زد ہونا اور آخری عطیے کے بعد 90 دن کا آرام پورا ہونا ضروری ہے۔"
+
+#: templates/core/home.html:139
+msgid "Shown for your request"
+msgstr "آپ کی درخواست کے لیے دکھائے گئے"
+
+#: templates/core/home.html:140
+msgid "A better starting point than a broadcast. Not a guarantee. The hospital screens every donation."
+msgstr "سب کو پیغام بھیجنے سے بہتر آغاز۔ ضمانت نہیں۔ ہر عطیے کا معائنہ ہسپتال کرتا ہے۔"
+
+#: templates/core/home.html:143
+msgid "The bars show the idea of narrowing down. They are not counts."
+msgstr "یہ پٹیاں چھانٹنے کا خیال دکھاتی ہیں۔ یہ گنتی نہیں ہیں۔"
+
+#: templates/core/home.html:151
+msgid "The difference"
+msgstr "فرق"
+
+#: templates/core/home.html:152 templates/partials/footer.html:20 templates/partials/navbar.html:42
+msgid "How it works"
+msgstr "یہ کیسے کام کرتا ہے"
+
+#: templates/core/home.html:153
+msgid ""
+"Asking around works, but every message starts the search again. Here is the same job with a "
+"network."
+msgstr ""
+"لوگوں سے پوچھنا کام کرتا ہے، لیکن ہر پیغام تلاش کو دوبارہ شروع کر دیتا ہے۔ یہاں وہی کام نیٹ ورک "
+"کے ساتھ ہے۔"
+
+#: templates/core/home.html:158
+msgid "Asking around"
+msgstr "لوگوں سے پوچھنا"
+
+#: templates/core/home.html:158
+#, python-format
+msgid "With %(SITE_NAME)s"
+msgstr "%(SITE_NAME)s کے ساتھ"
+
+#: templates/core/home.html:162
+msgid "Post in a group"
+msgstr "گروپ میں پوسٹ کریں"
+
+#: templates/core/home.html:162 templates/core/home.html:167 templates/core/home.html:172
+#: templates/core/home.html:177
+msgid "Asking around:"
+msgstr "لوگوں سے پوچھنا:"
+
+#: templates/core/home.html:164 templates/core/home.html:169 templates/core/home.html:174
+#: templates/core/home.html:179
+#, python-format
+msgid "With %(SITE_NAME)s:"
+msgstr "%(SITE_NAME)s کے ساتھ:"
+
+#: templates/core/home.html:167
+msgid "Forwarded onward"
+msgstr "آگے فارورڈ ہوتا ہے"
+
+#: templates/core/home.html:169
+msgid "Compatibility checked"
+msgstr "مطابقت کی جانچ ہو چکی"
+
+#: templates/core/home.html:172
+msgid "Waiting for replies"
+msgstr "جوابات کا انتظار"
+
+#: templates/core/home.html:174
+msgid "Ready donors shown"
+msgstr "تیار ڈونرز نظر آتے ہیں"
+
+#: templates/core/home.html:177
+msgid "Search restarts"
+msgstr "تلاش پھر شروع"
+
+#: templates/core/home.html:179
+msgid "Direct contact"
+msgstr "براہِ راست رابطہ"
+
+#: templates/core/home.html:182
+msgid ""
+"Donors and requesters get in touch by phone or WhatsApp. When the need is met, the request is "
+"marked fulfilled."
+msgstr ""
+"ڈونرز اور درخواست دینے والے فون یا واٹس ایپ پر رابطہ کرتے ہیں۔ ضرورت پوری ہو جائے تو درخواست "
+"“پوری ہو گئی” لکھ دی جاتی ہے۔"
+
+#: templates/core/home.html:192
+msgid "Who is this for"
+msgstr "یہ کس کے لیے ہے"
+
+#: templates/core/home.html:194
+msgid "I can donate"
+msgstr "میں عطیہ دینے کو تیار ہوں"
+
+#: templates/core/home.html:198
+msgid "You shouldn't have to broadcast an emergency to everyone you know."
+msgstr "آپ کو ہر جاننے والے کو ہنگامی صورتحال نہیں بھیجنی پڑنی چاہیے۔"
+
+#: templates/core/home.html:199
+msgid "Tell us what's needed, and let the network do the searching."
+msgstr "ہمیں بتائیں کیا چاہیے، اور تلاش نیٹ ورک پر چھوڑ دیں۔"
+
+#: templates/core/home.html:201
+msgid "Enter the blood type needed and how urgent it is"
+msgstr "درکار خون کا گروپ اور فوری ضرورت درج کریں"
+
+#: templates/core/home.html:203
+msgid "Leave a contact number"
+msgstr "رابطہ نمبر چھوڑیں"
+
+#: templates/core/home.html:204
+msgid "See compatible, available donors as they are found"
+msgstr "موزوں، دستیاب ڈونرز ملتے ہی دیکھیں"
+
+#: templates/core/home.html:205
+msgid "Contact a suitable donor directly"
+msgstr "کسی موزوں ڈونر سے براہِ راست رابطہ کریں"
+
+#: templates/core/home.html:210
+msgid "New blood request"
+msgstr "خون کی نئی درخواست"
+
+#: templates/core/home.html:210 templates/core/home.html:234
+msgid "Example"
+msgstr "مثال"
+
+#: templates/core/home.html:213
+msgid "Urgency"
+msgstr "فوری ضرورت"
+
+#: templates/core/home.html:214
+msgid "Civil Hospital, Sukkur"
+msgstr "سول ہسپتال، سکھر"
+
+#: templates/core/home.html:215
+msgid "Contact"
+msgstr "رابطہ"
+
+#: templates/core/home.html:215
+msgid "Add phone number"
+msgstr "فون نمبر شامل کریں"
+
+#: templates/core/home.html:222
+msgid "Be found when your blood type is the one someone needs."
+msgstr "جب آپ کا خون کا گروپ کسی کو چاہیے ہو تو آپ آسانی سے مل جائیں۔"
+
+#: templates/core/home.html:223
+msgid "A one-minute profile. You stay in control of when you are shown."
+msgstr "ایک منٹ کی پروفائل۔ آپ کب دکھائے جائیں، یہ آپ کے اختیار میں رہتا ہے۔"
+
+#: templates/core/home.html:225
+msgid "Add your blood type and area"
+msgstr "اپنا خون کا گروپ اور علاقہ شامل کریں"
+
+#: templates/core/home.html:226
+msgid "Mark yourself available, or pause any time"
+msgstr "خود کو دستیاب لکھیں، یا کسی بھی وقت وقفہ لیں"
+
+#: templates/core/home.html:227
+msgid "See requests that match you"
+msgstr "اپنے مطابق درخواستیں دیکھیں"
+
+#: templates/core/home.html:228
+msgid "Your phone number is shared only if you allow it"
+msgstr "آپ کا فون نمبر صرف تب شیئر ہوتا ہے جب آپ اجازت دیں"
+
+#: templates/core/home.html:229
+msgid "A 90-day rest starts automatically after you donate"
+msgstr "عطیہ دینے کے بعد 90 دن کا آرام خود بخود شروع ہو جاتا ہے"
+
+#: templates/core/home.html:234
+msgid "Your donor profile"
+msgstr "آپ کی ڈونر پروفائل"
+
+#: templates/core/home.html:237
+msgid "Barrage Road, Sukkur"
+msgstr "بیراج روڈ، سکھر"
+
+#: templates/core/home.html:237 templates/donors/profile.html:78
+msgid "Area"
+msgstr "علاقہ"
+
+#: templates/core/home.html:238
+msgid "Status"
+msgstr "صورتحال"
+
+#: templates/core/home.html:239
+msgid "Phone"
+msgstr "فون"
+
+#: templates/core/home.html:239
+msgid "Shared only with matching requests"
+msgstr "صرف موزوں درخواستوں کے ساتھ شیئر ہوتا ہے"
+
+#: templates/core/home.html:241
+msgid "Create profile"
+msgstr "پروفائل بنائیں"
+
+#: templates/core/home.html:253
+msgid "Live"
+msgstr "لائیو"
+
+#: templates/core/home.html:254
+msgid "Open requests right now"
+msgstr "ابھی کھلی درخواستیں"
+
+#: templates/core/home.html:255
+msgid "The most urgent requests come first."
+msgstr "سب سے فوری درخواستیں پہلے آتی ہیں۔"
+
+#: templates/core/home.html:264
+msgid "See all requests"
+msgstr "تمام درخواستیں دیکھیں"
+
+#: templates/core/home.html:277
+msgid "Supply"
+msgstr "فراہمی"
+
+#: templates/core/home.html:278
+msgid "Donors ready right now"
+msgstr "ابھی تیار ڈونرز"
+
+#: templates/core/home.html:279
+msgid ""
+"These are registered donors who are marked available and are past their waiting period since the "
+"last donation."
+msgstr "یہ رجسٹرڈ ڈونرز ہیں جو دستیاب نشان زد ہیں اور آخری عطیے کے بعد انتظار کی مدت پوری کر چکے ہیں۔"
+
+#: templates/core/home.html:284
+#, python-format
+msgid "<strong>%(n)s</strong> donor ready now"
+msgid_plural "<strong>%(n)s</strong> donors ready now"
+msgstr[0] "<strong>%(n)s</strong> ڈونر ابھی تیار"
+msgstr[1] "<strong>%(n)s</strong> ڈونرز ابھی تیار"
+
+#: templates/core/home.html:288
+#, python-format
+msgid "%(n)s ready donors with blood type %(bt)s"
+msgstr "خون کے گروپ %(bt)s کے %(n)s تیار ڈونرز"
+
+#: templates/core/home.html:294
+msgid "Amber bars: the fewest ready donors, where new donors help most."
+msgstr "زرد پٹیاں: سب سے کم تیار ڈونرز، جہاں نئے ڈونرز سب سے زیادہ مدد کرتے ہیں۔"
+
+#: templates/core/home.html:316 templates/partials/footer.html:22 templates/partials/navbar.html:43
+msgid "FAQ"
+msgstr "سوالات"
+
+#: templates/core/home.html:317
+msgid "Common questions"
+msgstr "عام سوالات"
+
+#: templates/core/home.html:322
+msgid "Who can donate blood?"
+msgstr "خون کا عطیہ کون دے سکتا ہے؟"
+
+#: templates/core/home.html:325
+#, python-format
+msgid ""
+"Generally, healthy adults who feel well. Every donation is screened by the hospital or blood "
+"bank, and they make the final decision. %(SITE_NAME)s only helps people find and contact each "
+"other."
+msgstr ""
+"عموماً صحت مند بالغ افراد جو اچھا محسوس کریں۔ ہر عطیے کا معائنہ ہسپتال یا بلڈ بینک کرتا ہے، اور "
+"آخری فیصلہ انہی کا ہوتا ہے۔ %(SITE_NAME)s صرف لوگوں کو ایک دوسرے کو ڈھونڈنے اور رابطہ کرنے میں "
+"مدد دیتا ہے۔"
+
+#: templates/core/home.html:330
+msgid "How often can I donate?"
+msgstr "کتنے وقفے سے عطیہ دیا جا سکتا ہے؟"
+
+#: templates/core/home.html:333
+msgid ""
+"This app uses a three-month (90-day) gap between donations and hides donors who are still inside "
+"it. The blood bank's own rules always come first."
+msgstr ""
+"یہ ایپ عطیوں کے درمیان تین ماہ (90 دن) کا وقفہ رکھتی ہے اور اس دوران والے ڈونرز کو چھپا دیتی ہے۔ "
+"بلڈ بینک کے اپنے اصول ہمیشہ مقدم ہیں۔"
+
+#: templates/core/home.html:338
+msgid "Is my phone number public?"
+msgstr "کیا میرا فون نمبر سب کو نظر آتا ہے؟"
+
+#: templates/core/home.html:341
+msgid ""
+"No. A patient's number is shown only to the requester, the hospital named on the request, and "
+"donors who offered to help with it. A donor's number is shown only to the person whose request "
+"they offered to help with, and only if they agreed."
+msgstr ""
+"نہیں۔ مریض کا نمبر صرف درخواست دینے والے، درخواست میں نامزد ہسپتال، اور مدد کی پیشکش کرنے والے "
+"ڈونرز کو دکھایا جاتا ہے۔ ڈونر کا نمبر صرف اس شخص کو دکھایا جاتا ہے جس کی درخواست میں اس نے مدد کی"
+" پیشکش کی، اور صرف تب جب اس نے اجازت دی ہو۔"
+
+#: templates/core/home.html:346
+msgid "What do Critical, Urgent, and Normal mean?"
+msgstr "“ہنگامی”، “فوری” اور “عام” کا کیا مطلب ہے؟"
+
+#: templates/core/home.html:349
+msgid ""
+"The requester chooses how urgent the need is. Critical requests stay open for 24 hours, Urgent "
+"for 48 hours, and Normal for 72 hours. After that they expire automatically unless they were "
+"marked fulfilled."
+msgstr ""
+"درخواست دینے والا خود بتاتا ہے کہ ضرورت کتنی فوری ہے۔ ہنگامی درخواستیں 24 گھنٹے، فوری 48 گھنٹے، "
+"اور عام 72 گھنٹے کھلی رہتی ہیں۔ اس کے بعد وہ خود بخود ختم ہو جاتی ہیں، جب تک انہیں پوری نہ لکھ "
+"دیا گیا ہو۔"
+
+#: templates/core/home.html:354
+#, python-format
+msgid "Does %(SITE_NAME)s supply blood?"
+msgstr "کیا %(SITE_NAME)s خون فراہم کرتا ہے؟"
+
+#: templates/core/home.html:357
+msgid ""
+"No. It does not store or supply blood. In an emergency, also contact the hospital's blood bank "
+"directly."
+msgstr ""
+"نہیں۔ یہ خون جمع یا فراہم نہیں کرتا۔ ہنگامی صورت میں براہِ راست ہسپتال کے بلڈ بینک سے بھی رابطہ "
+"کریں۔"
+
+#: templates/core/style_guide.html:3
+#, python-format
+msgid "Style guide | %(SITE_NAME)s"
+msgstr ""
+
+#: templates/core/style_guide.html:8
+msgid "Style guide"
+msgstr ""
+
+#: templates/core/style_guide.html:9
+msgid "Every reusable piece of the design in one place. Try the moon button to see dark mode."
+msgstr ""
+
+#: templates/core/style_guide.html:11
+msgid "Developer page (DEBUG only)"
+msgstr ""
+
+#: templates/core/style_guide.html:15
+msgid "Colours"
+msgstr ""
+
+#: templates/core/style_guide.html:25
+msgid "Buttons"
+msgstr ""
+
+#: templates/core/style_guide.html:27
+msgid "Primary"
+msgstr ""
+
+#: templates/core/style_guide.html:28
+msgid "Outline"
+msgstr ""
+
+#: templates/core/style_guide.html:29
+msgid "Ghost"
+msgstr ""
+
+#: templates/core/style_guide.html:31
+msgid "Large"
+msgstr ""
+
+#: templates/core/style_guide.html:36
+msgid "Blood badges and status pills"
+msgstr ""
+
+#: templates/core/style_guide.html:49
+msgid "Verified"
+msgstr ""
+
+#: templates/core/style_guide.html:54
+msgid "Request cards: urgency edge and live countdown"
+msgstr ""
+
+#: templates/core/style_guide.html:61
+msgid "Forms"
+msgstr ""
+
+#: templates/core/style_guide.html:65
+msgid "Ready to fill in"
+msgstr ""
+
+#: templates/core/style_guide.html:76
+msgid "How errors look"
+msgstr ""
+
+#: templates/core/style_guide.html:86
+msgid "Feedback"
+msgstr ""
+
+#: templates/core/style_guide.html:88
+msgid "Show success dialog"
+msgstr ""
+
+#: templates/core/style_guide.html:89
+msgid "Show toast"
+msgstr ""
+
+#: templates/core/style_guide.html:94
+msgid "Empty state and loading placeholders"
+msgstr ""
+
+#: templates/dashboard/overview.html:4
+#, python-format
+msgid "Dashboard | %(SITE_NAME)s"
+msgstr "ڈیش بورڈ | %(SITE_NAME)s"
+
+#: templates/dashboard/overview.html:13
+#, python-format
+msgid "%(n)s matching request in %(city)s"
+msgid_plural "%(n)s matching requests in %(city)s"
+msgstr[0] "%(city)s میں %(n)s موزوں درخواست"
+msgstr[1] "%(city)s میں %(n)s موزوں درخواستیں"
+
+#: templates/dashboard/overview.html:13 templates/dashboard/overview.html:17
+#: templates/donors/profile.html:36
+msgid "Not available right now"
+msgstr "ابھی دستیاب نہیں"
+
+#: templates/dashboard/overview.html:13 templates/donors/profile.html:21
+#, python-format
+msgid "Resting for %(n)s more day"
+msgid_plural "Resting for %(n)s more days"
+msgstr[0] "مزید %(n)s دن آرام"
+msgstr[1] "مزید %(n)s دن آرام"
+
+#: templates/dashboard/overview.html:19
+msgid "See requests"
+msgstr "درخواستیں دیکھیں"
+
+#: templates/dashboard/overview.html:21
+msgid ""
+"You are not a donor yet. A one-minute profile puts you in front of requests that match your blood"
+" type."
+msgstr ""
+"آپ ابھی ڈونر نہیں ہیں۔ ایک منٹ کی پروفائل آپ کو آپ کے خون کے گروپ سے ملتی درخواستوں کے سامنے لے "
+"آتی ہے۔"
+
+#: templates/dashboard/overview.html:28
+#, python-format
+msgid "%(n)s request open"
+msgid_plural "%(n)s requests open"
+msgstr[0] "%(n)s درخواست کھلی ہے"
+msgstr[1] "%(n)s درخواستیں کھلی ہیں"
+
+#: templates/dashboard/overview.html:28
+msgid "&middot; no offers yet"
+msgstr "&middot; ابھی کوئی پیشکش نہیں"
+
+#: templates/dashboard/overview.html:28
+#, python-format
+msgid "&middot; %(requests_left)s of %(daily_limit)s left today"
+msgstr "&middot; آج %(daily_limit)s میں سے %(requests_left)s باقی"
+
+#: templates/dashboard/overview.html:31
+msgid "My requests"
+msgstr "میری درخواستیں"
+
+#: templates/dashboard/overview.html:39 templates/donors/profile.html:52
+msgid "Requests you can help with"
+msgstr "وہ درخواستیں جن میں آپ مدد کر سکتے ہیں"
+
+#: templates/donors/edit.html:3
+msgid "Edit donor profile"
+msgstr "ڈونر پروفائل میں ترمیم"
+
+#: templates/donors/edit.html:12
+msgid "Edit your donor profile"
+msgstr "اپنی ڈونر پروفائل میں ترمیم کریں"
+
+#: templates/donors/edit.html:22
+msgid "About you"
+msgstr "آپ کے بارے میں"
+
+#: templates/donors/edit.html:43
+msgid "Health check"
+msgstr "صحت کی جانچ"
+
+#: templates/donors/edit.html:75
+msgid "Back to my dashboard"
+msgstr "میرے ڈیش بورڈ پر واپس"
+
+#: templates/donors/profile.html:4
+#, python-format
+msgid "My donor dashboard | %(SITE_NAME)s"
+msgstr "میرا ڈونر ڈیش بورڈ | %(SITE_NAME)s"
+
+#: templates/donors/profile.html:10
+#, python-format
+msgid "%(n)s days until you can donate again"
+msgstr "دوبارہ عطیہ دینے میں %(n)s دن باقی"
+
+#: templates/donors/profile.html:15
+msgid "Ready"
+msgstr "تیار"
+
+#: templates/donors/profile.html:16
+msgid "day left"
+msgid_plural "days left"
+msgstr[0] "دن باقی"
+msgstr[1] "دن باقی"
+
+#: templates/donors/profile.html:21
+msgid "Not available"
+msgstr "دستیاب نہیں"
+
+#: templates/donors/profile.html:23
+msgid "You can donate now."
+msgstr "آپ ابھی عطیہ دے سکتے ہیں۔"
+
+#: templates/donors/profile.html:23
+msgid "You can donate again on"
+msgstr "آپ دوبارہ عطیہ دے سکتے ہیں، تاریخ:"
+
+#: templates/donors/profile.html:25
+msgid "You are hidden from matching until you switch this on."
+msgstr "جب تک آپ اسے آن نہ کریں، آپ ملاپ سے چھپے رہیں گے۔"
+
+#: templates/donors/profile.html:26
+#, python-format
+msgid "You are resting until %(next_eligible_date)s."
+msgstr "آپ %(next_eligible_date)s تک آرام کر رہے ہیں۔"
+
+#: templates/donors/profile.html:27
+msgid "You are visible to matching requests."
+msgstr "آپ موزوں درخواستوں کو نظر آ رہے ہیں۔"
+
+#: templates/donors/profile.html:39
+msgid "Donation recorded for today"
+msgstr "آج کا عطیہ درج ہو گیا"
+
+#: templates/donors/profile.html:41
+msgid "Record today as your last donation date? You will not be matched for the next 90 days."
+msgstr "آج کو اپنے آخری عطیے کی تاریخ لکھ دیں؟ اگلے 90 دن آپ کا ملاپ نہیں ہوگا۔"
+
+#: templates/donors/profile.html:43
+msgid "I donated today"
+msgstr "میں نے آج عطیہ دیا"
+
+#: templates/donors/profile.html:56
+msgid "You are not being matched right now, but you can still see who needs help."
+msgstr "ابھی آپ کا ملاپ نہیں ہو رہا، لیکن آپ پھر بھی دیکھ سکتے ہیں کہ کسے مدد چاہیے۔"
+
+#: templates/donors/profile.html:69
+msgid "Your details"
+msgstr "آپ کی تفصیل"
+
+#: templates/donors/profile.html:70
+msgid "Edit"
+msgstr "ترمیم"
+
+#: templates/donors/profile.html:73
+msgid "Name"
+msgstr "نام"
+
+#: templates/donors/profile.html:76
+#, python-format
+msgid "can give to %(n)s type"
+msgid_plural "can give to %(n)s types"
+msgstr[0] "%(n)s گروپ کو دے سکتے ہیں"
+msgstr[1] "%(n)s گروپس کو دے سکتے ہیں"
+
+#: templates/donors/profile.html:79
+msgid "CNIC"
+msgstr "شناختی کارڈ"
+
+#: templates/donors/profile.html:79 templates/donors/profile.html:80 templates/donors/profile.html:81
+msgid "Add it"
+msgstr "شامل کریں"
+
+#: templates/donors/profile.html:80
+msgid "Weight"
+msgstr "وزن"
+
+#: templates/donors/profile.html:80
+#, python-format
+msgid "%(weight_kg)s kg"
+msgstr "%(weight_kg)s کلو"
+
+#: templates/donors/profile.html:81
+msgid "Height"
+msgstr "قد"
+
+#: templates/donors/profile.html:81
+#, python-format
+msgid "%(height_cm)s cm"
+msgstr "%(height_cm)s سینٹی میٹر"
+
+#: templates/donors/profile.html:82
+msgid "Conditions"
+msgstr "بیماریاں"
+
+#: templates/donors/profile.html:82
+msgid "Add them"
+msgstr "شامل کریں"
+
+#: templates/donors/profile.html:83
+msgid "Last donation"
+msgstr "آخری عطیہ"
+
+#: templates/donors/profile.html:83
+msgid "Never donated"
+msgstr "کبھی عطیہ نہیں دیا"
+
+#: templates/donors/profile.html:84
+msgid "Phone sharing"
+msgstr "فون شیئرنگ"
+
+#: templates/donors/profile.html:84
+msgid "Allowed for matching requests"
+msgstr "موزوں درخواستوں کے لیے اجازت ہے"
+
+#: templates/donors/profile.html:84
+msgid "Not allowed"
+msgstr "اجازت نہیں"
+
+#: templates/donors/search.html:4
+#, python-format
+msgid "Find donors | %(SITE_NAME)s"
+msgstr "ڈونرز تلاش کریں | %(SITE_NAME)s"
+
+#: templates/donors/search.html:12 templates/donors/search.html:39
+msgid "Search"
+msgstr "تلاش"
+
+#: templates/donors/search.html:27
+#, python-format
+msgid "Showing donors who can give to %(selected_blood_type)s."
+msgstr "%(selected_blood_type)s کو عطیہ دے سکنے والے ڈونرز دکھائے جا رہے ہیں۔"
+
+#: templates/donors/search.html:27
+msgid "Choose a type to see who can give to that patient."
+msgstr "یہ دیکھنے کے لیے گروپ چنیں کہ اس مریض کو کون دے سکتا ہے۔"
+
+#: templates/donors/search.html:41
+msgid "Clear"
+msgstr "صاف کریں"
+
+#: templates/donors/search.html:50
+#, python-format
+msgid "%(n)s donor can donate to this patient."
+msgid_plural "%(n)s donors can donate to this patient."
+msgstr[0] "%(n)s ڈونر اس مریض کو عطیہ دے سکتا ہے۔"
+msgstr[1] "%(n)s ڈونرز اس مریض کو عطیہ دے سکتے ہیں۔"
+
+#: templates/donors/search.html:67
+msgid "Post a request to be matched with this donor and, if they've allowed it, see their number."
+msgstr "اس ڈونر سے ملاپ کے لیے درخواست دیں، اور اگر انہوں نے اجازت دی ہو تو ان کا نمبر دیکھیں۔"
+
+#: templates/hospitals/dashboard.html:4
+#, python-format
+msgid "%(name)s dashboard | %(SITE_NAME)s"
+msgstr "%(name)s کا ڈیش بورڈ | %(SITE_NAME)s"
+
+#: templates/hospitals/dashboard.html:8
+msgid "Waiting on you"
+msgstr "آپ کے انتظار میں"
+
+#: templates/hospitals/dashboard.html:11
+msgid "Verified this week"
+msgstr "اس ہفتے تصدیق شدہ"
+
+#: templates/hospitals/dashboard.html:12
+#, python-format
+msgid "of %(kpi_week)s"
+msgstr "%(kpi_week)s میں سے"
+
+#: templates/hospitals/dashboard.html:15
+msgid "Missed deadline"
+msgstr "مقررہ وقت نکل گیا"
+
+#: templates/hospitals/dashboard.html:16
+msgid "this week"
+msgstr "اس ہفتے"
+
+#: templates/hospitals/dashboard.html:19
+msgid "Last 7 days"
+msgstr "پچھلے 7 دن"
+
+#: templates/hospitals/dashboard.html:25
+msgid "Waiting on your verification"
+msgstr "آپ کی تصدیق کے منتظر"
+
+#: templates/hospitals/dashboard.html:26
+msgid "Confirm each request is genuine before you verify it. If you miss the deadline, an admin decides."
+msgstr ""
+"ہر درخواست کی تصدیق سے پہلے یقین کر لیں کہ وہ اصلی ہے۔ اگر آپ مقررہ وقت چوک جائیں تو ایڈمن فیصلہ "
+"کرتا ہے۔"
+
+#: templates/hospitals/dashboard.html:38
+msgid "Extra units: awaiting an admin"
+msgstr "اضافی یونٹس: ایڈمن کے انتظار میں"
+
+#: templates/hospitals/dashboard.html:42
+msgid "Deadline missed, with an admin"
+msgstr "مقررہ وقت نکل گیا، ایڈمن کے پاس"
+
+#: templates/hospitals/dashboard.html:44
+msgid "Deadline in"
+msgstr "مقررہ وقت میں باقی:"
+
+#: templates/hospitals/dashboard.html:44
+msgid "Deadline passed"
+msgstr "مقررہ وقت گزر گیا"
+
+#: templates/hospitals/dashboard.html:48
+#, python-format
+msgid "%(n)s unit &middot; %(phone)s"
+msgid_plural "%(n)s units &middot; %(phone)s"
+msgstr[0] "%(n)s یونٹ &middot; %(phone)s"
+msgstr[1] "%(n)s یونٹس &middot; %(phone)s"
+
+#: templates/hospitals/dashboard.html:52
+#, python-format
+msgid "Reason for %(units_needed)s units"
+msgstr "%(units_needed)s یونٹس کی وجہ"
+
+#: templates/hospitals/dashboard.html:54
+msgid "An admin must also approve the extra units."
+msgstr "ایڈمن کو اضافی یونٹس بھی منظور کرنے ہوں گے۔"
+
+#: templates/hospitals/dashboard.html:58
+msgid "Verify this request as genuine? It will become visible to donors immediately."
+msgstr "اس درخواست کو اصلی ہونے کے طور پر تصدیق کریں؟ یہ فوراً ڈونرز کو نظر آنے لگے گی۔"
+
+#: templates/hospitals/dashboard.html:60
+msgid "Verify"
+msgstr "تصدیق کریں"
+
+#: templates/hospitals/dashboard.html:74
+#, python-format
+msgid "You posted %(n)s request naming this hospital. Another staff member has to verify it."
+msgid_plural "You posted %(n)s requests naming this hospital. Another staff member has to verify them."
+msgstr[0] "آپ نے اس ہسپتال کے نام سے %(n)s درخواست دی۔ کسی اور اسٹاف ممبر کو اس کی تصدیق کرنی ہوگی۔"
+msgstr[1] "آپ نے اس ہسپتال کے نام سے %(n)s درخواستیں دیں۔ کسی اور اسٹاف ممبر کو ان کی تصدیق کرنی ہوگی۔"
+
+#: templates/notifications/_list.html:9
+msgid "New"
+msgstr "نئی"
+
+#: templates/notifications/_list.html:13
+msgid "Open"
+msgstr "کھولیں"
+
+#: templates/notifications/_list.html:13
+msgid "Mark read"
+msgstr "پڑھا ہوا لکھیں"
+
+#: templates/notifications/_list.html:19
+msgid "Nothing yet."
+msgstr "ابھی کچھ نہیں۔"
+
+#: templates/notifications/inbox.html:4
+#, python-format
+msgid "Notifications | %(SITE_NAME)s"
+msgstr "اطلاعات | %(SITE_NAME)s"
+
+#: templates/notifications/inbox.html:16
+msgid "Mark all as read"
+msgstr "سب کو پڑھا ہوا لکھیں"
+
+#: templates/partials/footer.html:19
+msgid "Footer"
+msgstr "فوٹر"
+
+#: templates/partials/footer.html:21
+msgid "Blood compatibility"
+msgstr "خون کی مطابقت"
+
+#: templates/partials/footer.html:23
+msgid "About, privacy &amp; safety"
+msgstr "تعارف، رازداری اور حفاظت"
+
+#: templates/partials/footer.html:28
+#, python-format
+msgid ""
+"%(SITE_NAME)s connects people. It does not store or supply blood and is not a medical service. "
+"Every donation is screened by a hospital or blood bank. In an emergency, also contact the "
+"hospital's blood bank directly. &copy;"
+msgstr ""
+"%(SITE_NAME)s لوگوں کو آپس میں جوڑتا ہے۔ یہ خون جمع یا فراہم نہیں کرتا اور طبی سروس نہیں ہے۔ ہر "
+"عطیے کا معائنہ ہسپتال یا بلڈ بینک کرتا ہے۔ ہنگامی صورت میں براہِ راست ہسپتال کے بلڈ بینک سے بھی "
+"رابطہ کریں۔ &copy;"
+
+#: templates/partials/navbar.html:3
+msgid "Main navigation"
+msgstr "مرکزی نیویگیشن"
+
+#: templates/partials/navbar.html:14
+msgid "Toggle navigation"
+msgstr "مینو کھولیں/بند کریں"
+
+#: templates/partials/navbar.html:22
+msgid "Dashboard"
+msgstr "ڈیش بورڈ"
+
+#: templates/partials/navbar.html:27
+msgid "Home"
+msgstr "ہوم"
+
+#: templates/partials/navbar.html:32
+msgid "Live requests"
+msgstr "لائیو درخواستیں"
+
+#: templates/partials/navbar.html:33
+#, python-format
+msgid "%(n)s open"
+msgstr "%(n)s کھلی"
+
+#: templates/partials/navbar.html:58
+msgid "Language"
+msgstr "زبان"
+
+#: templates/partials/navbar.html:63
+msgid "Go"
+msgstr "جائیں"
+
+#: templates/partials/navbar.html:66
+msgid "Switch theme"
+msgstr "تھیم بدلیں"
+
+#: templates/partials/navbar.html:81
+msgid "Sign up"
+msgstr "سائن اپ"
+
+#: templates/partials/notice.html:4
+msgid "Emergency?"
+msgstr "ہنگامی صورت؟"
+
+#: templates/partials/notice.html:4
+#, python-format
+msgid ""
+"Contact the hospital's blood bank directly. %(SITE_NAME)s helps families and donors find each "
+"other and is not a medical service."
+msgstr ""
+"براہِ راست ہسپتال کے بلڈ بینک سے رابطہ کریں۔ %(SITE_NAME)s خاندانوں اور ڈونرز کو ایک دوسرے تک "
+"پہنچنے میں مدد دیتا ہے اور طبی سروس نہیں ہے۔"
+
+#: templates/partials/notice.html:4
+msgid "Read the safety notice"
+msgstr "حفاظتی نوٹس پڑھیں"
+

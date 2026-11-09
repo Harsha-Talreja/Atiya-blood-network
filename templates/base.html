@@ -1,0 +1,64 @@
+{% load static i18n core_extras %}<!doctype html>
+<html lang="{{ LANGUAGE_CODE|slice:":2" }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ SITE_NAME }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Find compatible, available blood donors near you, fast. Post a blood request and reach donors in your city.{% endblock %}">
+  <meta name="theme-color" content="#C7192D">
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+  <link rel="icon" type="image/png" sizes="64x64" href="{% static 'img/favicon.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+{% if LANGUAGE_BIDI %}
+  {# Urdu and Sindhi: right-to-left copies of the two big stylesheets, and the Arabic-script font. English never loads these. #}
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.rtl.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/aos/aos.css' %}">
+  <link rel="stylesheet" href="{% static 'css/theme.rtl.css' %}?v=20261104a">
+  <link rel="stylesheet" href="{% static 'css/lang-rtl.css' %}?v=20261101b">
+{% else %}
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/aos/aos.css' %}">
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}?v=20261104a">
+{% endif %}
+  <script>(function () { var root = document.documentElement; root.classList.add("js");
+    try { var saved = localStorage.getItem("theme"); if (saved === "dark" || saved === "light") { root.setAttribute("data-bs-theme", saved); } } catch (e) {}
+  })();</script>
+  {% block extra_head %}{% endblock %}
+</head>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <a class="skip-link" href="#main">{% trans "Skip to main content" %}</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  {% include "partials/navbar.html" %}
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+  {% include "partials/footer.html" %}
+  {% comment %}
+    One stack for both kinds of message: the ones Django sends with the page
+    and the ones JavaScript raises later. They share a container so two
+    notices never sit on top of each other in the corner.
+  {% endcomment %}
+  <div id="toast-container" class="toast-stack" role="status" aria-live="polite">
+    {% include "partials/messages.html" %}
+  </div>
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center p-4">
+        <div class="check-badge mx-auto mb-3">{% include "components/success_check.html" %}</div>
+        <h2 class="h4 fw-bold" id="successTitle">{% trans "Done" %}</h2>
+        <p class="text-soft mb-4" id="successText"></p>
+        <button type="button" class="btn btn-brand w-100" data-bs-dismiss="modal">{% trans "Continue" %}</button>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/htmx/htmx.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  {% js_i18n %}
+  <script src="{% static 'js/main.js' %}?v=20261104a"></script>
+  {% if user.is_authenticated %}<script src="{% static 'js/notifications.js' %}?v=20261027a" defer></script>{% endif %}
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

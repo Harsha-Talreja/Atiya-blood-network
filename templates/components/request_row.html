@@ -1,0 +1,17 @@
+{% load i18n %}{% load core_extras %}
+{% comment %}
+  One open request as a compact row, for lists that sit inside a panel (the
+  donor dashboard). The full card on the board is request_card.html; this is
+  the same facts in less space. "Respond" opens the request page, where
+  "I can help" asks for confirmation first, so a stray click never sends an
+  offer.
+{% endcomment %}
+<div class="activity-row is-{{ req.urgency|lower }}">
+  {% include "components/blood_badge.html" with blood_type=req.blood_type size="md" %}
+  <div class="activity-text">
+    <b>{% blocktrans trimmed count n=req.units_needed with hospital=req.hospital.name %}{{ n }} unit &middot; {{ hospital }}{% plural %}{{ n }} units &middot; {{ hospital }}{% endblocktrans %}</b>
+    <span>{{ req.location.area }} &middot; {{ req.created_at|time_ago }}</span>
+  </div>
+  {% include "components/urgency_pill.html" with urgency=req.urgency %}
+  <a href="{% url 'blood_requests:detail' pk=req.pk %}" class="btn btn-brand btn-sm">{% trans "Respond" %}</a>
+</div>

@@ -1,0 +1,20 @@
+{% load i18n %}{% load core_extras %}
+<div class="mb-3">
+  <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}{% if not field.field.required and not no_optional %} <span class="optional">{% trans "(optional)" %}</span>{% endif %}</label>
+  {% if icon %}<div class="has-ic"><i class="bi bi-{{ icon }} field-ic" aria-hidden="true"></i>{% endif %}
+  {% if field.field.widget.input_type == "password" %}
+    <div class="password-wrap">
+      {{ field|as_input }}
+      <button type="button" class="password-toggle" data-toggle-password aria-label="{% trans "Show password" %}"><i class="bi bi-eye" aria-hidden="true"></i></button>
+    </div>
+  {% else %}
+    {{ field|as_input }}
+  {% endif %}
+  {% if icon %}</div>{% endif %}
+  {% if field.help_text %}<div class="form-hint" id="{{ field.id_for_label }}-hint">{{ field.help_text }}</div>{% endif %}
+  {% if field.errors %}
+    <div id="{{ field.id_for_label }}-error">
+      {% for error in field.errors %}<div class="field-error"><i class="bi bi-exclamation-circle-fill" aria-hidden="true"></i><span>{{ error }}</span></div>{% endfor %}
+    </div>
+  {% endif %}
+</div>

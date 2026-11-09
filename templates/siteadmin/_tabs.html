@@ -1,0 +1,7 @@
+{% load admin_extras %}
+{% comment %} The filter tabs. Each keeps whatever is in the search box, and the search box
+   keeps the chosen tab, so neither resets the other. {% endcomment %}
+{% for value, label in states %}
+  <a class="filt" {% if state == value %}aria-current="true"{% endif %}
+     href="{% querystring_with request state=value %}">{{ label }}</a>
+{% endfor %}

@@ -1,0 +1,55 @@
+{% load i18n %}{% comment %}
+  The dashboard's side panel: who is signed in, then the sections for what they
+  can do. Built by the dash_panel tag in core/templatetags/dash.py.
+  A hospital account gets its verification desk and nothing about donors or
+  patients. Everyone else gets the donor and requester sections. (An admin
+  account never sees this panel: it has the admin panel instead.)
+  Narrow on purpose: one small identity card, three plain links (Overview, Donate blood,
+  Request blood). What used to be more links are tabs at the top of those pages
+  (see dash_tabs). The button at
+  the bottom folds it into a thin icon strip (the choice is remembered in the
+  browser by static/js/main.js); every link keeps its name in a tooltip and for
+  screen readers when folded.
+{% endcomment %}
+{% load core_extras %}
+<div class="idc{% if donor %} is-{{ state }}{% endif %}{% if account %} is-hospital{% endif %}" title="{{ name }}{% if donor %}, {{ state_label|lower }}, {{ donor.blood_type|pretty_blood }}{% endif %}">
+  <div class="idc-who">
+    <span class="idc-av" aria-hidden="true">{{ name|initials }}<i class="idc-avdot"></i></span>
+    <div class="min-w-0 lbl">
+      <b>{{ name }}</b>
+      <small>{% if account %}{{ sub }}, {{ account.hospital.location.city }}{% else %}{{ sub }}{% endif %}</small>
+    </div>
+  </div>
+  <div class="idc-chips">
+    {% if account %}
+      <span><i class="idc-dot" aria-hidden="true"></i>{% trans "Verification desk" %}</span>
+    {% elif donor %}
+      <span><i class="idc-dot" aria-hidden="true"></i>{{ state_label }}</span><span>{{ donor.blood_type|pretty_blood }}</span>
+    {% else %}
+      <span>{% trans "Requester" %}</span>
+    {% endif %}
+  </div>
+</div>
+
+<nav class="dside" aria-label="{% trans "Dashboard sections" %}">
+  {% if account %}
+    <small class="sgrp">{% trans "Hospital" %}</small>
+    <a href="{% url 'hospitals:dashboard' %}" title="{% trans "Verification desk" %}"{% if active == "desk" %} aria-current="page"{% endif %}><i class="bi bi-patch-check" aria-hidden="true"></i><span class="lbl">{% trans "Verification desk" %}</span>{% if waiting %}<em class="sidecount">{{ waiting }}</em>{% endif %}</a>
+    <a href="{% url 'hospitals:dashboard' %}#verified" title="{% trans "Recently verified" %}"><i class="bi bi-clock-history" aria-hidden="true"></i><span class="lbl">{% trans "Recently verified" %}</span></a>
+  {% else %}
+    <a href="{% url 'core:dashboard' %}" title="{% trans "Overview" %}"{% if active == "overview" %} aria-current="page"{% endif %}><i class="bi bi-house" aria-hidden="true"></i><span class="lbl">{% trans "Overview" %}</span></a>
+    {% if donor %}
+      <a href="{% url 'donors:profile' %}?tab=requests" title="{% trans "Donate blood" %}"{% if active == "donor-requests" or active == "donor-details" %} aria-current="page"{% endif %}><i class="bi bi-heart" aria-hidden="true"></i><span class="lbl">{% trans "Donate blood" %}</span>{% if matching_total %}<em class="sidecount">{{ matching_total }}</em>{% endif %}</a>
+    {% else %}
+      <a href="{% url 'donors:edit' %}" title="{% trans "Donate blood" %}"><i class="bi bi-heart" aria-hidden="true"></i><span class="lbl">{% trans "Donate blood" %}</span></a>
+    {% endif %}
+    <a href="{% url 'blood_requests:mine' %}" title="{% trans "Request blood" %}"{% if active == "mine" or active == "request-new" or active == "request-find" %} aria-current="page"{% endif %}><i class="bi bi-droplet" aria-hidden="true"></i><span class="lbl">{% trans "Request blood" %}</span>{% if open_total %}<em class="sidecount">{{ open_total }}</em>{% endif %}</a>
+  {% endif %}
+  <div class="dacct">
+    {% if not account %}<a href="{% url 'donors:edit' %}" title="{% if donor %}{% trans "Edit profile" %}{% else %}{% trans "Account" %}{% endif %}"><i class="bi bi-pencil" aria-hidden="true"></i><span class="lbl">{% if donor %}{% trans "Edit profile" %}{% else %}{% trans "Account" %}{% endif %}</span></a>{% endif %}
+    <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}<button type="submit" title="{% trans "Log out" %}"><i class="bi bi-box-arrow-right" aria-hidden="true"></i><span class="lbl">{% trans "Log out" %}</span></button></form>
+  </div>
+  <button type="button" class="dtog" data-dash-toggle aria-expanded="true" aria-label="{% trans "Fold the side panel" %}" title="{% trans "Fold the side panel" %}">
+    <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
+  </button>
+</nav>

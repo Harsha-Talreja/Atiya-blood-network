@@ -1,0 +1,20 @@
+{% load i18n %}{% load core_extras %}
+{% if items %}
+  <ul class="notif-list list-unstyled mb-0">
+    {% for note in items %}
+      <li class="notif-item{% if not note.is_read %} is-unread{% endif %}">
+        <span class="notif-dot" aria-hidden="true"></span>
+        <div class="notif-body">
+          <p class="notif-msg">{{ note.message }}</p>
+          <p class="notif-time">{{ note.created_at|time_ago }}{% if not note.is_read %} &middot; <strong>{% trans "New" %}</strong>{% endif %}</p>
+        </div>
+        <form method="post" action="{% url 'notifications:read' note.pk %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-outline-brand notif-btn">{% if note.url %}{% trans "Open" %}{% else %}{% trans "Mark read" %}{% endif %}</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="text-soft mb-0">{% trans "Nothing yet." %}</p>
+{% endif %}

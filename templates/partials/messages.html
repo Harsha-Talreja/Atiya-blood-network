@@ -1,0 +1,17 @@
+{% load i18n %}{% load core_extras %}
+{% comment %}
+  Rendered inside the shared toast stack in base.html. A message tagged
+  "dialog" is not a toast: it is the big success moment, and main.js turns the
+  marker below into the modal. Everything else is a toast.
+{% endcomment %}
+{% for message in messages %}
+  {% if "dialog" in message.tags %}
+    <div data-flash-dialog data-title="{{ message|dialog_title }}" data-text="{{ message|dialog_text }}" hidden></div>
+  {% else %}
+    <div class="toast-item {{ message.tags|toast_kind }}" data-toast>
+      <i class="bi {{ message.tags|toast_icon }}" aria-hidden="true"></i>
+      <span>{{ message }}</span>
+      <button type="button" class="toast-close" data-toast-close aria-label="{% trans "Dismiss this message" %}">&times;</button>
+    </div>
+  {% endif %}
+{% endfor %}

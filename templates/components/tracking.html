@@ -1,0 +1,25 @@
+{% load i18n %}{% load core_extras %}
+{% comment %}
+  The four stages of a request. The states come from blood_requests/tracking.py
+  so the page never has to work out which of the three reasons made a request
+  visible; it just renders what it is given.
+{% endcomment %}
+<ol class="tl{% if horizontal %} tl-track{% endif %}">
+  {% for step in tracking %}
+    <li class="tl-step is-{{ step.state }}">
+      <span class="tl-dot" aria-hidden="true">
+        {% if step.state == "done" %}<i class="bi bi-check-lg"></i>
+        {% elif step.state == "active" %}<i class="bi bi-three-dots"></i>
+        {% else %}<i class="bi bi-circle"></i>{% endif %}
+      </span>
+      <p class="tl-title">
+        {{ step.title }}
+        <span class="visually-hidden">
+          {% if step.state == "done" %}{% trans "(done)" %}{% elif step.state == "active" %}{% trans "(happening now)" %}{% else %}{% trans "(not yet)" %}{% endif %}
+        </span>
+      </p>
+      {% if step.when %}<p class="tl-when">{{ step.when|time_ago }}</p>{% endif %}
+      {% if step.detail %}<p class="tl-when">{{ step.detail }}</p>{% endif %}
+    </li>
+  {% endfor %}
+</ol>

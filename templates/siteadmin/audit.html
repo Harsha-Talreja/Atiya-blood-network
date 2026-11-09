@@ -1,0 +1,66 @@
+{% extends "siteadmin/base.html" %}
+{% load admin_extras core_extras %}
+
+{% block title %}Audit log{% endblock %}
+{% block heading %}Audit log{% endblock %}
+{% block state %}Every action an admin has taken{% endblock %}
+
+{% block content %}
+<section class="sec">
+  <div class="sh">
+    <h2>Audit log</h2>
+    <span class="c">{{ total }} entr{{ total|pluralize:"y,ies" }}, newest first</span>
+    <span class="end">
+      <form class="find" method="get">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" name="q" value="{{ query }}" placeholder="Action or target"
+               aria-label="Search the audit log">
+      </form>
+    </span>
+  </div>
+
+  <div class="rows">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">When</th>
+          <th scope="col">Admin</th>
+          <th scope="col">Did what</th>
+          <th scope="col">To</th>
+          <th scope="col" class="hide">Reason noted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in rows %}
+          <tr>
+            <td class="qt nums">{{ entry.created_at|date:"j M, H:i" }}</td>
+            <td class="qt">{{ entry.actor_name }}</td>
+            <td>
+              {% if "Blocked" in entry.action or "Removed" in entry.action or "Rejected" in entry.action %}
+                <span class="st urgent">{{ entry.action }}</span>
+              {% elif "Verified" in entry.action or "Sent" in entry.action %}
+                <span class="st ok">{{ entry.action }}</span>
+              {% elif "Resolved" in entry.action or "Unblocked" in entry.action or "Approved" in entry.action %}
+                <span class="st done">{{ entry.action }}</span>
+              {% else %}
+                <span class="st wait">{{ entry.action }}</span>
+              {% endif %}
+            </td>
+            <td>{{ entry.target|default:"&mdash;" }}</td>
+            <td class="hide qt">{{ entry.note|default:"&mdash;" }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5" class="empty">
+            {% if query %}Nothing in the log matches &ldquo;{{ query }}&rdquo;.
+            {% else %}Nothing yet.{% endif %}
+          </td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if total > rows|length %}
+    <p class="pageof">Showing the most recent {{ rows|length }} of {{ total }}.</p>
+  {% endif %}
+
+</section>
+{% endblock %}

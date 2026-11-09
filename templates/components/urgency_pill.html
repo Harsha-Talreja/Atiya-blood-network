@@ -1,0 +1,1 @@
+{% load core_extras %}<span class="pill pill-{{ urgency|lower }}">{% if urgency == "Critical" %}<span class="pulse-dot" aria-hidden="true"></span>{% endif %}{{ urgency|tr }}</span>

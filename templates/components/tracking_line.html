@@ -1,0 +1,20 @@
+{% load i18n %}{% load core_extras %}
+{% comment %}
+  The four stages of a request as one thin line with a dot per stage. The line
+  fills up to the stage the request has reached (the --fill value is set by the
+  card around it). The time and any detail are in the hover text and in text
+  for screen readers, so nothing is lost by keeping the line this small.
+  The states come from blood_requests/tracking.py.
+{% endcomment %}
+<ol class="tl tl-line" style="--n: {{ tracking|length }}" aria-label="{% trans "Request progress" %}">
+  {% for step in tracking %}
+    <li class="tl-step is-{{ step.state }}"{% if step.when or step.detail %} title="{% if step.when %}{{ step.when|time_ago }}{% endif %}{% if step.when and step.detail %} - {% endif %}{{ step.detail|default:'' }}"{% endif %}>
+      <span class="tl-dot" aria-hidden="true"></span>
+      <span class="tl-title">{{ step.title }}</span>
+      <span class="visually-hidden">
+        {% if step.state == "done" %}{% trans "(done)" %}{% elif step.state == "active" %}{% trans "(happening now)" %}{% else %}{% trans "(not yet)" %}{% endif %}
+        {% if step.when %}{{ step.when|time_ago }}.{% endif %} {% if step.detail %}{{ step.detail }}{% endif %}
+      </span>
+    </li>
+  {% endfor %}
+</ol>

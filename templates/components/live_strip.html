@@ -1,0 +1,33 @@
+{% load i18n %}{% load core_extras %}
+{% comment %}
+  The newest open requests, one at a time. Every slide is in the page, so with
+  JavaScript off (or reduced motion on) the first one still shows and the link
+  to the full list still works. Only requests donors can see are passed in.
+
+  With none open the strip stays, saying so, instead of disappearing: a missing
+  strip looks like a broken page, and an empty one tells the visitor the truth.
+{% endcomment %}
+<div class="live-strip fade-up" style="--d:280ms" data-live-strip>
+  {% if live_requests %}
+    <span class="live-tag"><span class="live-dot" aria-hidden="true"></span>{% trans "LIVE" %}</span>
+    <div class="live-slides">
+      {% for req in live_requests %}
+        <a class="live-slide{% if forloop.first %} is-on{% endif %}" href="{% url 'blood_requests:detail' req.pk %}">
+          {% include "components/blood_badge.html" with blood_type=req.blood_type size="sm" %}
+          <span class="live-text">
+            <b>{% blocktrans trimmed count n=req.units_needed with city=req.location.city %}{{ n }} unit needed, {{ city }}{% plural %}{{ n }} units needed, {{ city }}{% endblocktrans %}</b>
+            <small>{% blocktrans trimmed with name=req.hospital.name created_at=req.created_at|time_ago %}{{ name }} &middot; posted {{ created_at }}{% endblocktrans %}</small>
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+    <a class="live-all" href="{% url 'blood_requests:list' %}">{% trans "View all" %}</a>
+  {% else %}
+    <span class="live-tag is-idle"><span class="live-dot" aria-hidden="true"></span>{% trans "LIVE" %}</span>
+    <span class="live-text live-empty">
+      <b>{% trans "No open requests right now" %}</b>
+      <small>{% trans "Shown here once donors can see them." %}</small>
+    </span>
+    {% if not desk_only %}<a class="live-all" href="{% url 'blood_requests:new' %}">{% trans "Post a request" %}</a>{% endif %}
+  {% endif %}
+</div>

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Post a request | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block content %}
+<section class="page-section glass-page">
+  {% include "components/glass_orbs.html" %}
+  <div class="container">
+    <div class="form-card form-card-wide mx-auto dform">
+      <div class="form-card-head">
+        <div class="head-icon"><i class="bi bi-droplet-fill" aria-hidden="true"></i></div>
+        <div>
+          <h2>{% trans "Post a blood request" %}</h2>
+        </div>
+        <span class="limit-chip ms-auto{% if requests_left == 1 %} is-last{% endif %}"><i class="bi bi-stack" aria-hidden="true"></i> {% blocktrans trimmed count n=daily_limit with left=requests_left %}{{ left }} of {{ n }} request remaining today{% plural %}{{ left }} of {{ n }} requests remaining today{% endblocktrans %}</span>
+      </div>
+
+      <form method="post" data-guard novalidate>
+        {% csrf_token %}
+        {% include "components/form_errors.html" with form=form %}
+
+        <div class="dform-cols">
+          <div>
+            <h2 class="form-section-title first">{% trans "Who needs blood" %}</h2>
+            {% include "components/form_field.html" with field=form.patient_name %}
+            <div class="mb-3">
+              <span class="form-label d-block" id="blood-type-label">{{ form.blood_type.label }}</span>
+              <div class="cond-chips bt-chips" role="radiogroup" aria-labelledby="blood-type-label">
+                {% for choice in form.blood_type %}
+                  <label class="cond-chip" for="{{ choice.id_for_label }}">{{ choice.tag }}<span>{{ choice.choice_label }}</span></label>
+                {% endfor %}
+              </div>
+              {% for error in form.blood_type.errors %}<div class="field-error"><i class="bi bi-exclamation-circle-fill" aria-hidden="true"></i><span>{{ error }}</span></div>{% endfor %}
+            </div>
+            <div class="dform-row dform-row-text">
+              {% include "components/form_field.html" with field=form.units_needed no_optional=True %}
+              <div class="mb-3">
+                <span class="form-label d-block" id="urgency-label">{{ form.urgency.label }}</span>
+                <div class="cond-chips" role="radiogroup" aria-labelledby="urgency-label">
+                  {% for choice in form.urgency %}
+                    <label class="cond-chip" for="{{ choice.id_for_label }}">{{ choice.tag }}<span>{{ choice.choice_label }}</span></label>
+                  {% endfor %}
+                </div>
+                {% for error in form.urgency.errors %}<div class="field-error"><i class="bi bi-exclamation-circle-fill" aria-hidden="true"></i><span>{{ error }}</span></div>{% endfor %}
+              </div>
+            </div>
+            {% include "components/form_field.html" with field=form.extra_reason %}
+          </div>
+
+          <div>
+            <h2 class="form-section-title first">{% trans "Where and contact" %}</h2>
+            {% include "components/form_field.html" with field=form.hospital %}
+            {% include "components/form_field.html" with field=form.contact_phone %}
+            {% include "components/cnic_block.html" with form=form %}
+            {% include "components/form_field.html" with field=form.note %}
+          </div>
+        </div>
+
+        <div class="dform-foot dform-foot-req">
+          <p class="dform-verify"><i class="bi bi-info-circle" aria-hidden="true"></i><span>{% trans "Donors can see the request after the hospital verifies it." %}</span></p>
+          <div class="dform-submit">{% include "components/submit_button.html" with label="Post request" loading="Posting..." %}</div>
+        </div>
+      </form>
+      <p class="auth-switch"><a href="{% url 'blood_requests:list' %}"><i class="bi bi-arrow-left" aria-hidden="true"></i> {% trans "Back to all requests" %}</a></p>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% if editing %}{% trans "Edit donor profile" %}{% else %}{% trans "Become a donor" %}{% endif %} | {{ SITE_NAME }}{% endblock %}
+{% block content %}
+<section class="page-section glass-page">
+  {% include "components/glass_orbs.html" %}
+  <div class="container">
+    <div class="form-card form-card-wide mx-auto dform">
+      <div class="form-card-head">
+        <div class="head-icon"><i class="bi bi-droplet-half" aria-hidden="true"></i></div>
+        <div>
+          <h1>{% if editing %}{% trans "Edit your donor profile" %}{% else %}{% trans "Become a donor" %}{% endif %}</h1>
+        </div>
+      </div>
+
+      <form method="post" data-guard novalidate>
+        {% csrf_token %}
+        {% include "components/form_errors.html" with form=form %}
+
+        <div class="dform-cols">
+          <div>
+            <h2 class="form-section-title first">{% trans "About you" %}</h2>
+            <div class="dform-row dform-row-text">
+              {% include "components/form_field.html" with field=form.full_name %}
+              {% include "components/form_field.html" with field=form.phone %}
+            </div>
+            <div class="mb-3">
+              <span class="form-label d-block" id="blood-type-label">{{ form.blood_type.label }}</span>
+              <div class="cond-chips bt-chips" role="radiogroup" aria-labelledby="blood-type-label">
+                {% for choice in form.blood_type %}
+                  <label class="cond-chip" for="{{ choice.id_for_label }}">{{ choice.tag }}<span>{{ choice.choice_label }}</span></label>
+                {% endfor %}
+              </div>
+              {% if form.blood_type.errors %}
+                {% for error in form.blood_type.errors %}<div class="field-error"><i class="bi bi-exclamation-circle-fill" aria-hidden="true"></i><span>{{ error }}</span></div>{% endfor %}
+              {% endif %}
+            </div>
+            {% include "components/form_field.html" with field=form.location %}
+            {% include "components/cnic_block.html" with form=form %}
+          </div>
+
+          <div>
+            <h2 class="form-section-title first">{% trans "Health check" %}</h2>
+            <div class="dform-row dform-row-top">
+              {% include "components/form_field.html" with field=form.weight_kg %}
+              {% include "components/form_field.html" with field=form.height_cm %}
+            </div>
+            <div class="mb-3" data-conditions>
+              <span class="form-label d-block" id="conditions-label">{{ form.conditions.label }}</span>
+              <div class="cond-chips" role="group" aria-labelledby="conditions-label">
+                {% for choice in form.conditions %}
+                  <label class="cond-chip" for="{{ choice.id_for_label }}">{{ choice.tag }}<span>{{ choice.choice_label }}</span></label>
+                {% endfor %}
+              </div>
+              {% if form.conditions.errors %}
+                {% for error in form.conditions.errors %}<div class="field-error"><i class="bi bi-exclamation-circle-fill" aria-hidden="true"></i><span>{{ error }}</span></div>{% endfor %}
+              {% endif %}
+            </div>
+            <div data-other-condition>{% include "components/form_field.html" with field=form.conditions_other no_optional=True %}</div>
+
+            <div class="dform-row dform-row-end">
+              {% include "components/form_field.html" with field=form.last_donation_date no_optional=True %}
+              {% include "components/form_check.html" with field=form.never_donated %}
+            </div>
+            {% include "components/form_check.html" with field=form.is_available switch=True %}
+          </div>
+        </div>
+
+        <div class="dform-foot">
+          {% include "components/form_check.html" with field=form.phone_consent %}
+          {% include "components/form_check.html" with field=form.eligibility_declared %}
+          <div class="dform-submit">{% include "components/submit_button.html" with label=editing|yesno:"Save changes,Register as a donor" loading="Saving..." %}</div>
+        </div>
+      </form>
+      {% if editing %}<p class="auth-switch"><a href="{% url 'donors:profile' %}"><i class="bi bi-arrow-left" aria-hidden="true"></i> {% trans "Back to my dashboard" %}</a></p>{% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

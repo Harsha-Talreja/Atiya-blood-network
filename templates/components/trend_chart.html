@@ -1,0 +1,25 @@
+{% load i18n %}{% comment %}
+  A seven-day line, drawn from geometry worked out in core/charts.py. The
+  numbers are also written out underneath for anyone using a screen reader,
+  because a line on its own says nothing to them.
+{% endcomment %}
+<svg class="trend" viewBox="0 0 {{ trend.width }} {{ trend.height }}" role="img"
+     aria-label="{% blocktrans trimmed with n=trend.days|length %}Requests per day over the last {{ n }} days{% endblocktrans %}"
+     style="--len: {{ trend.length }}">
+  <defs>
+    <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--brand)" stop-opacity=".22"></stop>
+      <stop offset="100%" stop-color="var(--brand)" stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+  <line class="trend-grid" x1="10" y1="{{ trend.baseline }}" x2="{{ trend.width|add:'-10' }}" y2="{{ trend.baseline }}"></line>
+  <path class="trend-area" d="{{ trend.area }}"></path>
+  <path class="trend-line" d="{{ trend.line }}"></path>
+  {% for day in trend.days %}
+    <circle class="trend-dot" cx="{{ day.x }}" cy="{{ day.y }}" r="3"></circle>
+    <text class="trend-axis" x="{{ day.x }}" y="88" text-anchor="middle">{{ day.label }}</text>
+  {% endfor %}
+</svg>
+<p class="visually-hidden">
+  {% for day in trend.days %}{{ day.label }}: {{ day.count }}.&nbsp;{% endfor %}
+</p>

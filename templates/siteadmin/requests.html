@@ -1,0 +1,138 @@
+{% extends "siteadmin/base.html" %}
+{% load admin_extras core_extras %}
+
+{% block title %}Requests{% endblock %}
+{% block heading %}Requests{% endblock %}
+{% block state %}Verify what is real, close what is done{% endblock %}
+
+{% block content %}
+<section class="sec">
+  <div class="sh">
+    <h2>{% if state == "all" %}All requests{% else %}Requests{% endif %}</h2>
+    <span class="c">{{ total }} shown</span>
+    <span class="end">
+      <form class="find" method="get">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" name="q" value="{{ query }}" placeholder="Patient, hospital or username"
+               aria-label="Search requests">
+        <input type="hidden" name="state" value="{{ state }}">
+      </form>
+      {% include "siteadmin/_tabs.html" %}
+      <a class="btn out" href="{% url 'siteadmin:requests_export' %}?state={{ state|urlencode }}&amp;q={{ query|urlencode }}">Download CSV</a>
+    </span>
+  </div>
+
+  <div class="rows">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Patient</th>
+          <th scope="col">Type</th>
+          <th scope="col" class="hide">Hospital</th>
+          <th scope="col">State</th>
+          <th scope="col" class="hide">Posted</th>
+          <th scope="col" class="r">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for req in rows %}
+          <tr>
+            <td>
+              <div class="who">{{ req.patient_name }}</div>
+              <div class="qt">by {{ req.requester.username }}, {{ req.units_needed }} unit{{ req.units_needed|pluralize }}{% if req.extra_review != "none" %} <span style="color:var(--brass);font-weight:600">(extra)</span>{% endif %}{% if req.report_count %}, <span style="color:var(--blood)">{{ req.report_count }} report{{ req.report_count|pluralize }}</span>{% endif %}</div>
+            </td>
+            <td><span class="bt">{{ req.blood_type|blood_mark }}</span></td>
+            <td class="hide qt">{{ req.hospital.name }}, {{ req.hospital.location.city }}</td>
+            <td>
+              {% if req.extra_review == "pending" %}
+                <span class="st wait">Waiting for an admin to approve {{ req.units_needed }} units</span>
+              {% elif req.extra_review == "rejected" %}
+                <span class="st gone">Rejected, extra units not approved</span>
+              {% elif req.timeout_review == "rejected" %}
+                <span class="st gone">Rejected, hospital missed its deadline</span>
+              {% elif req.needs_timeout_review %}
+                <span class="st urgent"><i aria-hidden="true"></i>Hospital missed its deadline, needs a decision</span>
+              {% elif req.display_status == "Fulfilled" %}
+                <span class="st done">Fulfilled</span>
+              {% elif req.display_status == "Expired" %}
+                <span class="st gone">Expired, no donor</span>
+              {% elif req.requester_is_blocked %}
+                <span class="st urgent">Hidden, poster is blocked</span>
+              {% elif req.is_verified %}
+                <span class="st ok">{% if req.verified_by_admin %}Live, verified by an admin{% else %}Live, hospital verified it{% endif %}</span>
+              {% elif req.released_early %}
+                <span class="st wait">Live. {{ req.release_label }}</span>
+              {% elif req.urgency == "Critical" %}
+                <span class="st urgent"><i aria-hidden="true"></i>Critical, still waiting on the hospital</span>
+              {% else %}
+                <span class="st wait">Waiting on {{ req.hospital.name }}</span>
+              {% endif %}
+            </td>
+            <td class="hide qt nums">{{ req.created_at|time_ago }}</td>
+            <td class="r">
+              <div class="acts">
+                {% if req.extra_review == "pending" %}
+                  <a class="btn go" href="{% url 'siteadmin:request_review' req.pk %}">Review</a>
+                  <form method="post" action="{% url 'siteadmin:request_remove' req.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <button class="btn stop" type="submit">Remove</button>
+                  </form>
+                {% elif req.needs_timeout_review %}
+                  <form method="post" action="{% url 'siteadmin:request_timeout' req.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <input type="hidden" name="decision" value="approve">
+                    <button class="btn go" type="submit" title="Donors will see it as not hospital verified">Approve</button>
+                  </form>
+                  <form method="post" action="{% url 'siteadmin:request_timeout' req.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <input type="hidden" name="decision" value="reject">
+                    <button class="btn stop" type="submit">Reject</button>
+                  </form>
+                {% elif req.is_open %}
+                  {% if not req.is_verified %}
+                    {% if req.released_early %}
+                      {% if not req.checked_at %}
+                        <form method="post" action="{% url 'siteadmin:request_check' req.pk %}">
+                          {% csrf_token %}
+                          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                          <button class="btn go" type="submit">Mark checked</button>
+                        </form>
+                      {% endif %}
+                    {% endif %}
+                    <form method="post" action="{% url 'siteadmin:request_verify' req.pk %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                      <button class="btn out" type="submit"
+                        title="Only after you have checked with the hospital yourself. Donors will see it as verified by an admin.">Verify</button>
+                    </form>
+                  {% endif %}
+                  <form method="post" action="{% url 'siteadmin:request_remove' req.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <button class="btn stop" type="submit">Remove</button>
+                  </form>
+                {% endif %}
+                {% if req.extra_review == "approved" or req.extra_review == "rejected" %}
+                  <a class="btn bare" href="{% url 'siteadmin:request_review' req.pk %}">Decision</a>
+                {% endif %}
+                <a class="btn bare" href="{% url 'blood_requests:detail' req.pk %}">Open</a>
+              </div>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="6" class="empty">
+            {% if query %}Nothing matches &ldquo;{{ query }}&rdquo;.{% else %}No requests yet.{% endif %}
+          </td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if total > rows|length %}
+    <p class="pageof">Showing the first {{ rows|length }} of {{ total }}.</p>
+  {% endif %}
+
+</section>
+{% endblock %}

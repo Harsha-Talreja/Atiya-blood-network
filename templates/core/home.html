@@ -1,0 +1,366 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static core_extras %}
+
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}{{ SITE_NAME }} | Find a blood donor fast{% endblocktrans %}{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+{% comment %}
+  The LifeLink hero. Two columns: the message on the left, a drawn drop with
+  orbits and two floating cards on the right.
+
+  Three rules for what goes here:
+    1. The four numbers are counts from the database, never invented ones.
+    2. The floating cards describe what the site does, not people or figures.
+       They carry no names, no counts and no "verified" claim, because nobody
+       checks a donor's identity here.
+    3. Everything in the artwork is aria-hidden: it is decoration, and a
+       screen reader should go straight from the heading to the buttons.
+{% endcomment %}
+<section class="hero hero-premium" data-bs-theme="dark">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6 hero-copy">
+        <h1 class="hero-title fade-up" style="--d:60ms">{% trans "Post. Match." %} <em>{% trans "Donate." %}</em></h1>
+        <p class="hero-lead fade-up" style="--d:120ms">{% trans "Three steps from need to donor." %}</p>
+
+        <div class="d-flex flex-column flex-sm-row flex-wrap gap-3 fade-up" style="--d:240ms">
+          {% if not desk_only %}
+            <a href="{% url 'blood_requests:new' %}" class="btn btn-emergency btn-lg btn-pulse">{% trans "I need blood" %} <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+          {% endif %}
+          {% if not desk_only %}
+            {% if user.is_authenticated %}
+              <a href="{% url 'donors:profile' %}" class="btn btn-outline-brand btn-lg"><i class="bi bi-heart-pulse" aria-hidden="true"></i> {% trans "Become a donor" %}</a>
+            {% else %}
+              <a href="{% url 'accounts:signup' %}?next={% url 'donors:edit' %}" class="btn btn-outline-brand btn-lg"><i class="bi bi-heart-pulse" aria-hidden="true"></i> {% trans "Become a donor" %}</a>
+            {% endif %}
+          {% endif %}
+        </div>
+
+        {% include "components/live_strip.html" %}
+
+        <div class="hero-divider" aria-hidden="true"></div>
+
+        <div class="hero-metrics fade-up" style="--d:420ms" role="group" aria-label="{% trans "Network statistics" %}">
+          <div class="metric"><i class="bi bi-people" aria-hidden="true"></i><strong class="metric-n" data-count="{{ donor_count }}">{{ donor_count }}</strong><span class="metric-l">{% trans "Registered donors" %}</span></div>
+          <div class="metric"><i class="bi bi-droplet-fill" aria-hidden="true"></i><strong class="metric-n" data-count="{{ open_count }}">{{ open_count }}</strong><span class="metric-l">{% trans "Open requests" %}</span></div>
+          <div class="metric"><i class="bi bi-check-circle" aria-hidden="true"></i><strong class="metric-n" data-count="{{ fulfilled_count }}">{{ fulfilled_count }}</strong><span class="metric-l">{% trans "Requests fulfilled" %}</span></div>
+          <div class="metric"><i class="bi bi-geo-alt" aria-hidden="true"></i><strong class="metric-n" data-count="{{ city_count }}">{{ city_count }}</strong><span class="metric-l">{% trans "Cities covered" %}</span></div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-art" aria-hidden="true">
+          <div class="par" style="--k:.05">
+            <span class="hero-glow"></span>
+            <span class="hero-orbit orbit-one"></span>
+            <span class="hero-orbit orbit-two"></span>
+          </div>
+
+          <div class="par" style="--k:.13">
+            <span class="pulse-core"></span>
+            <svg class="hero-pulse" viewBox="0 0 220 120" focusable="false">
+              <path class="pulse-line" d="M-10 64h66l12-34 20 74 18-52 10 12h96" pathLength="100"></path>
+            </svg>
+          </div>
+
+          <div class="par" style="--k:.22">
+            <span class="orbit-node node-a">O&minus;</span>
+            <span class="orbit-node node-b">A+</span>
+            {% include "components/live_box.html" %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="home-body glass-page">
+  {% include "components/glass_orbs.html" with home=True %}
+
+
+
+<!-- COMPATIBILITY CHECKER -->
+<section class="section" id="compatibility">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="kicker">{% trans "Compatibility" %}</span>
+      <h2>{% trans "Who can donate to whom?" %}</h2>
+      <p>{% trans "Pick the patient's blood type to see which donors are compatible." %}</p>
+    </div>
+    <div class="card-soft mx-auto" style="max-width: 46rem;" data-compat data-aos="fade-up">
+      <p class="compat-label" id="compat-recipient-label">{% trans "Patient's blood type" %}</p>
+      <div class="chip-row" role="group" aria-labelledby="compat-recipient-label">
+        {% for bt in blood_types %}
+          <button type="button" class="blood-chip" data-type="{{ bt }}" aria-pressed="false">{{ bt|pretty_blood }}</button>
+        {% endfor %}
+      </div>
+      <p class="compat-label mt-4" id="compat-donor-label">{% trans "Can receive from" %}</p>
+      <div class="chip-row" aria-labelledby="compat-donor-label">
+        {% for bt in blood_types %}
+          <span class="blood-chip donor-chip" data-donor="{{ bt }}">{{ bt|pretty_blood }}</span>
+        {% endfor %}
+      </div>
+      <p class="compat-result" id="compat-result" aria-live="polite">{% trans "Select a blood type above to see who can donate." %}</p>
+      <p class="compat-note">{% trans "This guide is for red blood cell donations. Always confirm with the hospital's blood bank." %}</p>
+    </div>
+    {{ compatibility|json_script:"compat-data" }}
+  </div>
+</section>
+
+{# What the match checks. It replaces the old trust cards, which said the same things. #}
+<section class="section" id="matching">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="kicker">{% trans "Matching" %}</span>
+      <h2>{% trans "The right match isn't just the right blood type." %}</h2>
+      <p>{% trans "Three checks narrow the list before a donor is shown for a request." %}</p>
+    </div>
+    <ol class="funnel">
+      <li class="frow" data-aos="fade-up">
+        <div class="fbar-wrap"><span class="fbar" style="--w:100%;--i:0"><b>{% trans "Registered donors" %}</b></span></div>
+        <p>{% trans "Everyone with a donor profile." %}</p>
+      </li>
+      <li class="frow" data-aos="fade-up" data-aos-delay="80">
+        <div class="fbar-wrap"><span class="fbar" style="--w:84%;--i:1"><b>{% trans "Compatible blood type" %}</b></span></div>
+        <p>{% trans "Blood group rules decide who can give to whom, so an incompatible donor is never shown." %}</p>
+      </li>
+      <li class="frow" data-aos="fade-up" data-aos-delay="160">
+        <div class="fbar-wrap"><span class="fbar" style="--w:68%;--i:2"><b>{% trans "Same city" %}</b></span></div>
+        <p>{% trans "Only donors registered in the patient's city are matched." %}</p>
+      </li>
+      <li class="frow" data-aos="fade-up" data-aos-delay="240">
+        <div class="fbar-wrap"><span class="fbar" style="--w:52%;--i:3"><b>{% trans "Available and rested" %}</b></span></div>
+        <p>{% trans "Donors must be marked available and past their 90-day rest since the last donation." %}</p>
+      </li>
+      <li class="frow is-end" data-aos="fade-up" data-aos-delay="320">
+        <div class="fbar-wrap"><span class="fbar" style="--w:40%;--i:4"><b>{% trans "Shown for your request" %}</b></span></div>
+        <p>{% trans "A better starting point than a broadcast. Not a guarantee. The hospital screens every donation." %}</p>
+      </li>
+    </ol>
+    <p class="funnel-note">{% trans "The bars show the idea of narrowing down. They are not counts." %}</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="kicker">{% trans "The difference" %}</span>
+      <h2>{% trans "How it works" %}</h2>
+      <p>{% trans "Asking around works, but every message starts the search again. Here is the same job with a network." %}</p>
+    </div>
+    {# Two lanes read row by row: the same moment in the job, done the old way and with the network. #}
+    <div class="ladder">
+      <div class="lrow lhead" aria-hidden="true" data-aos="fade-up">
+        <span class="lh">{% trans "Asking around" %}</span><span></span><span class="lh is-brand">{% blocktrans trimmed with SITE_NAME=SITE_NAME %}With {{ SITE_NAME }}{% endblocktrans %}</span>
+      </div>
+      <ol class="ladder-rows">
+        <li class="lrow" data-aos="fade-up">
+          <div class="lcell is-plain"><span class="flow-node"><i class="bi bi-chat-square-text" aria-hidden="true"></i></span><b><span class="visually-hidden">{% trans "Asking around:" %} </span>{% trans "Post in a group" %}</b></div>
+          <span class="lnum" aria-hidden="true">1</span>
+          <div class="lcell is-brand"><span class="flow-node"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span><b><span class="visually-hidden">{% blocktrans trimmed with SITE_NAME=SITE_NAME %}With {{ SITE_NAME }}:{% endblocktrans %} </span>{% trans "Request posted" %}</b></div>
+        </li>
+        <li class="lrow" data-aos="fade-up" data-aos-delay="80">
+          <div class="lcell is-plain"><span class="flow-node"><i class="bi bi-share" aria-hidden="true"></i></span><b><span class="visually-hidden">{% trans "Asking around:" %} </span>{% trans "Forwarded onward" %}</b></div>
+          <span class="lnum" aria-hidden="true">2</span>
+          <div class="lcell is-brand"><span class="flow-node"><i class="bi bi-shield-check" aria-hidden="true"></i></span><b><span class="visually-hidden">{% blocktrans trimmed with SITE_NAME=SITE_NAME %}With {{ SITE_NAME }}:{% endblocktrans %} </span>{% trans "Compatibility checked" %}</b></div>
+        </li>
+        <li class="lrow" data-aos="fade-up" data-aos-delay="160">
+          <div class="lcell is-plain"><span class="flow-node"><i class="bi bi-clock" aria-hidden="true"></i></span><b><span class="visually-hidden">{% trans "Asking around:" %} </span>{% trans "Waiting for replies" %}</b></div>
+          <span class="lnum" aria-hidden="true">3</span>
+          <div class="lcell is-brand"><span class="flow-node"><i class="bi bi-geo-alt" aria-hidden="true"></i></span><b><span class="visually-hidden">{% blocktrans trimmed with SITE_NAME=SITE_NAME %}With {{ SITE_NAME }}:{% endblocktrans %} </span>{% trans "Ready donors shown" %}</b></div>
+        </li>
+        <li class="lrow is-last" data-aos="fade-up" data-aos-delay="240">
+          <div class="lcell is-plain"><span class="flow-node"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></span><b><span class="visually-hidden">{% trans "Asking around:" %} </span>{% trans "Search restarts" %}</b></div>
+          <span class="lnum" aria-hidden="true">4</span>
+          <div class="lcell is-brand"><span class="flow-node"><i class="bi bi-telephone" aria-hidden="true"></i></span><b><span class="visually-hidden">{% blocktrans trimmed with SITE_NAME=SITE_NAME %}With {{ SITE_NAME }}:{% endblocktrans %} </span>{% trans "Direct contact" %}</b></div>
+        </li>
+      </ol>
+      <p class="flow-note" data-aos="fade-up">{% trans "Donors and requesters get in touch by phone or WhatsApp. When the need is met, the request is marked fulfilled." %}</p>
+    </div>
+  </div>
+</section>
+
+{% if not desk_only %}
+<!-- FOR PEOPLE WHO NEED BLOOD / FOR PEOPLE WHO CAN GIVE (aimed at donors and patients, so a hospital login does not see them) -->
+<section class="section" id="get-started" data-home-cta>
+  <div class="container">
+    <div class="card-soft no-lift sides" data-tabs data-aos="fade-up">
+      <div class="tabs-seg" role="tablist" aria-label="{% trans "Who is this for" %}">
+        <button type="button" class="seg-btn" role="tab" id="tab-need" aria-selected="true" aria-controls="pane-need">{% trans "I need blood" %}</button>
+        <button type="button" class="seg-btn" role="tab" id="tab-give" aria-selected="false" aria-controls="pane-give" tabindex="-1">{% trans "I can donate" %}</button>
+      </div>
+      <div class="pane" role="tabpanel" id="pane-need" aria-labelledby="tab-need">
+        <div>
+          <h2>{% trans "You shouldn't have to broadcast an emergency to everyone you know." %}</h2>
+          <p class="text-soft">{% trans "Tell us what's needed, and let the network do the searching." %}</p>
+          <ul class="tick-list">
+            <li>{% trans "Enter the blood type needed and how urgent it is" %}</li>
+            <li>{% trans "Choose the hospital" %}</li>
+            <li>{% trans "Leave a contact number" %}</li>
+            <li>{% trans "See compatible, available donors as they are found" %}</li>
+            <li>{% trans "Contact a suitable donor directly" %}</li>
+          </ul>
+          <a href="{% url 'blood_requests:new' %}" class="btn btn-brand btn-lg">{% trans "Post a request" %}</a>
+        </div>
+        <div class="mock-card">
+          <p class="mock-title">{% trans "New blood request" %} <span class="pill pill-auto">{% trans "Example" %}</span></p>
+          <dl class="mock-list">
+            <div><dt>{% trans "Blood type" %}</dt><dd>O+</dd></div>
+            <div><dt>{% trans "Urgency" %}</dt><dd><span class="pill pill-urgent">{% trans "Urgent" %}</span></dd></div>
+            <div><dt>{% trans "Hospital" %}</dt><dd>{% trans "Civil Hospital, Sukkur" %}</dd></div>
+            <div><dt>{% trans "Contact" %}</dt><dd class="text-soft">{% trans "Add phone number" %}</dd></div>
+          </dl>
+          <a href="{% url 'blood_requests:new' %}" class="btn btn-brand w-100">{% trans "Post request" %}</a>
+        </div>
+      </div>
+      <div class="pane" role="tabpanel" id="pane-give" aria-labelledby="tab-give">
+        <div>
+          <h2>{% trans "Be found when your blood type is the one someone needs." %}</h2>
+          <p class="text-soft">{% trans "A one-minute profile. You stay in control of when you are shown." %}</p>
+          <ul class="tick-list">
+            <li>{% trans "Add your blood type and area" %}</li>
+            <li>{% trans "Mark yourself available, or pause any time" %}</li>
+            <li>{% trans "See requests that match you" %}</li>
+            <li>{% trans "Your phone number is shared only if you allow it" %}</li>
+            <li>{% trans "A 90-day rest starts automatically after you donate" %}</li>
+          </ul>
+          {% if user.is_authenticated %}<a href="{% url 'donors:profile' %}" class="btn btn-brand btn-lg">{% trans "Become a donor" %}</a>{% else %}<a href="{% url 'accounts:signup' %}?next={% url 'donors:edit' %}" class="btn btn-brand btn-lg">{% trans "Become a donor" %}</a>{% endif %}
+        </div>
+        <div class="mock-card">
+          <p class="mock-title">{% trans "Your donor profile" %} <span class="pill pill-auto">{% trans "Example" %}</span></p>
+          <dl class="mock-list">
+            <div><dt>{% trans "Blood type" %}</dt><dd>A+</dd></div>
+            <div><dt>{% trans "Area" %}</dt><dd>{% trans "Barrage Road, Sukkur" %}</dd></div>
+            <div><dt>{% trans "Status" %}</dt><dd><span class="pill pill-fulfilled">{% trans "Ready to donate" %}</span></dd></div>
+            <div><dt>{% trans "Phone" %}</dt><dd>{% trans "Shared only with matching requests" %}</dd></div>
+          </dl>
+          {% if user.is_authenticated %}<a href="{% url 'donors:profile' %}" class="btn btn-brand w-100">{% trans "Create profile" %}</a>{% else %}<a href="{% url 'accounts:signup' %}?next={% url 'donors:edit' %}" class="btn btn-brand w-100">{% trans "Create profile" %}</a>{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- LATEST REQUESTS -->
+<section class="section" id="requests">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="kicker">{% trans "Live" %}</span>
+      <h2>{% trans "Open requests right now" %}</h2>
+      <p>{% trans "The most urgent requests come first." %}</p>
+    </div>
+    {% if latest_requests %}
+      <div class="row g-4">
+        {% for req in latest_requests %}
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{% widthratio forloop.counter0 1 120 %}">{% include "components/request_card.html" with req=req %}</div>
+        {% endfor %}
+      </div>
+      <div class="text-center mt-4">
+        <a href="{% url 'blood_requests:list' %}" class="btn btn-outline-brand">{% trans "See all requests" %} <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    {% else %}
+      {% include "components/empty_state.html" with icon="bi-droplet" title="No open requests right now" %}
+    {% endif %}
+  </div>
+</section>
+
+<!-- DONORS READY BY BLOOD TYPE -->
+<section class="section" id="availability">
+  <div class="container">
+    <div class="row gy-5 gx-lg-5 align-items-center">
+      <div class="col-lg-5" data-aos="fade-up">
+        <span class="kicker text-start">{% trans "Supply" %}</span>
+        <h2 class="fw-bold" style="letter-spacing:-.02em">{% trans "Donors ready right now" %}</h2>
+        <p class="text-soft mb-2">{% trans "These are registered donors who are marked available and are past their waiting period since the last donation." %}</p>
+      </div>
+      <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-soft bar-chart" data-bars>
+          {% if ready_total %}
+            <div class="bars-head"><span>{% blocktrans trimmed count n=ready_total %}<strong>{{ n }}</strong> donor ready now{% plural %}<strong>{{ n }}</strong> donors ready now{% endblocktrans %}</span></div>
+            {% for row in availability %}
+              <div class="bar-row">
+                <span class="bar-label">{{ row.blood_type|pretty_blood }}</span>
+                <div class="bar-track" role="img" aria-label="{% blocktrans trimmed with n=row.count bt=row.blood_type|pretty_blood %}{{ n }} ready donors with blood type {{ bt }}{% endblocktrans %}">
+                  <div class="bar-fill{% if not row.count %} is-empty{% endif %}{% if row.low %} is-low{% endif %}" style="--w: {{ row.percent }}%; --i: {{ forloop.counter0 }}"></div>
+                </div>
+                <span class="bar-count">{{ row.count }}</span>
+              </div>
+            {% endfor %}
+            {% if show_low_key %}<p class="bars-key"><i class="key-dot" aria-hidden="true"></i>{% trans "Amber bars: the fewest ready donors, where new donors help most." %}</p>{% endif %}
+          {% else %}
+            {% if desk_only %}
+              {% include "components/empty_state.html" with icon="bi-people" title="No donors registered yet" %}
+            {% elif user.is_authenticated %}
+              {% url 'donors:profile' as donor_profile_url %}
+              {% include "components/empty_state.html" with icon="bi-people" title="No donors registered yet" cta_label="Become a donor" cta_url=donor_profile_url %}
+            {% else %}
+              {% url 'accounts:signup' as signup_url %}{% url 'donors:edit' as donor_edit_url %}
+              {% include "components/empty_state.html" with icon="bi-people" title="No donors registered yet" cta_label="Become a donor" cta_url=signup_url cta_next=donor_edit_url %}
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="kicker">{% trans "FAQ" %}</span>
+      <h2>{% trans "Common questions" %}</h2>
+    </div>
+    <div class="accordion mx-auto" id="faqList" style="max-width: 46rem;" data-aos="fade-up">
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">{% trans "Who can donate blood?" %}</button>
+        </h3>
+        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqList">
+          <div class="accordion-body">{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Generally, healthy adults who feel well. Every donation is screened by the hospital or blood bank, and they make the final decision. {{ SITE_NAME }} only helps people find and contact each other.{% endblocktrans %}</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">{% trans "How often can I donate?" %}</button>
+        </h3>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqList">
+          <div class="accordion-body">{% trans "This app uses a three-month (90-day) gap between donations and hides donors who are still inside it. The blood bank's own rules always come first." %}</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">{% trans "Is my phone number public?" %}</button>
+        </h3>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqList">
+          <div class="accordion-body">{% trans "No. A patient's number is shown only to the requester, the hospital named on the request, and donors who offered to help with it. A donor's number is shown only to the person whose request they offered to help with, and only if they agreed." %}</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">{% trans "What do Critical, Urgent, and Normal mean?" %}</button>
+        </h3>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqList">
+          <div class="accordion-body">{% trans "The requester chooses how urgent the need is. Critical requests stay open for 24 hours, Urgent for 48 hours, and Normal for 72 hours. After that they expire automatically unless they were marked fulfilled." %}</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Does {{ SITE_NAME }} supply blood?{% endblocktrans %}</button>
+        </h3>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqList">
+          <div class="accordion-body">{% trans "No. It does not store or supply blood. In an emergency, also contact the hospital's blood bank directly." %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+{% endblock %}

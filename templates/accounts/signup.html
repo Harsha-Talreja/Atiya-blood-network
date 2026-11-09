@@ -1,0 +1,21 @@
+{% extends "accounts/auth_base.html" %}
+{% load i18n %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}Create an account | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block auth_form %}
+  <h1 class="auth-title">{% trans "Create your account" %}</h1>
+  <p class="auth-sub">{% trans "Four quick boxes, then you are in" %}</p>
+  <form method="post" data-guard novalidate>
+    {% csrf_token %}
+    {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+    {% include "components/form_errors.html" with form=form %}
+    {% include "components/form_field.html" with field=form.username icon="person" %}
+    {% include "components/form_field.html" with field=form.email icon="envelope" %}
+    <div class="auth-two">
+      {% include "components/form_field.html" with field=form.password1 icon="lock" %}
+      {% include "components/form_field.html" with field=form.password2 icon="lock" %}
+    </div>
+    {% include "components/submit_button.html" with label="Create account" loading="Creating your account..." %}
+  </form>
+  <p class="auth-fineprint"><i class="bi bi-shield-lock" aria-hidden="true"></i><span>{% trans "We never see or email your password. Phone numbers are only shown to signed-in users." %}</span></p>
+  <p class="auth-switch">{% trans "Already have an account?" %} <a href="{% url 'accounts:login' %}">{% trans "Log in" %}</a></p>
+{% endblock %}

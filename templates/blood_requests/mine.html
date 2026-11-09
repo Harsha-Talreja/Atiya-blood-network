@@ -1,0 +1,89 @@
+{% extends "dashboard/shell.html" %}
+{% load i18n %}
+{% load core_extras dash %}
+{% block title %}{% blocktrans trimmed with SITE_NAME=SITE_NAME %}My requests | {{ SITE_NAME }}{% endblocktrans %}{% endblock %}
+{% block dash_main %}
+  <h1 class="dpage-title">{% trans "Request blood" %}</h1>
+  {% dash_tabs "request" "mine" %}
+  <div class="dd-headrow">
+    <div class="dd-headtext">
+      <p>{% blocktrans trimmed with requests_left=requests_left daily_limit=daily_limit %}{{ requests_left }} of {{ daily_limit }} requests remaining today.{% endblocktrans %}</p>
+    </div>
+    <ul class="dd-chips" aria-label="{% trans "Your request totals" %}">
+      <li><b>{{ open_count }}</b> {% trans "open" %}{% if open_count %}<em>{% if open_offers %}{% blocktrans trimmed count n=open_offers %}{{ n }} donor offered{% plural %}{{ n }} donors offered{% endblocktrans %}{% else %}{% trans "no offers yet" %}{% endif %}</em>{% else %}<em>{% trans "live or waiting" %}</em>{% endif %}</li>
+      <li><b>{{ fulfilled_count }}</b> {% trans "fulfilled" %}</li>
+      <li><b>{{ total_count }}</b> {% trans "total posted" %}</li>
+    </ul>
+  </div>
+
+  {% if rows %}
+    {% if open_rows %}
+      <div class="myrows">
+        {% for row in open_rows %}
+          {% with req=row.req %}
+          <article class="glass-card myrow is-{{ req.urgency|lower }}" data-aos="fade-up" data-aos-delay="{% widthratio forloop.counter0 1 40 %}" style="--fill: {{ row.track_fill }}">
+            {% include "components/blood_badge.html" with blood_type=req.blood_type size="md" %}
+            <div class="mr-main">
+              <div class="mr-title">
+                <h3 class="request-title">{{ req.hospital.name }}</h3>
+                {% include "components/urgency_pill.html" with urgency=req.urgency %}
+                {% include "components/status_pill.html" with status=req.display_status %}
+                {% if req.is_verified %}<span class="pill pill-verified"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> {{ req.verified_label }}</span>
+                {% elif req.release_label %}<span class="pill pill-auto"><i class="bi bi-shield-exclamation" aria-hidden="true"></i> {{ req.release_label }}</span>
+                {% elif req.needs_timeout_review %}<span class="pill pill-review"><i class="bi bi-hourglass-split" aria-hidden="true"></i> {% trans "Waiting for an admin" %}</span>{% endif %}
+                {% if req.is_awaiting_extra_review and req.hospital_wait_over %}<span class="pill pill-review"><i class="bi bi-hourglass-split" aria-hidden="true"></i> {% trans "Extra units awaiting an admin" %}</span>{% endif %}
+              </div>
+              <p class="mr-meta">
+                {% blocktrans trimmed count n=req.units_needed with area=req.location.area city=req.location.city ago=req.created_at|time_ago %}{{ area }}, {{ city }} &middot; {{ n }} unit &middot; {{ ago }}{% plural %}{{ area }}, {{ city }} &middot; {{ n }} units &middot; {{ ago }}{% endblocktrans %}
+                &middot; <time class="countdown" datetime="{{ req.expires_at|date:'c' }}" data-countdown="{{ req.expires_at|date:'c' }}">{% blocktrans trimmed with expires_at=req.expires_at|time_left %}Closes in {{ expires_at }}{% endblocktrans %}</time>
+                {% if row.offers %}&middot; <strong>{% blocktrans trimmed count n=row.offers %}{{ n }} donor offered{% plural %}{{ n }} donors offered{% endblocktrans %}</strong>{% endif %}
+              </p>
+            </div>
+            {% include "components/tracking_mini.html" with tracking=row.tracking %}
+            <span class="mc-acts">
+              {% if row.offers %}
+              <form method="post" action="{% url 'blood_requests:fulfil' req.pk %}" data-confirm="{% trans "Mark this request as fulfilled? It will no longer be shown as open." %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-brand">{% trans "Mark fulfilled" %}</button>
+              </form>
+              {% else %}
+              <span class="wait-fulfil">
+                <button type="button" class="btn btn-sm btn-outline-brand" disabled aria-disabled="true" aria-describedby="wait-{{ req.pk }}">{% trans "Mark fulfilled" %}</button>
+                <small id="wait-{{ req.pk }}">{% trans "Available once a donor offers to help" %}</small>
+              </span>
+              {% endif %}
+              <a href="{% url 'blood_requests:detail' pk=req.pk %}" class="btn btn-sm btn-brand">{% trans "View details" %}</a>
+            </span>
+          </article>
+          {% endwith %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="mine-empty"><i class="bi bi-droplet" aria-hidden="true"></i><b>{% trans "No open requests" %}</b></div>
+    {% endif %}
+
+    {% if past_rows %}
+      <details class="glass-card past-box" data-aos="fade-up">
+        <summary>{% trans "Past requests" %} <i class="count-chip">{{ past_rows|length }}</i><i class="bi bi-chevron-down rq-chev" aria-hidden="true"></i></summary>
+        <div class="past-list">
+          {% for row in past_rows %}
+            {% with req=row.req %}
+            <div class="prow">
+              {% include "components/blood_badge.html" with blood_type=req.blood_type size="sm" %}
+              <b>{{ req.hospital.name }}</b>
+              {% include "components/status_pill.html" with status=req.display_status %}
+              {% if row.offers %}<span>{% blocktrans trimmed count n=row.offers %}{{ n }} donor{% plural %}{{ n }} donors{% endblocktrans %}</span>{% endif %}
+              <span class="prow-end">
+                <span>{% if req.fulfilled_at %}{{ req.fulfilled_at|time_ago }}{% else %}{{ req.created_at|time_ago }}{% endif %}</span>
+                <a href="{% url 'blood_requests:detail' pk=req.pk %}">{% trans "View" %}</a>
+              </span>
+            </div>
+            {% endwith %}
+          {% endfor %}
+        </div>
+      </details>
+    {% endif %}
+  {% else %}
+    <div class="mine-empty"><i class="bi bi-droplet" aria-hidden="true"></i><b>{% trans "You haven't posted a request" %}</b></div>
+  {% endif %}
+{% endblock %}

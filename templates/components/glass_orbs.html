@@ -1,0 +1,6 @@
+{% comment %}
+  The soft coloured glows behind a glass card. Glass only reads as glass when
+  there is something to see through it, which is the whole job of these.
+  With home=True there are four, spread down the long home page.
+{% endcomment %}
+<div class="orbs{% if home %} hb{% endif %}" aria-hidden="true"><span class="o1"></span><span class="o2"></span><span class="o3"></span>{% if home %}<span class="o4"></span>{% endif %}</div>
