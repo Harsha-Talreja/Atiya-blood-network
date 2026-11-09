@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="240" viewBox="0 0 1280 240" role="img" aria-label="ATIYA, the Urdu word for gift. Post. Match. Donate.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5B0C1C"/><stop offset="1" stop-color="#2A0610"/></linearGradient>
+    <linearGradient id="ln" x1="0" x2="1"><stop offset="0" stop-color="#FF8FA0" stop-opacity="0"/><stop offset=".25" stop-color="#FF8FA0"/><stop offset=".75" stop-color="#7FE0B8"/><stop offset="1" stop-color="#7FE0B8" stop-opacity="0"/></linearGradient>
+    <style>
+      .beat{stroke-dasharray:1500;stroke-dashoffset:1500;animation:draw 4.5s ease-in-out infinite}
+      @keyframes draw{0%{stroke-dashoffset:1500}60%{stroke-dashoffset:0}100%{stroke-dashoffset:-1500}}
+      .w{opacity:0;animation:pop 6s infinite}
+      .w2{animation-delay:1.2s}.w3{animation-delay:2.4s}
+      @keyframes pop{0%{opacity:0;transform:translateY(8px)}12%,70%{opacity:1;transform:none}85%,100%{opacity:1;transform:none}}
+      .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.5s ease-in-out infinite}
+      @keyframes pulse{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.08)}}
+      @media (prefers-reduced-motion:reduce){.beat{animation:none;stroke-dashoffset:0}.w{animation:none;opacity:1}.pulse{animation:none}}
+    </style>
+  </defs>
+  <rect width="1280" height="240" fill="url(#bg)"/>
+  <path class="beat" d="M0 175 H300 L340 175 L362 120 L392 215 L420 95 L446 175 H760 L790 175 L808 145 L826 190 L844 175 H1280" fill="none" stroke="url(#ln)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g class="pulse"><path d="M90 52 C90 52 66 84 66 102 A24 24 0 0 0 114 102 C114 84 90 52 90 52 Z" fill="#E0344A"/><rect x="85" y="86" width="10" height="30" rx="2" fill="#fff"/><rect x="75" y="96" width="30" height="10" rx="2" fill="#fff"/></g>
+  <text x="140" y="100" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="58" font-weight="800" fill="#fff" letter-spacing="2">ATIYA</text>
+  <text x="140" y="132" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="19" fill="#F3C3CB">Urdu for gift. A blood request network for Sukkur.</text>
+  <text x="1240" y="100" text-anchor="end" font-family="Segoe UI, Noto Nastaliq Urdu, Arial, sans-serif" font-size="54" font-weight="700" fill="#fff" fill-opacity=".92">عطیہ</text>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="26" font-weight="700">
+    <text class="w w1" x="952" y="150" fill="#fff">Post.</text>
+    <text class="w w2" x="1030" y="150" fill="#FF8FA0">Match.</text>
+    <text class="w w3" x="1128" y="150" fill="#7FE0B8">Donate.</text>
+  </g>
+</svg>

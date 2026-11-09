@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/banner.png" alt="ATIYA home page: Post. Match. Donate." width="100%">
+  <img src="docs/images/hero.svg" alt="ATIYA, the Urdu word for gift. Post. Match. Donate." width="100%">
 </p>
 
 <p align="center">
@@ -45,6 +45,22 @@
 
 <p align="center"><img src="docs/images/divider.svg" alt="" width="100%" height="6"></p>
 
+## A night in Sukkur
+
+It is 2 a.m. Rubina Shah is in Civil Hospital. Her doctor needs O+ blood before morning. Her family starts texting every group they know, and nobody can tell which messages are real, which donors are free, or who is already on the way.
+
+On ATIYA she posts one request. The hospital confirms it is genuine. Only O+ donors who are rested and nearby see it. One donor taps **I can help**, and Rubina watches the timeline move: offered, on the way, reached the hospital. If the hospital stays silent, an admin steps in, and the request says so honestly.
+
+That is the whole idea: fewer messages, fewer wrong guesses, and a request people can trust.
+
+<p align="center">
+  <img src="docs/images/demo.gif" alt="The five steps of one request, shown on the real screens" width="860">
+</p>
+
+<p align="center"><sub>Real screens, fake demo data. <b>ATIYA</b> (عطیہ) is Urdu for <i>gift</i>.</sub></p>
+
+<p align="center"><img src="docs/images/divider.svg" alt="" width="100%" height="6"></p>
+
 ## Source code
 
 Everything is one Django project. Pick a folder to read the code.
@@ -82,6 +98,7 @@ When someone needs blood urgently, the usual route is a WhatsApp message that ge
 ## One request, start to finish
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FBE9EC','primaryBorderColor':'#C7192D','primaryTextColor':'#26181C','lineColor':'#0F5A44','secondaryColor':'#E3F2EC','tertiaryColor':'#FAF8F7','actorBkg':'#FBE9EC','actorTextColor':'#26181C','actorBorder':'#8E1022','signalColor':'#0F5A44','noteBkgColor':'#E3F2EC','noteBorderColor':'#0F5A44','fontFamily':'Inter,Segoe UI,sans-serif'}}}%%
 sequenceDiagram
     actor R as Requester
     participant H as Hospital
@@ -104,6 +121,7 @@ sequenceDiagram
 And the life of the request itself:
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FBE9EC','primaryBorderColor':'#C7192D','primaryTextColor':'#26181C','lineColor':'#0F5A44','secondaryColor':'#E3F2EC','tertiaryColor':'#FAF8F7','actorBkg':'#FBE9EC','actorTextColor':'#26181C','actorBorder':'#8E1022','signalColor':'#0F5A44','noteBkgColor':'#E3F2EC','noteBorderColor':'#0F5A44','fontFamily':'Inter,Segoe UI,sans-serif'}}}%%
 stateDiagram-v2
     [*] --> WithHospital: Posted
     WithHospital --> Live: Hospital verifies
@@ -344,6 +362,7 @@ The hospital wait per urgency and the maximum units per request are changed in t
 | Hosting | PythonAnywhere (any WSGI host works) |
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FBE9EC','primaryBorderColor':'#C7192D','primaryTextColor':'#26181C','lineColor':'#0F5A44','secondaryColor':'#E3F2EC','tertiaryColor':'#FAF8F7','actorBkg':'#FBE9EC','actorTextColor':'#26181C','actorBorder':'#8E1022','signalColor':'#0F5A44','noteBkgColor':'#E3F2EC','noteBorderColor':'#0F5A44','fontFamily':'Inter,Segoe UI,sans-serif'}}}%%
 erDiagram
     USER ||--o| DONOR_PROFILE : "may have"
     USER ||--o{ BLOOD_REQUEST : posts
