@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="https://harsha01.pythonanywhere.com"><img alt="Live demo" src="https://img.shields.io/badge/%E2%96%B6%20live%20demo-harsha01.pythonanywhere.com-C7192D?style=flat-square"></a>
+  <a href="https://harsha-talreja.github.io/Atiya-blood-network/"><img alt="Project page" src="https://img.shields.io/badge/project%20page-open-0B3D2E?style=flat-square"></a>
   <img alt="Python" src="https://img.shields.io/badge/python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white">
   <img alt="Django" src="https://img.shields.io/badge/django-6.1-0C4B33?style=flat-square&logo=django&logoColor=white">
   <img alt="Tests" src="https://img.shields.io/badge/tests-883%20passing-2ea44f?style=flat-square">
