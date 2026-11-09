@@ -3,9 +3,9 @@
 </p>
 
 <p align="center">
-  <a href="https://harsha01.pythonanywhere.com"><img src="docs/images/btn-live.svg" alt="Live application" width="330"></a>
+  <a href="https://harsha01.pythonanywhere.com"><img src="docs/images/btn-live.svg" alt="Live application" height="40"></a>
   &nbsp;
-  <a href="#source-code"><img src="docs/images/btn-source.svg" alt="Source code" width="330"></a>
+  <a href="#source-code"><img src="docs/images/btn-source.svg" alt="Source code" height="40"></a>
 </p>
 
 <h3 align="center">A blood request that a hospital has checked, shown only to donors who can actually help.</h3>
