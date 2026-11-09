@@ -2,6 +2,12 @@
   <img src="docs/images/banner.png" alt="ATIYA home page: Post. Match. Donate." width="100%">
 </p>
 
+<p align="center">
+  <a href="https://harsha01.pythonanywhere.com"><img src="docs/images/btn-live.svg" alt="Live application" width="330"></a>
+  &nbsp;
+  <a href="#source-code"><img src="docs/images/btn-source.svg" alt="Source code" width="330"></a>
+</p>
+
 <h3 align="center">A blood request that a hospital has checked, shown only to donors who can actually help.</h3>
 
 <p align="center">
@@ -37,7 +43,25 @@
 
 > **A university project** for CSC-206 Software Engineering, Aror University of Art, Architecture, Design & Heritage, Sukkur. ATIYA connects people. It does not store or supply blood and is not a medical service. A hospital or blood bank must always screen the donor.
 
----
+<p align="center"><img src="docs/images/divider.svg" alt="" width="100%" height="6"></p>
+
+## Source code
+
+Everything is one Django project. Pick a folder to read the code.
+
+| Folder | What lives there |
+|---|---|
+| [`blood_requests/`](blood_requests) | Requests, matching, offers, timeline, reports. The core rules are in `services.py` and `selectors.py` |
+| [`donors/`](donors) | Donor profiles, availability, 90-day rest |
+| [`hospitals/`](hospitals) | Hospital list, logins and the verification desk |
+| [`siteadmin/`](siteadmin) | Admin panel, settings, audit log |
+| [`accounts/`](accounts) | Signup, login, CNIC handling |
+| [`notifications/`](notifications) | In-app notifications |
+| [`core/`](core) | Home page, blood compatibility, shared constants |
+| [`templates/`](templates) · [`static/`](static) · [`locale/`](locale) | Pages, styles and scripts, Urdu and Sindhi translations |
+| [`config/`](config) | Settings and main URLs |
+
+Tests sit next to the code in `test_*.py` files. To run the project, jump to [Run it in two minutes](#run-it-in-two-minutes).
 
 ## Why ATIYA
 
