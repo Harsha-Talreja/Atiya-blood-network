@@ -1,8 +1,8 @@
 # PROJECT_CONTEXT.md — Blood Donor & Emergency Request Network
 > Reference for the developer and any AI assistant. Keep under 150 lines. Site name is a placeholder: `SITE_NAME = "Blood Network"` in `config/settings.py`, exposed to templates by a context processor (change it in one place only).
 
-## 1. Summary & Grading Priorities
-Solo semester project for CSC-206 Software Engineering (Aror University, Sukkur). A Django web app that connects blood donors with people who urgently need blood: donors register and toggle availability, requesters post requests, and the system surfaces compatible, eligible, nearby donors. It must be demoable live on a Windows laptop **fully offline** (all CSS, JS, icons, fonts in `static/vendor`; no CDN links). Grading: core features end to end 30% · no critical bugs 20% · code quality 15% · UI/UX 15% · real-world usability 10% · security basics 10%. Peers score 70%, instructor 30%, with elimination rounds. **Reliability beats features**: a broken extra costs more than a missing one. I must be able to explain every line in Q&A; AI use is allowed and disclosed in `AI_USAGE.md`.
+## 1. Summary
+Semester project for CSC-206 Software Engineering (Aror University, Sukkur), built by a team of three. A Django web app that connects blood donors with people who urgently need blood: donors register and toggle availability, requesters post requests, hospitals verify them, and the system surfaces compatible, eligible, nearby donors. It must be demoable live on a Windows laptop **fully offline** (all CSS, JS, icons, fonts in `static/vendor`; no CDN links). Reliability beats features: a broken extra costs more than a missing one. AI use is disclosed in `AI_USAGE.md`.
 
 ## 2. Tech Stack & Why
 | Piece | Why |
