@@ -478,7 +478,10 @@ Not yet. A requester can mark it fulfilled, and an admin can remove it.
 
 ## Team
 
-*(Add the three team members' names and roll numbers here.)*
+| Harsha Talreja | Pranjal | Saba Rani |
+|:---:|:---:|:---:|
+
+Three students, one project.
 
 CSC-206 Software Engineering, Aror University of Art, Architecture, Design & Heritage, Sukkur.
 
