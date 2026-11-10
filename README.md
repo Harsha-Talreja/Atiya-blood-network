@@ -101,7 +101,6 @@ When someone needs blood urgently, the usual route is a WhatsApp message that ge
 ## One request, start to finish
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FBE9EC','primaryBorderColor':'#C7192D','primaryTextColor':'#26181C','lineColor':'#0F5A44','secondaryColor':'#E3F2EC','tertiaryColor':'#FAF8F7','actorBkg':'#FBE9EC','actorTextColor':'#26181C','actorBorder':'#8E1022','signalColor':'#0F5A44','noteBkgColor':'#E3F2EC','noteBorderColor':'#0F5A44','fontFamily':'Inter,Segoe UI,sans-serif'}}}%%
 sequenceDiagram
     actor R as Requester
     participant H as Hospital
@@ -124,7 +123,6 @@ sequenceDiagram
 And the life of the request itself:
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FBE9EC','primaryBorderColor':'#C7192D','primaryTextColor':'#26181C','lineColor':'#0F5A44','secondaryColor':'#E3F2EC','tertiaryColor':'#FAF8F7','actorBkg':'#FBE9EC','actorTextColor':'#26181C','actorBorder':'#8E1022','signalColor':'#0F5A44','noteBkgColor':'#E3F2EC','noteBorderColor':'#0F5A44','fontFamily':'Inter,Segoe UI,sans-serif'}}}%%
 stateDiagram-v2
     [*] --> WithHospital: Posted
     WithHospital --> Live: Hospital verifies
@@ -140,6 +138,12 @@ stateDiagram-v2
     Fulfilled --> [*]
     Expired --> [*]
     Rejected --> [*]
+    classDef open fill:#FBE9EC,stroke:#C7192D,color:#26181C
+    classDef done fill:#E3F2EC,stroke:#0F5A44,color:#26181C
+    classDef closed fill:#ECECEC,stroke:#777777,color:#26181C
+    class WithHospital,NeedsAdmin,Live,Offered,Arrived open
+    class Fulfilled done
+    class Expired,Rejected closed
 ```
 
 ---
@@ -365,7 +369,6 @@ The hospital wait per urgency and the maximum units per request are changed in t
 | Hosting | PythonAnywhere (any WSGI host works) |
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#FBE9EC','primaryBorderColor':'#C7192D','primaryTextColor':'#26181C','lineColor':'#0F5A44','secondaryColor':'#E3F2EC','tertiaryColor':'#FAF8F7','actorBkg':'#FBE9EC','actorTextColor':'#26181C','actorBorder':'#8E1022','signalColor':'#0F5A44','noteBkgColor':'#E3F2EC','noteBorderColor':'#0F5A44','fontFamily':'Inter,Segoe UI,sans-serif'}}}%%
 erDiagram
     USER ||--o| DONOR_PROFILE : "may have"
     USER ||--o{ BLOOD_REQUEST : posts
